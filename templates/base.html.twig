@@ -12,7 +12,14 @@
 		<meta
 		name="description" content="EcoIT délivre un lable officiel de classement des sites web selon leur empreinte numérique">
 		<!-- Feuilles de styles -->
-		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+		{% block stylesheets %}
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+		{% endblock %}
 		<link
 		rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
