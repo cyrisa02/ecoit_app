@@ -7,14 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * This controller displays the homepage
+ * This controller displays the RGPD
  */
 
-class HomeController extends AbstractController
+class RGPDController extends AbstractController
 {
-    #[Route('/', name: 'home.index', methods: ['GET'])]
+    #[Route('/rgpd', name: 'rgpd', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('pages/home.html.twig');
+        return $this->render('pages/rgpd.html.twig');
     }
 }

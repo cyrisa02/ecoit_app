@@ -7,14 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * This controller displays the homepage
+ * This controller displays the CVG
  */
-
-class HomeController extends AbstractController
+class CVGController extends AbstractController
 {
-    #[Route('/', name: 'home.index', methods: ['GET'])]
+    #[Route('cvg', name: 'cvg')]
     public function index(): Response
     {
-        return $this->render('pages/home.html.twig');
+        return $this->render('pages/cvg.html.twig');
     }
 }
