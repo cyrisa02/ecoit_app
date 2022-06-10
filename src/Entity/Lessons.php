@@ -42,18 +42,20 @@ class Lessons
     #[ORM\JoinColumn(nullable: false)]
     private $users;
 
-    #[ORM\ManyToOne(targetEntity: Formations::class, inversedBy: 'lessons')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $formations;
+    
 
     #[ORM\OneToMany(mappedBy: 'lessons', targetEntity: Ressources::class)]
     private $ressources;
+
+    #[ORM\ManyToMany(targetEntity: Sections::class, mappedBy: 'lessons')]
+    private $sections;
 
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
         $this->ressources = new ArrayCollection();
+        $this->sections = new ArrayCollection();
         
     }
 
@@ -158,17 +160,7 @@ class Lessons
         return $this;
     }
 
-    public function getFormations(): ?Formations
-    {
-        return $this->formations;
-    }
-
-    public function setFormations(?Formations $formations): self
-    {
-        $this->formations = $formations;
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection<int, Ressources>
@@ -195,6 +187,33 @@ class Lessons
             if ($ressource->getLessons() === $this) {
                 $ressource->setLessons(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sections>
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Sections $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->addLesson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Sections $section): self
+    {
+        if ($this->sections->removeElement($section)) {
+            $section->removeLesson($this);
         }
 
         return $this;

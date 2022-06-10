@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SectionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SectionsRepository::class)]
@@ -22,6 +24,14 @@ class Sections
 
     #[ORM\OneToOne(mappedBy: 'sections', targetEntity: Quizes::class, cascade: ['persist', 'remove'])]
     private $quizes;
+
+    #[ORM\ManyToMany(targetEntity: Lessons::class, inversedBy: 'sections')]
+    private $lessons;
+
+    public function __construct()
+    {
+        $this->lessons = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -65,6 +75,30 @@ class Sections
         }
 
         $this->quizes = $quizes;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lessons>
+     */
+    public function getLessons(): Collection
+    {
+        return $this->lessons;
+    }
+
+    public function addLesson(Lessons $lesson): self
+    {
+        if (!$this->lessons->contains($lesson)) {
+            $this->lessons[] = $lesson;
+        }
+
+        return $this;
+    }
+
+    public function removeLesson(Lessons $lesson): self
+    {
+        $this->lessons->removeElement($lesson);
 
         return $this;
     }
