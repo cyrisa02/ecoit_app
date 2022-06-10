@@ -47,18 +47,14 @@ class Formations
     #[ORM\JoinColumn(nullable: false)]
     private $directories;
 
-    #[ORM\OneToMany(mappedBy: 'formations', targetEntity: Sections::class)]
-    private $sections;
-
-    #[ORM\OneToMany(mappedBy: 'formations', targetEntity: Lessons::class)]
-    private $lessons;
+   #[ORM\OneToMany(mappedBy: 'formations', targetEntity: Sections::class)]
+private $sections;
 
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
-        $this->sections = new ArrayCollection();
-        $this->lessons = new ArrayCollection();
+        $this->sections = new ArrayCollection();       
         
     }
 
@@ -199,62 +195,35 @@ class Formations
     }
 
     /**
-     * @return Collection<int, Sections>
-     */
-    public function getSections(): Collection
-    {
-        return $this->sections;
-    }
+* @return Collection<int, Sections>
+*/
+public function getSections(): Collection
+{
+return $this->sections;
+}
+public function addSection(Sections $section): self
+{
+if (!$this->sections->contains($section)) {
+$this->sections[] = $section;
+$section->setFormations($this);
+}
 
-    public function addSection(Sections $section): self
-    {
-        if (!$this->sections->contains($section)) {
-            $this->sections[] = $section;
-            $section->setFormations($this);
-        }
+return $this;
+}
 
-        return $this;
-    }
+public function removeSection(Sections $section): self
+{
+if ($this->sections->removeElement($section)) {
+// set the owning side to null (unless already changed)
+if ($section->getFormations() === $this) {
+$section->setFormations(null);
+}
+}
 
-    public function removeSection(Sections $section): self
-    {
-        if ($this->sections->removeElement($section)) {
-            // set the owning side to null (unless already changed)
-            if ($section->getFormations() === $this) {
-                $section->setFormations(null);
-            }
-        }
+return $this;
+}
 
-        return $this;
-    }
+    
 
-    /**
-     * @return Collection<int, Lessons>
-     */
-    public function getLessons(): Collection
-    {
-        return $this->lessons;
-    }
-
-    public function addLesson(Lessons $lesson): self
-    {
-        if (!$this->lessons->contains($lesson)) {
-            $this->lessons[] = $lesson;
-            $lesson->setFormations($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLesson(Lessons $lesson): self
-    {
-        if ($this->lessons->removeElement($lesson)) {
-            // set the owning side to null (unless already changed)
-            if ($lesson->getFormations() === $this) {
-                $lesson->setFormations(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }
