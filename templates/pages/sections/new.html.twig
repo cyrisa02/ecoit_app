@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sections
+{% endblock %}
+
+{% block body %}
+	<h1>Create new Sections</h1>
+
+	{{ include('pages/sections/_form.html.twig') }}
+
+	<a href="{{ path('app_sections_index') }}">back to list</a>
+{% endblock %}

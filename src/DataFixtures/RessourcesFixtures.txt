@@ -1,0 +1,50 @@
+<?php
+
+namespace App\DataFixtures;
+
+
+use App\Entity\Ressources;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Faker;
+
+class RessourcesFixtures extends Fixture
+{
+    public function __construct(
+        
+        private SluggerInterface $slugger
+    ){}
+
+    public function load(ObjectManager $manager): void
+    {
+
+
+
+//$lesson->setUsers($user[mt_rand(0, count($user) - 1)]);
+
+       
+        
+   
+
+        $ressource = new Ressources();
+       
+        $ressource->setName('ecologie');
+        $ressource->setFormat('.pdf');
+        
+        $manager->persist($ressource);
+
+        $faker = Faker\Factory::create('fr_FR');
+
+        for($rs = 1; $rs <= 5; $rs++){
+            $rsce = new Ressources();
+            
+                $rsce->setName($faker->word());
+                $rsce->setFormat('.pdf');
+                
+                $manager->persist($rsce);
+            }
+
+        $manager->flush();
+    }
+}

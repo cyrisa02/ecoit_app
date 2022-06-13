@@ -49,6 +49,15 @@ class Directories
         $this->updated_at = new \DateTimeImmutable();
     }
 
+
+    public function __toString()
+    {
+        return $this->title;
+        return $this->description;
+        return $this->slug;
+    }
+
+    
     public function getId(): ?int
     {
         return $this->id;

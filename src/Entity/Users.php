@@ -9,6 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UsersRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ */
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
@@ -33,14 +38,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 190)]
     private string $firstname;
 
-    #[ORM\Column(type: 'string', length: 190)]
-    private string $decription;
+     #[ORM\Column(type: 'string', length: 190)]     
+     private ?string $decription;
 
     #[ORM\Column(type: 'string', length: 190)]
-    private string $picture;
+    private ?string $picture;
 
     #[ORM\Column(type: 'string', length: 190)]
-    private string $pseudo;
+    private ?string $pseudo;
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' =>'CURRENT_TIMESTAMP'])]
     private \DateTimeImmutable $created_at;
@@ -66,16 +71,34 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'users', targetEntity: Directories::class, cascade: ['persist', 'remove'])]
     private $directories;
 
-    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Lessons::class)]
-    private $lessons;
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: EndedLessons::class)]
+    private $endedLessons;
+
+    
 
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
         $this->formations = new ArrayCollection();
-        $this->lessons = new ArrayCollection();
+        $this->endedLessons = new ArrayCollection();
+       
     }
+
+public function __toString()
+    {
+        return $this->email;
+       // return $this->password;
+        return $this->lastname;
+        return $this->firstname;
+
+        return $this->decription;
+        return $this->picture;
+        return $this->pseudo;
+
+
+    }
+
 
     public function getId(): ?int
     {
@@ -171,17 +194,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getDecription(): ?string
-    {
-        return $this->decription;
-    }
+     public function getDecription(): ?string
+     {
+         return $this->decription;
+     }
 
-    public function setDecription(string $decription): self
-    {
-        $this->decription = $decription;
+     public function setDecription(string $decription): self
+     {
+         $this->decription = $decription;
 
-        return $this;
-    }
+         return $this;
+     }
 
     public function getPicture(): ?string
     {
@@ -327,32 +350,34 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Lessons>
+     * @return Collection<int, EndedLessons>
      */
-    public function getLessons(): Collection
+    public function getEndedLessons(): Collection
     {
-        return $this->lessons;
+        return $this->endedLessons;
     }
 
-    public function addLesson(Lessons $lesson): self
+    public function addEndedLesson(EndedLessons $endedLesson): self
     {
-        if (!$this->lessons->contains($lesson)) {
-            $this->lessons[] = $lesson;
-            $lesson->setUsers($this);
+        if (!$this->endedLessons->contains($endedLesson)) {
+            $this->endedLessons[] = $endedLesson;
+            $endedLesson->setUsers($this);
         }
 
         return $this;
     }
 
-    public function removeLesson(Lessons $lesson): self
+    public function removeEndedLesson(EndedLessons $endedLesson): self
     {
-        if ($this->lessons->removeElement($lesson)) {
+        if ($this->endedLessons->removeElement($endedLesson)) {
             // set the owning side to null (unless already changed)
-            if ($lesson->getUsers() === $this) {
-                $lesson->setUsers(null);
+            if ($endedLesson->getUsers() === $this) {
+                $endedLesson->setUsers(null);
             }
         }
 
         return $this;
     }
+
+    
 }

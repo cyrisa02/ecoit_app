@@ -1,0 +1,29 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Sections;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use Faker;
+
+class SectionsFixtures extends Fixture
+{
+    public function load(ObjectManager $manager): void
+    {
+        $section = new Sections();
+
+        $faker = Faker\Factory::create('fr_FR');
+
+        for($sec = 1; $sec <= 5; $sec++){
+            $sect = new Sections();
+            
+                $sect->setTitle($faker->word());
+                
+                
+                $manager->persist($sect);
+            }
+
+        $manager->flush();
+    }
+}

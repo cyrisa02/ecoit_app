@@ -6,6 +6,7 @@ use App\Repository\SectionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SectionsRepository::class)]
 class Sections
@@ -25,12 +26,16 @@ class Sections
     #[ORM\OneToOne(mappedBy: 'sections', targetEntity: Quizes::class, cascade: ['persist', 'remove'])]
     private $quizes;
 
-    #[ORM\ManyToMany(targetEntity: Lessons::class, inversedBy: 'sections')]
+    #[ORM\OneToOne(mappedBy: 'sections',targetEntity: Lessons::class, cascade: ['persist', 'remove'])]
+    #[Assert\NotNull()]
     private $lessons;
 
-    public function __construct()
+   
+
+public function __toString()
     {
-        $this->lessons = new ArrayCollection();
+        return $this->title;
+        
     }
 
     public function getId(): ?int
@@ -79,27 +84,27 @@ class Sections
         return $this;
     }
 
-    /**
-     * @return Collection<int, Lessons>
-     */
-    public function getLessons(): Collection
+    
+
+    public function getLessons(): ?Lessons
     {
         return $this->lessons;
     }
 
-    public function addLesson(Lessons $lesson): self
+    public function setLessons(?Lessons $lessons): self
     {
-        if (!$this->lessons->contains($lesson)) {
-            $this->lessons[] = $lesson;
+        // unset the owning side of the relation if necessary
+        if ($lessons === null && $this->lessons !== null) {
+            $this->lessons->setSections(null);
         }
 
-        return $this;
-    }
+        // set the owning side of the relation if necessary
+        if ($lessons !== null && $lessons->getSections() !== $this) {
+            $lessons->setSections($this);
+        } 
 
-    public function removeLesson(Lessons $lesson): self
-    {
-        $this->lessons->removeElement($lesson);
+        $this->lessons = $lessons;
 
-        return $this;
+        return $this;  
     }
 }

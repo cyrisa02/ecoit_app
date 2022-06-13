@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LessonsRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LessonsRepository::class)]
 class Lessons
@@ -38,16 +39,20 @@ class Lessons
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private \DateTimeImmutable $updated_at;
 
-    #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'lessons')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $users;
+    
 
     
 
     #[ORM\OneToMany(mappedBy: 'lessons', targetEntity: Ressources::class)]
     private $ressources;
 
-    #[ORM\ManyToMany(targetEntity: Sections::class, mappedBy: 'lessons')]
+    
+
+    #[ORM\OneToMany(mappedBy: 'lessons', targetEntity: EndedLessons::class)]
+    private $endedLessons;
+
+    #[ORM\OneToOne(inversedBy:'lessons', targetEntity: Sections::class, cascade: ['persist', 'remove'])]
+    #[Assert\NotNull()]
     private $sections;
 
     public function __construct()
@@ -55,9 +60,19 @@ class Lessons
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
         $this->ressources = new ArrayCollection();
-        $this->sections = new ArrayCollection();
+       
+        $this->endedLessons = new ArrayCollection();
         
     }
+
+    public function __toString()
+{
+return $this->title;
+return $this->description;
+return $this->slug;
+return $this->video;
+
+}
 
     public function getId(): ?int
     {
@@ -148,18 +163,7 @@ class Lessons
         return $this;
     }
 
-    public function getUsers(): ?Users
-    {
-        return $this->users;
-    }
-
-    public function setUsers(?Users $users): self
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
+    
     
 
     /**
@@ -192,29 +196,45 @@ class Lessons
         return $this;
     }
 
+   
     /**
-     * @return Collection<int, Sections>
+     * @return Collection<int, EndedLessons>
      */
-    public function getSections(): Collection
+    public function getEndedLessons(): Collection
     {
-        return $this->sections;
+        return $this->endedLessons;
     }
 
-    public function addSection(Sections $section): self
+    public function addEndedLesson(EndedLessons $endedLesson): self
     {
-        if (!$this->sections->contains($section)) {
-            $this->sections[] = $section;
-            $section->addLesson($this);
+        if (!$this->endedLessons->contains($endedLesson)) {
+            $this->endedLessons[] = $endedLesson;
+            $endedLesson->setLessons($this);
         }
 
         return $this;
     }
 
-    public function removeSection(Sections $section): self
+    public function removeEndedLesson(EndedLessons $endedLesson): self
     {
-        if ($this->sections->removeElement($section)) {
-            $section->removeLesson($this);
+        if ($this->endedLessons->removeElement($endedLesson)) {
+            // set the owning side to null (unless already changed)
+            if ($endedLesson->getLessons() === $this) {
+                $endedLesson->setLessons(null);
+            }
         }
+
+        return $this;
+    }
+
+    public function getSections(): ?Sections
+    {
+        return $this->sections;
+    }
+
+    public function setSections(?Sections $sections): self
+    {
+        $this->sections = $sections;
 
         return $this;
     }

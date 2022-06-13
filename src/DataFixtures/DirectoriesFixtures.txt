@@ -1,0 +1,52 @@
+<?php
+
+namespace App\DataFixtures;
+
+use Faker;
+use App\Entity\Directories;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+
+class DirectoriesFixtures extends Fixture implements DependentFixtureInterface
+
+{
+
+    public function __construct(
+       
+        private SluggerInterface $slugger
+    ){}
+
+
+    public function load(ObjectManager $manager): void
+    {
+        $directory = new Directories();
+
+        $faker = Faker\Factory::create('fr_FR');
+
+        for($dr = 1; $dr <= 5; $dr++){
+            $form = new Directories();
+            //   $user=$this->getReference(rand(79,80));
+            
+                $form->setUsers('1');
+                $form->setTitle($faker->word());
+                $form->setDescription($faker->text(15));
+                $form->setSlug($this->slugger->slug($form->getTitle())->lower());       
+                $form->setIsEnded(mt_rand(0, 1) == 1 ? true : false);
+                
+                
+                
+                $manager->persist($form);
+            }
+
+        $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+        UsersFixtures::class
+        ];  
+    }
+}

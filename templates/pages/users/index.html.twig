@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users index{% endblock %}
+
+{% block body %}
+    <h1>Users index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Decription</th>
+                <th>Picture</th>
+                <th>Pseudo</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Is_verified</th>
+                <th>Is_validInstructor</th>
+                <th>Reset_token</th>
+                <th>PlainPassword</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.decription }}</td>
+                <td>{{ user.picture }}</td>
+                <td>{{ user.pseudo }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
+                <td>{{ user.resetToken }}</td>
+                <td>{{ user.plainPassword }}</td>
+                <td>
+                    <a href="{{ path('app_users_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_users_new') }}">Create new</a>
+{% endblock %}

@@ -58,6 +58,12 @@ private $sections;
         
     }
 
+    public function __toString()
+    {
+        return $this->title;
+        return $this->description;
+        return $this->slug;
+    }
 
     public function getId(): ?int
     {
@@ -175,7 +181,7 @@ private $sections;
         // set the owning side of the relation if necessary
         if ($images !== null && $images->getFormations() !== $this) {
             $images->setFormations($this);
-        }
+        } 
 
         $this->images = $images;
 

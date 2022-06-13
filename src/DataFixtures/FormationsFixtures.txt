@@ -1,0 +1,39 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Formations;
+use Faker;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
+class FormationsFixtures extends Fixture
+{
+
+    public function __construct(
+       
+        private SluggerInterface $slugger
+    ){}
+    
+    public function load(ObjectManager $manager): void
+    {
+
+        $formation = new Formations();
+
+        $faker = Faker\Factory::create('fr_FR');
+
+        for($fm = 1; $fm <= 15; $fm++){
+            $form = new Formations();
+                $form->setTitle($faker->word());
+                $form->setDescription($faker->text(15));
+                $form->setSlug($this->slugger->slug($form->getTitle())->lower());       
+                $form->setIsEndedFormation(mt_rand(0, 1) == 1 ? true : false);
+                $form->setIsFavorite (mt_rand(0, 1) == 1 ? true : false);
+                
+                $manager->persist($form);
+            }
+
+        $manager->flush();
+    }
+}

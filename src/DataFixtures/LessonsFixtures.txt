@@ -1,0 +1,59 @@
+<?php
+
+namespace App\DataFixtures;
+
+use Faker;
+use App\Entity\Lessons;
+use App\Entity\Ressources;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
+class LessonsFixtures extends Fixture
+{
+
+    public function __construct(
+       
+        private SluggerInterface $slugger
+    ){}
+    
+    
+    
+    
+    public function load(ObjectManager $manager): void
+    {
+
+        
+        $lesson= new Lessons();
+        // $user = $this->getReference(rand(36, 41));
+        //     $lesson->setUsers($user);
+
+        //$lesson->setUsers($user[mt_rand(0, count($user) - 1)]);
+
+
+        $lesson->setTitle('Ecologie informatique');
+        $lesson->setDescription('Lorem');
+        $lesson->setSlug($this->slugger->slug($lesson->getTitle())->lower());
+        $lesson->setVideo('Lorem');
+        $lesson->setIsEnded('0');
+
+        $manager->persist($lesson);
+
+        $faker = Faker\Factory::create('fr_FR');
+
+        for($ls = 1; $ls <= 15; $ls++){
+            $less = new Lessons();
+                $less->setTitle($faker->word());
+                $less->setDescription($faker->text(15));
+                $less->setSlug($this->slugger->slug($less->getTitle())->lower());
+        $less->setVideo($faker->word());
+        $less->setIsEnded(mt_rand(0, 1) == 1 ? true : false);
+                
+                $manager->persist($less);
+            }
+
+
+
+        $manager->flush();
+    }
+}
