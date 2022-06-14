@@ -9,15 +9,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
+
+
 
 #[Route('/leçons')]
 class LessonsController extends AbstractController
 {
     #[Route('/', name: 'app_lessons_index', methods: ['GET'])]
-    public function index(LessonsRepository $lessonsRepository): Response
+    public function index(LessonsRepository $lessonsRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $lessons = $lessonsRepository->findAll();
+
+        $lessons =$paginator->paginate(
+            $lessons,
+            
+            $request->query->getInt('page', 1),
+            5
+        );
+
+
         return $this->render('pages/lessons/index.html.twig', [
-            'lessons' => $lessonsRepository->findAll(),
+            'lessons' => $lessons,
         ]);
     }
 

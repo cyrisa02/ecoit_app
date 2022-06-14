@@ -1,47 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lessons index{% endblock %}
+{% block title %}Lessons index
+{% endblock %}
 
 {% block body %}
-    <h1>Lessons index</h1>
+	<h1>Lessons index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Slug</th>
-                <th>Video</th>
-                <th>Is_ended</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for lesson in lessons %}
-            <tr>
-                <td>{{ lesson.id }}</td>
-                <td>{{ lesson.title }}</td>
-                <td>{{ lesson.description }}</td>
-                <td>{{ lesson.slug }}</td>
-                <td>{{ lesson.video }}</td>
-                <td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td>
-                <td>{{ lesson.createdAt ? lesson.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ lesson.updatedAt ? lesson.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_lessons_show', {'id': lesson.id}) }}">show</a>
-                    <a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Slug</th>
+				<th>Video</th>
+				<th>Is_ended</th>
+				<th>Created_at</th>
+				<th>Updated_at</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for lesson in lessons %}
+				<tr>
+					<td>{{ lesson.id }}</td>
+					<td>{{ lesson.title }}</td>
+					<td>{{ lesson.description }}</td>
+					<td>{{ lesson.slug }}</td>
+					<td>{{ lesson.video }}</td>
+					<td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td>
+					<td>{{ lesson.createdAt ? lesson.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ lesson.updatedAt ? lesson.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_lessons_show', {'id': lesson.id}) }}">show</a>
+						<a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_lessons_new') }}">Create new</a>
+	<a href="{{ path('app_lessons_new') }}">Create new</a>
+
+	<div class="navigation d-flex justify-content-center mt-4">
+		{{ knp_pagination_render(lessons) }}
+	</div>
+
 {% endblock %}
