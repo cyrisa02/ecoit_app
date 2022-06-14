@@ -53,7 +53,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private \DateTimeImmutable $updated_at;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private bool $is_verified;
 
     #[ORM\Column(type: 'boolean')]
@@ -62,8 +62,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 190)]
     private string $reset_token;
 
-    #[ORM\Column(type: 'string', length: 190)]
-    private $plainPassword;
+    // #[ORM\Column(type: 'string', length: 190)]
+    // private $plainPassword;
 
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Formations::class)]
     private $formations;
@@ -290,17 +290,17 @@ public function __toString()
         return $this;
     }
 
-    public function getPlainPassword(): ?string
-    {
-        return $this->plainPassword;
-    }
+    // public function getPlainPassword(): ?string
+    // {
+    //     return $this->plainPassword;
+    // }
 
-    public function setPlainPassword(string $plainPassword): self
-    {
-        $this->plainPassword = $plainPassword;
+    // public function setPlainPassword(string $plainPassword): self
+    // {
+    //     $this->plainPassword = $plainPassword;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Formations>

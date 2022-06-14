@@ -25,7 +25,7 @@ class UsersType extends AbstractType
             ->add('is_verified')
             ->add('is_validInstructor')
             ->add('reset_token')
-            ->add('plainPassword')
+            //->add('plainPassword')
             ->add('directories')
         ;
     }
