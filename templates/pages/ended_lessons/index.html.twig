@@ -1,37 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}EndedLessons index{% endblock %}
+{% block title %}EndedLessons index
+{% endblock %}
 
 {% block body %}
-    <h1>EndedLessons index</h1>
+	<h1>EndedLessons index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ended_lesson in ended_lessons %}
-            <tr>
-                <td>{{ ended_lesson.id }}</td>
-                <td>{{ ended_lesson.createdAt ? ended_lesson.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ended_lesson.updatedAt ? ended_lesson.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_ended_lessons_show', {'id': ended_lesson.id}) }}">show</a>
-                    <a href="{{ path('app_ended_lessons_edit', {'id': ended_lesson.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Created_at</th>
+				<th>Updated_at</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ended_lesson in ended_lessons %}
+				<tr>
+					<td>{{ ended_lesson.id }}</td>
+					<td>{{ ended_lesson.createdAt ? ended_lesson.createdAt|date('d/m/Y') : '' }}</td>
 
-    <a href="{{ path('app_ended_lessons_new') }}">Create new</a>
+					<td>{{ ended_lesson.updatedAt ? ended_lesson.updatedAt|date('d/m/Y') : '' }}</td>
+
+					<td>
+						<a href="{{ path('app_ended_lessons_show', {'id': ended_lesson.id}) }}">show</a>
+						<a href="{{ path('app_ended_lessons_edit', {'id': ended_lesson.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_ended_lessons_new') }}">Create new</a>
 {% endblock %}

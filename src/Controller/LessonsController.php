@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Entity\Lessons;
 use App\Form\LessonsType;
 use App\Repository\LessonsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
@@ -18,6 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class LessonsController extends AbstractController
 {
     #[Route('/', name: 'app_lessons_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(LessonsRepository $lessonsRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $lessons = $lessonsRepository->findAll();
@@ -36,6 +38,7 @@ class LessonsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_lessons_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, LessonsRepository $lessonsRepository): Response
     {
         $lesson = new Lessons();

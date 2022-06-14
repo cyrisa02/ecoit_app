@@ -4,48 +4,53 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Formations</h1>
+	<div class="container mt-4">
+		<h1>Formations</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ formation.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ formation.title }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ formation.description }}</td>
-			</tr>
-			<tr>
-				<th>Slug</th>
-				<td>{{ formation.slug }}</td>
-			</tr>
-			<tr>
-				<th>Is_endedFormation</th>
-				<td>{{ formation.isEndedFormation ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Is_Favorite</th>
-				<td>{{ formation.isFavorite ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Created_at</th>
-				<td>{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Updated_at</th>
-				<td>{{ formation.updatedAt ? formation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>N°</th>
+					<td>{{ formation.id }}</td>
+				</tr>
+				<tr>
+					<th>Titre</th>
+					<td>{{ formation.title }}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ formation.description }}</td>
+				</tr>
+				<tr>
+					<th>Slug</th>
+					<td>{{ formation.slug }}</td>
+				</tr>
+				<tr>
+					<th>Terminée</th>
+					<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Favoris</th>
+					<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Création</th>
+					<td>{{ formation.createdAt ? formation.createdAt|date('d/m/Y') : '' }}</td>
 
-	<a href="{{ path('app_formations_index') }}">back to list</a>
+				</tr>
+				<tr>
+					<th>Modification</th>
+					<td>{{ formation.updatedAt ? formation.updatedAt|date('d/m/Y') : '' }}</td>
 
-	<a href="{{ path('app_formations_edit', {'id': formation.id}) }}">edit</a>
+				</tr>
+			</tbody>
+		</table>
 
-	{{ include('pages/formations/_delete_form.html.twig') }}
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_index') }}">Retour à la liste</a>
+
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_edit', {'id': formation.id}) }}">Modifier</a>
+
+		{{ include('pages/formations/_delete_form.html.twig') }}</div>
+
+
 {% endblock %}

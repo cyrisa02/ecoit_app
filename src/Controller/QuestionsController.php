@@ -5,15 +5,17 @@ namespace App\Controller;
 use App\Entity\Questions;
 use App\Form\QuestionsType;
 use App\Repository\QuestionsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/questions')]
 class QuestionsController extends AbstractController
 {
     #[Route('/', name: 'app_questions_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(QuestionsRepository $questionsRepository): Response
     {
         return $this->render('pages/questions/index.html.twig', [
@@ -22,6 +24,7 @@ class QuestionsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_questions_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, QuestionsRepository $questionsRepository): Response
     {
         $question = new Questions();

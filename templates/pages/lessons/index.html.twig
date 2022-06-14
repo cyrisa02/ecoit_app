@@ -29,8 +29,10 @@
 					<td>{{ lesson.slug }}</td>
 					<td>{{ lesson.video }}</td>
 					<td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td>
-					<td>{{ lesson.createdAt ? lesson.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ lesson.updatedAt ? lesson.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ lesson.createdAt ? lesson.createdAt|date('d/m/Y') : '' }}</td>
+
+					<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d/m/Y') : '' }}</td>
+
 					<td>
 						<a href="{{ path('app_lessons_show', {'id': lesson.id}) }}">show</a>
 						<a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">edit</a>

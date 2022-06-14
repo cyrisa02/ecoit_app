@@ -5,15 +5,18 @@ namespace App\Controller;
 use App\Entity\Ressources;
 use App\Form\RessourcesType;
 use App\Repository\RessourcesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/ressources')]
 class RessourcesController extends AbstractController
 {
     #[Route('/', name: 'app_ressources_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(RessourcesRepository $ressourcesRepository): Response
     {
         return $this->render('pages/ressources/index.html.twig', [
@@ -22,6 +25,7 @@ class RessourcesController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_ressources_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, RessourcesRepository $ressourcesRepository): Response
     {
         $ressource = new Ressources();
@@ -47,7 +51,8 @@ class RessourcesController extends AbstractController
             'ressource' => $ressource,
         ]);
     }
-
+    
+    //#[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
     #[Route('/{id}/edition', name: 'app_ressources_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Ressources $ressource, RessourcesRepository $ressourcesRepository): Response
     {

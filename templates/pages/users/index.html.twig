@@ -39,8 +39,10 @@
 					<td>{{ user.decription }}</td>
 					<td>{{ user.picture }}</td>
 					<td>{{ user.pseudo }}</td>
-					<td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ user.createdAt ? user.createdAt|date('d/m/Y') : '' }}</td>
+
+					<td>{{ user.updatedAt ? user.updatedAt|date('d/m/Y') : '' }}</td>
+
 					<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
 					<td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
 					<td>{{ user.resetToken }}</td>

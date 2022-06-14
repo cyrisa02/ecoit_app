@@ -5,15 +5,17 @@ namespace App\Controller;
 use App\Entity\Images;
 use App\Form\ImagesType;
 use App\Repository\ImagesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/images')]
 class ImagesController extends AbstractController
 {
     #[Route('/', name: 'app_images_index', methods: ['GET'])]
+  
     public function index(ImagesRepository $imagesRepository): Response
     {
         return $this->render('pages/images/index.html.twig', [

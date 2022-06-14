@@ -5,15 +5,18 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/utilisateurs')]
 class UsersController extends AbstractController
 {
     #[Route('/', name: 'app_users_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(UsersRepository $usersRepository): Response
     {
         return $this->render('pages/users/index.html.twig', [
@@ -22,6 +25,7 @@ class UsersController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_users_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, UsersRepository $usersRepository): Response
     {
         $user = new Users();
@@ -47,7 +51,7 @@ class UsersController extends AbstractController
             'user' => $user,
         ]);
     }
-
+    //#[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
     #[Route('/{id}/edition', name: 'app_users_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Users $user, UsersRepository $usersRepository): Response
     {

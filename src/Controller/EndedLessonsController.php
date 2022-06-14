@@ -5,15 +5,17 @@ namespace App\Controller;
 use App\Entity\EndedLessons;
 use App\Form\EndedLessonsType;
 use App\Repository\EndedLessonsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/progression')]
 class EndedLessonsController extends AbstractController
 {
     #[Route('/', name: 'app_ended_lessons_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(EndedLessonsRepository $endedLessonsRepository): Response
     {
         return $this->render('pages/ended_lessons/index.html.twig', [
@@ -22,6 +24,7 @@ class EndedLessonsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_ended_lessons_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, EndedLessonsRepository $endedLessonsRepository): Response
     {
         $endedLesson = new EndedLessons();
