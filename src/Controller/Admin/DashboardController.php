@@ -7,10 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
+    #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {

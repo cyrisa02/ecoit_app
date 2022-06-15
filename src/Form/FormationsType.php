@@ -5,8 +5,11 @@ namespace App\Form;
 use App\Entity\Formations;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class FormationsType extends AbstractType
@@ -46,8 +49,23 @@ class FormationsType extends AbstractType
             //->add('created_at')
             //->add('updated_at')
             //->add('users')
-            ->add('images')
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image de la formation',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'required' => false
+            ])
+
             ->add('directories')
+
+            // ->add('directories', ChoiceType::class, [
+            //     'attr' => [
+            //         'class' => 'form-control'
+            //     ],
+            //     'label' => 'Catalogue de formation'
+
+            // ] )
         ;
     }
 

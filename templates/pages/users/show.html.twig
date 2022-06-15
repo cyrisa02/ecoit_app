@@ -40,6 +40,11 @@
 				<th>Picture</th>
 				<td>{{ user.picture }}</td>
 			</tr>
+			<div class="formation__image">
+				<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(user, 'imageFile') }}">
+			</div>
+
+
 			<tr>
 				<th>Pseudo</th>
 				<td>{{ user.pseudo }}</td>
@@ -65,9 +70,9 @@
 				<td>{{ user.resetToken }}</td>
 			</tr>
 			{# <tr>
-							<th>PlainPassword</th>
-							<td>{{ user.plainPassword }}</td>
-						</tr> #}
+																<th>PlainPassword</th>
+																<td>{{ user.plainPassword }}</td>
+															</tr> #}
 		</tbody>
 	</table>
 

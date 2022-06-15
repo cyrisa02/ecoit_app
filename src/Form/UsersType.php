@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UsersType extends AbstractType
@@ -19,6 +20,13 @@ class UsersType extends AbstractType
             ->add('firstname')
             ->add('decription')
             ->add('picture')
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image de la formation',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'required' => false
+            ])
             ->add('pseudo')
             //->add('created_at')
             //->add('updated_at')

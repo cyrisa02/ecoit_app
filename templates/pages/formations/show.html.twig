@@ -17,6 +17,13 @@
 					<th>Titre</th>
 					<td>{{ formation.title }}</td>
 				</tr>
+
+				<div class="formation__image">
+					<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(formation, 'imageFile') }}">
+
+				</div>
+
+
 				<tr>
 					<th>Description</th>
 					<td>{{ formation.description }}</td>

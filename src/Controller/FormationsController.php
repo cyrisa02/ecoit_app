@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FormationsController extends AbstractController
 {
     #[Route('/', name: 'app_formations_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
+    // #[IsGranted('ROLE_USER')]
     public function index(FormationsRepository $formationsRepository): Response
     {
         return $this->render('pages/formations/index.html.twig', [
@@ -25,7 +25,7 @@ class FormationsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_formations_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_USER')]
+    // #[IsGranted('ROLE_USER')]
     public function new(Request $request, FormationsRepository $formationsRepository): Response
     {
         $formation = new Formations();
@@ -53,7 +53,7 @@ class FormationsController extends AbstractController
         ]);
     }
 
-     #[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
+    //  #[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
     #[Route('/{id}/edition', name: 'app_formations_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Formations $formation, FormationsRepository $formationsRepository): Response
     {
