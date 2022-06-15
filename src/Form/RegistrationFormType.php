@@ -42,7 +42,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Prénom'
             ])
-            ->add('decription', TextType::class, [
+            ->add('decription', ChoiceType::class, [
                   'attr' => [
                     'class' => 'form-control'
                 ],
