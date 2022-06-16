@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations index
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-4">
+		<h1>Liste des formations</h1>
+		<h2>Choisissez votre formation</h2>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>Titre</th>
+					<th>Description</th>
+
+					<th>Terminée</th>
+					<th>Favoris</th>
+
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for formation in formations %}
+					<tr>
+						<td>{{ formation.id }}</td>
+						<td>{{ formation.title }}</td>
+						<td>{{ formation.description }}</td>
+
+						<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
+						<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
+						<td>
+							<a href="{{ path('app_course_show', {'id': formation.id}) }}">Voir</a>
+
+							{# <a href="{{ path('app_formations_edit', {'id': formation.id}) }}">Modifier</a> #}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="9">Aucune formation connue</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# <a class="btn btn-secondary btn-lg" href="{{ path('app_formations_new') }}">Créer une nouvelle formation</a> #}
+	</div>
+
+
+{% endblock %}

@@ -5,9 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\Users;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -30,6 +33,13 @@ class UsersCrudController extends AbstractCrudController
 
     }
 
+     public function configureFilters(Filters $filters): Filters
+   {
+        return $filters
+            ->add(EntityFilter::new('roles'))
+        ;
+    }
+
     
     public function configureFields(string $pageName): iterable
     {
@@ -43,12 +53,12 @@ class UsersCrudController extends AbstractCrudController
             TextField::new('pseudo'),
             TextField::new('email')
                 ->hideOnForm(),
-            ArrayField::new('roles')
-                ->hideOnIndex(),
+            ArrayField::new('roles'),
+                // ->hideOnIndex(),
             DateTimeField::new('createdAt')
-                ->hideOnForm()
-
-
+                ->hideOnForm(),
+            BooleanField::new('is_validInstructor'),
+                
         ];
     }
    

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Formations</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>N°</th>
+					<td>{{ formation.id }}</td>
+				</tr>
+				<tr>
+					<th>Titre</th>
+					<td>{{ formation.title }}</td>
+				</tr>
+
+				<div class="formation__image">
+					<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(formation, 'imageFile') }}">
+
+				</div>
+
+
+				<tr>
+					<th>Description</th>
+					<td>{{ formation.description }}</td>
+				</tr>
+				{# <tr>
+									<th>Slug</th>
+									<td>{{ formation.slug }}</td>
+								</tr> #}
+				<tr>
+					<th>Terminée</th>
+					<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Favoris</th>
+					<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Création</th>
+					<td>{{ formation.createdAt ? formation.createdAt|date('d/m/Y') : '' }}</td>
+
+				</tr>
+				<tr>
+					<th>Modification</th>
+					<td>{{ formation.updatedAt ? formation.updatedAt|date('d/m/Y') : '' }}</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_course') }}">Retour à la liste</a>
+
+
+		{# <a class="btn btn-secondary btn-lg" href="{{ path('app_formations_edit', {'id': formation.id}) }}">Modifier</a> #}
+
+		{# {{ include('pages/formations/_delete_form.html.twig') }}</div> #}
+
+
+	{% endblock %}

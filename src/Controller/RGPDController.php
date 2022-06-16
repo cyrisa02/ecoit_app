@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\FormationsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * This controller displays the RGPD
@@ -17,4 +18,6 @@ class RGPDController extends AbstractController
     {
         return $this->render('pages/rgpd.html.twig');
     }
+
+    
 }

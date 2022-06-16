@@ -44,7 +44,7 @@ class FormationsController extends AbstractController
         ]);
     }
 
-   
+  // #[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
     #[Route('/{id}', name: 'app_formations_show', methods: ['GET'])]
     public function show(Formations $formation): Response
     {
@@ -53,7 +53,7 @@ class FormationsController extends AbstractController
         ]);
     }
 
-    //  #[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
+      #[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
     #[Route('/{id}/edition', name: 'app_formations_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Formations $formation, FormationsRepository $formationsRepository): Response
     {
@@ -81,4 +81,8 @@ class FormationsController extends AbstractController
 
         return $this->redirectToRoute('app_formations_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+   
 }
