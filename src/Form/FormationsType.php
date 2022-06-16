@@ -49,13 +49,7 @@ class FormationsType extends AbstractType
             //->add('created_at')
             //->add('updated_at')
             //->add('users')
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Image de la formation',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'required' => false
-            ])
+            
 
             ->add('directories')
 
@@ -66,6 +60,13 @@ class FormationsType extends AbstractType
             //     'label' => 'Catalogue de formation'
 
             // ] )
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image de la formation',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'required' => false
+            ])
         ;
     }
 

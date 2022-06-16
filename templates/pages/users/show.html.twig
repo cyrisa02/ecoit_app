@@ -1,84 +1,106 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Users
+{% block title %}Profil
 {% endblock %}
 
 {% block body %}
-	<h1>Users</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ user.id }}</td>
-			</tr>
-			<tr>
-				<th>Email</th>
-				<td>{{ user.email }}</td>
-			</tr>
-			<tr>
-				<th>Roles</th>
-				<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-			</tr>
-			<tr>
-				<th>Password</th>
-				<td>{{ user.password }}</td>
-			</tr>
-			<tr>
-				<th>Lastname</th>
-				<td>{{ user.lastname }}</td>
-			</tr>
-			<tr>
-				<th>Firstname</th>
-				<td>{{ user.firstname }}</td>
-			</tr>
-			<tr>
-				<th>Decription</th>
-				<td>{{ user.decription }}</td>
-			</tr>
-			<tr>
-				<th>Picture</th>
-				<td>{{ user.picture }}</td>
-			</tr>
-			<div class="formation__image">
-				<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(user, 'imageFile') }}">
-			</div>
+	<div class="container mt-4">
+		<h1>Mon profil</h1>
+		<h2>Bonjour
+			{{ user.firstname }}
+			{{ user.lastname }}</h2>
+
+		<h2>Ma progression
+		</h2>
+
+		<div class="progress mb-4">
+
+			<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+		</div>
 
 
-			<tr>
-				<th>Pseudo</th>
-				<td>{{ user.pseudo }}</td>
-			</tr>
-			<tr>
-				<th>Created_at</th>
-				<td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Updated_at</th>
-				<td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Is_verified</th>
-				<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Is_validInstructor</th>
-				<td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Reset_token</th>
-				<td>{{ user.resetToken }}</td>
-			</tr>
+		<h2>TODO</h2>
+
+
+		<table class="table mt-4">
+			<tbody>
+				<tr>
+					<th>Mon numéro d'identifiant</th>
+					<td>{{ user.id }}</td>
+				</tr>
+				<tr>
+					<th>Mon Email</th>
+					<td>{{ user.email }}</td>
+				</tr>
+				{# <tr>
+																																																																																													<th>Roles</th>
+																																																																																													<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+																																																																																												</tr> #}
+				{# <tr>
+																																																																																													<th>Password</th>
+																																																																																													<td>{{ user.password }}</td>
+																																																																																												</tr> #}
+				<tr>
+					<th>Nom de famille</th>
+					<td>{{ user.lastname }}</td>
+				</tr>
+				<tr>
+					<th>Prénom</th>
+					<td>{{ user.firstname }}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ user.decription }}</td>
+				</tr>
+				{# <tr>
+																																									<th>Photo</th>
+																																									<td>{{ user.picture }}</td>
+																																								</tr> #}
+				<div class="formation__image">
+					<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(user, 'imageFile') }}">
+				</div>
+
+
+				<tr>
+					<th>Mon Pseudo</th>
+					<td>{{ user.pseudo }}</td>
+				</tr>
+				<tr>
+					<th>Date d'entrée</th>
+					<td>{{ user.createdAt ? user.createdAt|date('d-m-Y ') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Date de modification</th>
+					<td>{{ user.updatedAt ? user.updatedAt|date('d-m-Y') : '' }}</td>
+
+				</tr>
+				<tr>
+					<th>Validation</th>
+					<td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+				</tr>
+				{# <tr>
+																																																																																	<th>Is_validInstructor</th>
+																																																																																	<td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
+																																																																																</tr> #}
 			{# <tr>
-																<th>PlainPassword</th>
-																<td>{{ user.plainPassword }}</td>
-															</tr> #}
-		</tbody>
-	</table>
+																																																											<th>Reset_token</th>
+																																																											<td>{{ user.resetToken }}</td>
+																																																										</tr> #}
+				{# <tr>
+																																																																																																												<th>PlainPassword</th>
+																																																																																																												<td>{{ user.plainPassword }}</td>
+																																																																																																											</tr> #}
+			</tbody>
+		</table>
+		<a class="btn btn-primary btn-lg" href="{{ path('app_users_edit', {'id': user.id}) }}">Modifier mon profil</a>
 
-	<a href="{{ path('app_users_index') }}">back to list</a>
 
-	<a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
+	</div>
 
-	{{ include('pages/users/_delete_form.html.twig') }}
+
+	{# <a href="{{ path('app_users_index') }}">back to list</a> #}
+
+
+	{# {{ include('pages/users/_delete_form.html.twig') }} #}
 {% endblock %}

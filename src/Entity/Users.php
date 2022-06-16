@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -54,6 +55,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      #[Vich\UploadableField(mapping: 'formation_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
+     
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
@@ -65,7 +67,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private \DateTimeImmutable $updated_at;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private bool $is_verified;
+    private bool $is_verified; // = false, problème avec admin
 
     #[ORM\Column(type: 'boolean')]
     private $is_validInstructor;
@@ -79,6 +81,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Formations::class)]
     private $formations;
 
+    #[Assert\NotNull()]
     #[ORM\OneToOne(mappedBy: 'users', targetEntity: Directories::class, cascade: ['persist', 'remove'])]
     private $directories;
 

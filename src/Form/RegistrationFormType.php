@@ -48,7 +48,7 @@ class RegistrationFormType extends AbstractType
                   'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Description'   
+                'label' => 'Merci de donner vos spécialités et de présenter vos motivations'   
             ])
             ->add('picture', TextType::class, [
                  'attr' => [
@@ -69,17 +69,17 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Votre pseudo'
             ])
-            ->add('is_verified', CheckboxType::class, [
-                'mapped' => true,
-                'label' => 'En cours de vérification'
-            ])
+            // ->add('is_verified', CheckboxType::class, [
+            //     'mapped' => true,
+            //     'label' => 'En cours de vérification'
+            // ])
             ->add('is_validInstructor',CheckboxType::class, [
                 'mapped' => true,
-                'label' => 'Etes-vous instructeur?'
+                'label' => 'Etes-vous majeur?'
             ])
             ->add('reset_token')
             ->add('directories')
-            ->add('RGPDConsent', CheckboxType::class, [
+            ->add('is_verified', CheckboxType::class, [
                 'mapped' => false,
                  'label' => 'Etes-vous d\'accord avec notre RGPD',
                 'constraints' => [

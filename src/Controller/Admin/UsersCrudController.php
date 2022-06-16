@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Users;
+use App\Entity\Lessons;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
@@ -19,7 +20,16 @@ class UsersCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Users::class;
+
     }
+
+    public static function getEntityFqcn2(): string
+    {
+        return Lessons::class;
+
+    }
+
+
 
     public function configureCrud(Crud $crud): Crud
     {
@@ -57,7 +67,7 @@ class UsersCrudController extends AbstractCrudController
                 // ->hideOnIndex(),
             DateTimeField::new('createdAt')
                 ->hideOnForm(),
-            BooleanField::new('is_validInstructor'),
+            BooleanField::new('is_verified'),
                 
         ];
     }

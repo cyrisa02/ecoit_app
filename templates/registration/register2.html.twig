@@ -7,8 +7,9 @@
 	<section class="container">
 		<div class="row">
 			<div class="col">
-				<h1>Inscription pour un poste d'apprenant</h1>
-
+				<h1>Vous souhaitez réaliser une formation.</h1>
+				<h2>Alors inscrivez-vous. La photo est conseillée.</h2>
+				<p>Vous recevrez un email de confirmation de votre inscription pour pouvoir vous connecter. Merci de votre compréhension.</p>
 				{{ form_start(registrationForm) }}
 				<fieldset class="mb-3">
 					<legend>Mon identité</legend>
@@ -22,21 +23,26 @@
 					{{ form_row(registrationForm.decription) }}
 					{{ form_row(registrationForm.picture) }}
 					{{ form_row(registrationForm.pseudo) }}
-					{{ form_row(registrationForm.is_verified) }}
 
-					{{ form_row(registrationForm.is_validInstructor) }}
 
-					{{ form_row(registrationForm.directories) }}
+					{{ form_row(registrationForm.directories, {
+                        label: 'Choisissez une formation'
+                    }) }}
 
 
 				</fieldset>
 				{{ form_row(registrationForm.plainPassword, {
-                        label: 'Password'
+                        label: 'Mot de passe'
                     }) }}
-				{{ form_row(registrationForm.RGPDConsent) }}
+				{{ form_row(registrationForm.is_verified) }}
+
+				{{ form_row(registrationForm.is_validInstructor) }}
+
+				{# {{ form_row(registrationForm.RGPDConsent) }} #}
 
 				<button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
-				<a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter</a>
+				<a href="{{ path('app_login') }}" class="btn btn-secondary ms-4">Me connecter</a>
+
 				{{ form_end(registrationForm) }}
 			</div>
 		</div>

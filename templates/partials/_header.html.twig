@@ -14,27 +14,60 @@
 
 						<span class="visually-hidden">(current)</span>
 					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_lessons_index')}}">Leçons</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path ('app_users_index')}}">Utilisateurs</a>
+
 
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path ('app_formations_index')}}">Formations</a>
+				{% if app.user %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path ('app_users_show',{'id':app.user.id})}}">Mon Profil</a>
+					</li>
 
-				</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Formation</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="{{ path ('app_course')}}">Liste des formations</a>
+
+
+							<a class="dropdown-item" href="{{ path ('app_sections_index')}}">Sections</a>
+
+
+							<a class="dropdown-item" href="{{ path ('app_lessons_index')}}">Leçons</a>
+
+							<div class="dropdown-divider"></div>
+
+
+							<a class="dropdown-item" href="{{ path ('app_quizes_index')}}">Quiz</a>
+
+
+							<a class="dropdown-item" href="{{ path ('app_questions_index')}}">Questions du quiz</a>
+
+
+						</div>
+					</li>
+
+					{# <li class="nav-item">
+																																																																																																													<a class="nav-link" href="{{ path('app_lessons_index')}}">Leçons</a>
+																																																																																																												</li> #}
+
+
+				{% endif %}
+
+				{# <li class="nav-item">
+																																																																																	<a class="nav-link" href="{{ path ('app_formations_index')}}">Formations</a>
+																																																																												
+																																																																																</li> #}
+				{# <li class="nav-item">
+																																																																									<a class="nav-link" href="{{ path ('app_sections_index')}}">Section
+																																																																									</a>
+																																																																								
+																																																																								</li> #}
+
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path ('app_directories_index')}}">Catalogue</a>
 
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path ('app_sections_index')}}">Section
-					</a>
 
-				</li>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="{{ path ('app_ended_lessons_index')}}">Progression</a>
@@ -49,27 +82,11 @@
 			</li>
 
 
-			{# <li class="nav-item">
-																																											<a class="nav-link" href="#">About</a>
-																																										</li> #}
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="{{ path ('app_ressources_index')}}">Ressources</a>
-
-					<a class="dropdown-item" href="{{ path ('app_quizes_index')}}">Quizes</a>
-
-					<a class="dropdown-item" href="{{ path ('app_questions_index')}}">Questions du quiz</a>
-
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Separated link</a>
-				</div>
-			</li>
 		</ul>
 		{# <form class="d-flex">
-																															<input class="form-control me-sm-2" type="text" placeholder="Search">
-																															<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-																														</form> #}
+																																																																																																																															<input class="form-control me-sm-2" type="text" placeholder="Search">
+																																																																																																																															<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+																																																																																																																														</form> #}
 		<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 			{% if app.user %}
 				<li class="nav-item">
@@ -79,13 +96,20 @@
 					<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
 				</li>
 			{% else %}
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_register') }}">Inscription Instructeur</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_register2') }}">Inscription Apprenant</a>
 
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Inscription</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ path ('app_register2')}}">Formation Apprenant</a>
+						<div class="dropdown-divider"></div>
+
+
+						<a class="dropdown-item" href="{{ path ('app_register')}}">Inscription Instructeur</a>
+
+
+					</div>
 				</li>
+
 
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_login') }}">Me Connecter</a>

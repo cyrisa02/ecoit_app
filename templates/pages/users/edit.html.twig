@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Users
+{% block title %}Modification de mon profil
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Users</h1>
 
-	{{ include('pages/users/_form.html.twig', {'button_label': 'Update'}) }}
+	<div class="container mt-4">
 
-	<a href="{{ path('app_users_index') }}">back to list</a>
+		<h1>Modification de mon profil</h1>
+		<div class="mt-4">{{ include('pages/users/_form.html.twig', {'button_label': 'Valider'}) }}</div>
 
-	{{ include('pages/users/_delete_form.html.twig') }}
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path ('app_users_show',{'id':app.user.id})}}">Retour à mon profil</a>
+
+		<h1 class="mt-4">ZONE DANGER</h1>
+
+		{{ include('pages/users/_delete_form.html.twig') }}</div>
+
+
 {% endblock %}

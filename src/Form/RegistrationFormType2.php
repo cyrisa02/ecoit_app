@@ -44,50 +44,6 @@ class RegistrationFormType2 extends AbstractType
                 ],
                 'label' => 'Prénom'
             ])
-            ->add('decription', TextType::class, [
-                  'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Description'   
-            ])
-            ->add('picture', TextType::class, [
-                 'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Photo'    
-            ])
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Votre photo',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'required' => false
-            ])
-            ->add('pseudo', TextType::class, [
-                 'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Votre pseudo'
-            ])
-            ->add('is_verified', CheckboxType::class, [
-                'mapped' => true,
-                'label' => 'En cours de vérification'
-            ])
-            ->add('is_validInstructor',CheckboxType::class, [
-                'mapped' => true,
-                'label' => 'Etes-vous instructeur?'
-            ])
-            ->add('reset_token')
-            ->add('directories')
-            ->add('RGPDConsent', CheckboxType::class, [
-                'mapped' => false,
-                 'label' => 'Etes-vous d\'accord avec notre RGPD',
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -109,6 +65,62 @@ class RegistrationFormType2 extends AbstractType
                 ],
                
             ])
+            ->add('decription', TextType::class, [
+                  'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Présentez-vous en quelques mots'   
+            ])
+            ->add('picture', TextType::class, [
+                 'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Photo'    
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Votre photo',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'required' => false
+            ])
+            ->add('pseudo', TextType::class, [
+                 'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Votre pseudo'
+            ])
+            
+            ->add('reset_token')
+            ->add('directories')
+            // ->add('RGPDConsent', CheckboxType::class, [
+            //     'mapped' => false,
+            //      'label' => 'Etes-vous d\'accord avec notre RGPD',
+            //     'constraints' => [
+            //         new IsTrue([
+            //             'message' => 'You should agree to our terms.',
+            //         ]),
+            //     ],
+            // ])
+            ->add('is_verified', CheckboxType::class, [
+                'mapped' => false,
+                 'label' => 'Etes-vous d\'accord avec notre RGPD',
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
+                ],
+            ])
+
+            // ->add('is_verified', CheckboxType::class, [
+            //     'mapped' => true,
+            //     'label' => 'En cours de vérification'
+            // ])
+            ->add('is_validInstructor',CheckboxType::class, [
+                'mapped' => true,
+                'label' => 'Etes-vous majeur?'
+            ])
+            
         ;
     }
 

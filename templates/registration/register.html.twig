@@ -26,17 +26,19 @@
 
 					{{ form_row(registrationForm.is_validInstructor) }}
 
-					{{ form_row(registrationForm.directories) }}
+					{{ form_row(registrationForm.directories, {
+                        label: 'Dans quelle spécialité souhaitez-vous enseigner?'
+                    }) }}
 
 
 				</fieldset>
 				{{ form_row(registrationForm.plainPassword, {
-                        label: 'Password'
+                        label: 'Mot de passe'
                     }) }}
-				{{ form_row(registrationForm.RGPDConsent) }}
+				{# {{ form_row(registrationForm.RGPDConsent) }} #}
 
 				<button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
-				<a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter</a>
+				<a href="{{ path('app_login') }}" class="btn btn-secondary ms-4">Me connecter</a>
 				{{ form_end(registrationForm) }}
 			</div>
 		</div>
