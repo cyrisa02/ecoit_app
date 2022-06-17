@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Quizes;
+use App\Entity\Questions;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -21,7 +23,23 @@ class QuizesType extends AbstractType
 
             ])
             ->add('sections')
-            //->add('questions')
+            
+            ->add('questions', EntityType::class, [
+                'class' => Questions::class,
+                // 'query_builder' => function (QuestionsRepository $r) {
+                //     return $r->createQueryBuilder('i')
+                //         ->where('i.user = :user')
+                //         ->orderBy('i.name', 'ASC')
+                //         ->setParameter('user', $this->token->getToken()->getUser());
+                // },
+                'label' => 'Les questions',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choice_label' => 'question',
+                'multiple' => true,
+                'expanded' => true,
+            ])
         ;
     }
 
