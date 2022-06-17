@@ -4,24 +4,38 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Sections</h1>
+	<div class="container mt-4">
+		<h1>Section N°:
+			{{ section.id }}</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ section.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ section.title }}</td>
-			</tr>
-		</tbody>
-	</table>
 
-	<a href="{{ path('app_sections_index') }}">back to list</a>
+		<table class="table">
+			<tbody>
 
-	<a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a>
+				<tr>
+					<th>Titre</th>
+					<td>{{ section.title }}</td>
+				</tr>
+				<tr>
+					<th>Formations</th>
 
-	{{ include('pages/sections/_delete_form.html.twig') }}
+					<td>{{ section.formations }}</td>
+				</tr>
+
+				<tr>
+					<th>Leçons</th>
+
+					<td>{{ section.lessons }}</td>
+				</tr>
+
+
+			</tbody>
+		</table>
+
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_sections_index') }}">Retour à la liste</a>
+
+		<a class="btn btn-primary btn-lg" href="{{ path('app_sections_edit', {'id': section.id}) }}">Modifier</a>
+
+		{{ include('pages/sections/_delete_form.html.twig') }}</div>
+
 {% endblock %}

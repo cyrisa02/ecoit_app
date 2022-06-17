@@ -27,7 +27,7 @@ class Sections
     private $quizes;
 
     #[ORM\OneToOne(mappedBy: 'sections',targetEntity: Lessons::class, cascade: ['persist', 'remove'])]
-    #[Assert\NotNull()]
+    //#[Assert\NotNull()]
     private $lessons;
 
    

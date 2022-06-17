@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Sections
+{% block title %}Modification section
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Sections</h1>
+	<div class="container mt-4">
+		<h1>Modification de la section</h1>
 
-	{{ include('pages/sections/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('app_sections_index') }}">back to list</a>
+		{{ include('pages/sections/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-	{{ include('pages/sections/_delete_form.html.twig') }}
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_sections_index') }}">Retour au menu</a>
+
+
+		{{ include('pages/sections/_delete_form.html.twig') }}</div>
+
 {% endblock %}

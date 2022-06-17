@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Formations;
 use App\Entity\Lessons;
 use App\Entity\Users;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+
 
 class DashboardController extends AbstractDashboardController
 {
@@ -34,7 +36,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', Users::class);
-        //yield MenuItem::linkToCrud('Leçons', 'fas fa-list', Lessons::class);
+        //yield MenuItem::linkToCrud('Leçons', 'fas fa-list', Formations::class);
         yield MenuItem::linkToCrud('Apprenant', 'fas fa-list', Users::class);
     }
 }

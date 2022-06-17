@@ -1,35 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quizes index{% endblock %}
+{% block title %}Liste des Quizes
+{% endblock %}
 
 {% block body %}
-    <h1>Quizes index</h1>
+	<div class="container mt-4">
+		<h1>Liste des Quizes
+		</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for quize in quizes %}
-            <tr>
-                <td>{{ quize.id }}</td>
-                <td>{{ quize.title }}</td>
-                <td>
-                    <a href="{{ path('app_quizes_show', {'id': quize.id}) }}">show</a>
-                    <a href="{{ path('app_quizes_edit', {'id': quize.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Numéro</th>
+					<th>Titre</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for quize in quizes %}
+					<tr>
+						<td>{{ quize.id }}</td>
+						<td>{{ quize.title }}</td>
+						<td>
+							<a href="{{ path('app_quizes_show', {'id': quize.id}) }}">Voir</a>
+							<a href="{{ path('app_quizes_edit', {'id': quize.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">Aucun Quiz trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-    <a href="{{ path('app_quizes_new') }}">Create new</a>
+		<a href="{{ path('app_quizes_new') }}">Créer un nouveau Quiz</a>
+	</div>
+
 {% endblock %}

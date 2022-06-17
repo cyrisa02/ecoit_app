@@ -28,7 +28,7 @@ class LessonsController extends AbstractController
             $lessons,
             
             $request->query->getInt('page', 1),
-            5
+            1
         );
 
 

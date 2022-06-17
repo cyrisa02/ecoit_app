@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Quizes
+{% block title %}Nouveau Quiz
 {% endblock %}
 
 {% block body %}
-	<h1>Create new Quizes</h1>
+	<div class="container mt-4">
+		<h1>Création d'un quiz</h1>
 
-	{{ include('pages/quizes/_form.html.twig') }}
+		{{ include('pages/quizes/_form.html.twig') }}
 
-	<a href="{{ path('app_quizes_index') }}">back to list</a>
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_quizes_index') }}">Retour au menu</a>
+	</div>
+
+
 {% endblock %}

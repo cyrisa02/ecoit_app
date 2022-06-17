@@ -8,10 +8,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FormationsRepository::class)]
 #[Vich\Uploadable]
+#[ORM\HasLifecycleCallbacks]
 class Formations
 {
     #[ORM\Id]
@@ -45,7 +46,8 @@ class Formations
     #[ORM\Column(type: 'datetime_immutable', options: ['default' =>'CURRENT_TIMESTAMP'])]
     private \DateTimeImmutable $created_at;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    #[ORM\Column(type: 'datetime_immutable')]
+     #[Assert\NotNull()]
     private \DateTimeImmutable $updated_at;
 
     #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'formations')]
@@ -69,11 +71,19 @@ private $sections;
         
     }
 
+ #[ORM\PrePersist()]
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+
     public function __toString()
     {
         return $this->title;
         return $this->description;
         return $this->slug;
+        return $this->sections;
     }
 
     public function getId(): ?int

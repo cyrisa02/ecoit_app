@@ -35,12 +35,12 @@ class FormationsType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Slug'
+                'label' => 'Saisissez votre nom et votre prénom'
 
             ])
             ->add('is_endedFormation',CheckboxType::class, [
                 'mapped' => true,
-                'label' => 'Terminée'
+                'label' => 'Valider la formation'
             ])
             ->add('is_Favorite',CheckboxType::class, [
                 'mapped' => true,
@@ -48,7 +48,7 @@ class FormationsType extends AbstractType
             ])
             //->add('created_at')
             //->add('updated_at')
-            //->add('users')
+            ->add('sections')
             
 
             ->add('directories')

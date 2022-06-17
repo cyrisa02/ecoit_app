@@ -1,51 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lessons
+{% block title %}Leçon
 {% endblock %}
 
 {% block body %}
-	<h1>Lessons</h1>
+	<div class="container mt-4">
+		<h1>Leçon n°:
+			{{ lesson.id }}</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ lesson.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ lesson.title }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ lesson.description }}</td>
-			</tr>
-			<tr>
-				<th>Slug</th>
-				<td>{{ lesson.slug }}</td>
-			</tr>
-			<tr>
-				<th>Video</th>
-				<td>{{ lesson.video }}</td>
-			</tr>
-			<tr>
-				<th>Is_ended</th>
-				<td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Created_at</th>
-				<td>{{ lesson.createdAt ? lesson.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Updated_at</th>
-				<td>{{ lesson.updatedAt ? lesson.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
 
-	<a href="{{ path('app_lessons_index') }}">back to list</a>
+		<table class="table">
+			<tbody>
+				{# <tr>
+																													<th>Id</th>
+																													<td></td>
+																												</tr> #}
+				<tr>
+					<th>Titre</th>
+					<td>{{ lesson.title }}</td>
+				</tr>
+				<tr>
+					<th>Contenu</th>
+					<td>{{ lesson.description }}</td>
+				</tr>
+				<tr>
+					<th>Auteur</th>
+					<td>{{ lesson.slug }}</td>
+				</tr>
+				<tr>
+					<th>Video</th>
+					<td>{{ lesson.video }}</td>
+				</tr>
+				<tr>
+					<th>Terminée</th>
+					<td>{{ lesson.isEnded ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Création</th>
+					<td>{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Modification</th>
+					<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y') : '' }}</td>
 
-	<a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">edit</a>
+				</tr>
+			</tbody>
+		</table>
 
-	{{ include('pages/lessons/_delete_form.html.twig') }}
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_index') }}">Retour à la liste</a>
+
+
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">Modifier</a>
+
+
+		{{ include('pages/lessons/_delete_form.html.twig') }}</div>
+
 {% endblock %}

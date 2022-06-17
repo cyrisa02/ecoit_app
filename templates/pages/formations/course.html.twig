@@ -14,10 +14,14 @@
 				<tr>
 					<th>N°</th>
 					<th>Titre</th>
+					<th>Catalogue</th>
+					<th>Nom du formateur</th>
+
 					<th>Description</th>
 
 					<th>Terminée</th>
 					<th>Favoris</th>
+					<th>Directories</th>
 
 					<th>Actions</th>
 				</tr>
@@ -27,10 +31,16 @@
 					<tr>
 						<td>{{ formation.id }}</td>
 						<td>{{ formation.title }}</td>
+						<td>{{ formation.directories }}</td>
+						<td>{{ formation.users }}</td>
+
+
 						<td>{{ formation.description }}</td>
 
 						<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
 						<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
+						<td>{{ formation.directories }}</td>
+
 						<td>
 							<a href="{{ path('app_course_show', {'id': formation.id}) }}">Voir</a>
 

@@ -67,7 +67,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private \DateTimeImmutable $updated_at;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private bool $is_verified; // = false, problème avec admin
+    private bool $is_verified ; //, problème avec admin
+
+    //#[ORM\Column(type: 'boolean', options: ['default' =>'0'])]
+   // private bool $is_verified = false; //, problème avec admin
 
     #[ORM\Column(type: 'boolean')]
     private $is_validInstructor;

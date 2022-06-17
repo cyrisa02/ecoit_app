@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LessonsRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
+
+
 #[ORM\Entity(repositoryClass: LessonsRepository::class)]
 class Lessons
 {
@@ -52,7 +55,7 @@ class Lessons
     private $endedLessons;
 
     #[ORM\OneToOne(inversedBy:'lessons', targetEntity: Sections::class, cascade: ['persist', 'remove'])]
-    #[Assert\NotNull()]
+    //#[Assert\NotNull()]
     private $sections;
 
     public function __construct()

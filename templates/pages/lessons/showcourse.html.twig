@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Titre de la leçon n°{{ lesson.id }}:
+
+			{{ lesson.title }}</h1>
+		<h2>Auteur: TODO</h2>
+		<h2>Titre de la Formation: TODO</h2>
+		<h3>Titre de la Section:
+			{{ lesson.sections }}</h3>
+
+
+		<table class="table">
+			<tbody>
+				{# <tr>
+																	<th>Numéro de la leçon</th>
+																	<td>{{ lesson.id }}</td>
+																</tr> #}
+				{# <tr>
+																					<th>Titre</th>
+																					<td>{{ lesson.title }}</td>
+																				</tr> #}
+					<tr>
+						<th>
+					Contenu
+					</th>
+						<td>
+					{{ lesson.description }}
+				</td>
+				</tr>
+					<tr>
+						<th>
+					Slug
+					</th>
+						<td>
+					{{ lesson.slug }}
+				</td>
+				</tr>
+					<tr>
+						<th>
+					Video
+					</th>
+						<td>
+					{{ lesson.video }}
+				</td>
+				</tr>
+					<tr>
+						<th>
+					Terminée
+					</th>
+						<td>
+					{{ lesson.isEnded ? 'Yes' : 'No' }}
+				</td>
+				</tr>
+					<tr>
+						<th>
+					Créée
+					</th>
+						<td>
+					{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}
+				</td>
+				</tr>
+					<tr>
+						<th>
+					Dernière modification
+					</th>
+						<td>
+					{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
+				</td>
+			</tr>
+		</tbody>
+		</table>
+			<a class="btn btn-secondary btn-lg" href="{{ path('app_course2') }}"> Retour au menu</a>
+
+
+		{# <a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">edit</a> #}
+
+		{# {{ include('pages/lessons/_delete_form.html.twig') }} #}
+	</div>
+
+{% endblock %}

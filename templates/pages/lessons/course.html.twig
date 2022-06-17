@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lessons index
+{% block title %}Liste des leçons
 {% endblock %}
 
 {% block body %}
@@ -10,15 +10,16 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Numéro</th>
+					<th>N° de la leçon</th>
 					<th>Titre</th>
-					<th>Section</th>
 					<th>Contenu</th>
-					<th>Ateur</th>
+					<th>Slug</th>
 					<th>Video</th>
+					<th>Section</th>
+
 					<th>Terminée</th>
-					<th>Création</th>
-					<th>Modification</th>
+					<th>Créée</th>
+					<th>Modifiée</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -27,35 +28,34 @@
 					<tr>
 						<td>{{ lesson.id }}</td>
 						<td>{{ lesson.title }}</td>
-						<td>{{ lesson.sections }}</td>
-
 						<td>{{ lesson.description }}</td>
 						<td>{{ lesson.slug }}</td>
 						<td>{{ lesson.video }}</td>
+						<td>{{ lesson.sections }}</td>
+
 						<td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td>
 						<td>{{ lesson.createdAt ? lesson.createdAt|date('d/m/Y') : '' }}</td>
 
 						<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d/m/Y') : '' }}</td>
 
 						<td>
-							<a href="{{ path('app_lessons_show', {'id': lesson.id}) }}">Voir</a>
-							<a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">Modifier</a>
+							<a href="{{ path('app_course2_show', {'id': lesson.id}) }}">voir</a>
+
 						</td>
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="9">Aucune leçon trouvée</td>
+						<td colspan="9">no records found</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 
-		<a class="btn btn-secondary btn-lg" href="{{ path('app_lessons_new') }}">Créer une nouvelle leçon</a>
+		{# <a href="{{ path('app_lessons_new') }}">Create new</a> #}
 
-
-		<div class="navigation d-flex justify-content-center mt-4">
-			{{ knp_pagination_render(lessons) }}
-		</div>
+		{# <div class="navigation d-flex justify-content-center mt-4">
+								{{ knp_pagination_render(lessons) }}
+							</div> #}
 	</div>
 
 

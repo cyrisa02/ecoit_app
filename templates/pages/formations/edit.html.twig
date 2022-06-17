@@ -4,11 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Modification de la formation</h1>
 
-	{{ include('pages/formations/_form.html.twig', {'button_label': 'Update'}) }}
+	<div class="container mt-4">
+		<h1>Modification de la formation</h1>
 
-	<a href="{{ path('app_formations_index') }}">back to list</a>
+		{{ include('pages/formations/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-	{{ include('pages/formations/_delete_form.html.twig') }}
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_index') }}">Retour à la liste</a>
+
+
+		{{ include('pages/formations/_delete_form.html.twig') }}</div>
+
+
 {% endblock %}

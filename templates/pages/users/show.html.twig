@@ -34,13 +34,13 @@
 					<td>{{ user.email }}</td>
 				</tr>
 				{# <tr>
-																																																																																													<th>Roles</th>
-																																																																																													<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-																																																																																												</tr> #}
+																																																																																																	<th>Roles</th>
+																																																																																																	<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+																																																																																																</tr> #}
 				{# <tr>
-																																																																																													<th>Password</th>
-																																																																																													<td>{{ user.password }}</td>
-																																																																																												</tr> #}
+																																																																																																	<th>Password</th>
+																																																																																																	<td>{{ user.password }}</td>
+																																																																																																</tr> #}
 				<tr>
 					<th>Nom de famille</th>
 					<td>{{ user.lastname }}</td>
@@ -54,9 +54,9 @@
 					<td>{{ user.decription }}</td>
 				</tr>
 				{# <tr>
-																																									<th>Photo</th>
-																																									<td>{{ user.picture }}</td>
-																																								</tr> #}
+																																													<th>Photo</th>
+																																													<td>{{ user.picture }}</td>
+																																												</tr> #}
 				<div class="formation__image">
 					<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(user, 'imageFile') }}">
 				</div>
@@ -66,41 +66,40 @@
 					<th>Mon Pseudo</th>
 					<td>{{ user.pseudo }}</td>
 				</tr>
+				<tr></tr>
 				<tr>
-					<th>Date d'entrée</th>
-					<td>{{ user.createdAt ? user.createdAt|date('d-m-Y ') : '' }}</td>
-				</tr>
-				<tr>
-					<th>Date de modification</th>
-					<td>{{ user.updatedAt ? user.updatedAt|date('d-m-Y') : '' }}</td>
+					<th>Matière enseignée</th>
+					<td>{{ user.directories }}</td>
 
 				</tr>
-				<tr>
-					<th>Validation</th>
-					<td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
-				</tr>
-				{# <tr>
-																																																																																	<th>Is_validInstructor</th>
-																																																																																	<td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
-																																																																																</tr> #}
-			{# <tr>
-																																																											<th>Reset_token</th>
-																																																											<td>{{ user.resetToken }}</td>
-																																																										</tr> #}
-				{# <tr>
-																																																																																																												<th>PlainPassword</th>
-																																																																																																												<td>{{ user.plainPassword }}</td>
-																																																																																																											</tr> #}
+				<tr></tr>
+
+
+				<th>Date d'entrée</th>
+				<td>{{ user.createdAt ? user.createdAt|date('d-m-Y ') : '' }}</td>
 			</tbody>
-		</table>
-		<a class="btn btn-primary btn-lg" href="{{ path('app_users_edit', {'id': user.id}) }}">Modifier mon profil</a>
+		</tr>
+		<tr>
+			<th>Date de modification</th>
+			<td>{{ user.updatedAt ? user.updatedAt|date('d-m-Y') : '' }}</td>
 
-
-	</div>
-
-
-	{# <a href="{{ path('app_users_index') }}">back to list</a> #}
-
-
-	{# {{ include('pages/users/_delete_form.html.twig') }} #}
-{% endblock %}
+		</tr>
+		<tr>
+			<th>Validation</th>
+			<td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+		</tr>
+		{# <tr>
+																																																																																			<th>Is_validInstructor</th>
+																																																																																			<td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
+																																																																																		</tr> #}
+	{# <tr>
+																																																												<th>Reset_token</th>
+																																																												<td>{{ user.resetToken }}</td>
+																																																											</tr> #}
+		{# <tr>
+																																																																																																														<th>PlainPassword</th>
+																																																																																																														<td>{{ user.plainPassword }}</td>
+																																																																																																													</tr> #}
+	</tbody>
+</table>
+<a class="btn btn-primary btn-lg" href="{{ path('app_users_edit', {'id': user.id}) }}">Modifier mon profil</a></div>{# <a href="{{ path('app_users_index') }}">back to list</a> #}{# {{ include('pages/users/_delete_form.html.twig') }} #}{% endblock %}

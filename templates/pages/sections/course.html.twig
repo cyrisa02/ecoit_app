@@ -1,22 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste sections
+{% block title %}Sections index
 {% endblock %}
 
 {% block body %}
 
-	<div class="container">
-		<h1>Liste des sections</h1>
+	<div class="container mt-4">
+		<h1>Liste des sections
+		</h1>
 
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Id</th>
+					<th>Chapitre</th>
 					<th>Titre</th>
-					<th>Formations</th>
-					<th>Leçons</th>
-					<th>actions</th>
+					<th>Formation</th>
 
+					<th>Quiz</th>
+
+					<th>Leçons</th>
+
+					<th>action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,24 +29,24 @@
 						<td>{{ section.id }}</td>
 						<td>{{ section.title }}</td>
 						<td>{{ section.formations }}</td>
+						<td>{{ section.quizes }}</td>
 						<td>{{ section.lessons }}</td>
 
+
 						<td>
-							<a href="{{ path('app_sections_show', {'id': section.id}) }}">Voir</a>
-							<a href="{{ path('app_sections_edit', {'id': section.id}) }}">Modifier</a>
+							<a href="{{ path('app_course1_show', {'id': section.id}) }}">voir</a>
+							{# <a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a> #}
 						</td>
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="3">Aucune section trouvée</td>
+						<td colspan="3">Pas de section trouvée</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
-
-		<a class="btn btn-secondary btn-lg" href="{{ path('app_sections_new') }}">Créer une nouvelle section</a>
-
 	</div>
 
 
+	{# <a href="{{ path('app_sections_new') }}">Create new</a> #}
 {% endblock %}

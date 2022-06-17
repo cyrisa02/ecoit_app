@@ -13,8 +13,10 @@
 				<tr>
 					<th>N°</th>
 					<th>Titre</th>
+					{# <th>Sections</th> #}
+					<th>Catalogue</th>
 					<th>Description</th>
-					<th>Slug</th>
+					<th>Auteur</th>
 					<th>Terminée</th>
 					<th>Favoris</th>
 					<th>Création</th>
@@ -27,6 +29,10 @@
 					<tr>
 						<td>{{ formation.id }}</td>
 						<td>{{ formation.title }}</td>
+						{# <td>{{ formation.sections }}</td> #}
+
+						<td>{{ formation.directories }}</td>
+
 						<td>{{ formation.description }}</td>
 						<td>{{ formation.slug }}</td>
 						<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>

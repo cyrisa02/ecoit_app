@@ -59,11 +59,11 @@ class UsersType extends AbstractType
             //->add('updated_at')
             ->add('is_verified',CheckboxType::class, [
                 'mapped' => true,
-                'label' => 'Validation'
+                'label' => 'Je certifie les données exactes'
             ])
             ->add('is_validInstructor',CheckboxType::class, [
                 'mapped' => true,
-                'label' => 'Etudiant'
+                'label' => 'Je suis d\'accord avec le RGPD du site'
             ])
             //->add('reset_token')
             //->add('plainPassword')

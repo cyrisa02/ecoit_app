@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
+use App\Repository\UsersRepository;
 use App\Entity\Formations;
 use App\Repository\FormationsRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +20,12 @@ class CourseController extends AbstractController
 
     #[Route('/parcours', name: 'app_course', methods: ['GET'])]
     // // #[IsGranted('ROLE_USER')]
-    public function course(FormationsRepository $formationsRepository): Response 
+    public function course(FormationsRepository $formationsRepository, UsersRepository $usersRepository): Response 
     {
         return $this->render('pages/formations/course.html.twig', [
             'formations' => $formationsRepository->findAll(),
+            'users' =>
+            $usersRepository->findAll(),
         ]);
      }
 
@@ -34,4 +38,7 @@ class CourseController extends AbstractController
             'formation' => $formation,
         ]);
     }
+
+
+    
 }
