@@ -50,32 +50,43 @@ class Formations
      #[Assert\NotNull()]
     private \DateTimeImmutable $updated_at;
 
-    #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'formations')]
-    private $users;
+    // #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'formations')]
+    // private $users;
 
     #[ORM\OneToOne(mappedBy: 'formations', targetEntity: Images::class, cascade: ['persist', 'remove'])]
     private $images;
 
-    #[ORM\ManyToOne(targetEntity: Directories::class, inversedBy: 'formations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $directories;
+    // #[ORM\ManyToOne(targetEntity: Directories::class, inversedBy: 'formations')]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private $directories;
 
-   #[ORM\OneToMany(mappedBy: 'formations', targetEntity: Sections::class)]
-private $sections;
+//    #[ORM\OneToMany(mappedBy: 'formations', targetEntity: Sections::class)]
+// private $sections;
+
+//    #[ORM\ManyToMany(targetEntity: Directories::class, inversedBy: 'formations')]
+//    private $directory;
+
+   #[ORM\ManyToMany(targetEntity: Sections::class, inversedBy: 'formations')]
+   private $sections;
+
+   #[ORM\ManyToMany(targetEntity: Users::class, mappedBy: 'formations')]
+   private $users;
 
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
-        $this->sections = new ArrayCollection();       
+        $this->sections = new ArrayCollection();
+        //$this->directory = new ArrayCollection();       
+        $this->users = new ArrayCollection();
         
     }
 
  #[ORM\PrePersist()]
-    public function setUpdatedAtValue()
-    {
-        $this->updatedAt = new \DateTimeImmutable();
-    }
+                                              public function setUpdatedAtValue()
+                                              {
+                                                  $this->updatedAt = new \DateTimeImmutable();
+                                              }
 
 
     public function __toString()
@@ -83,7 +94,7 @@ private $sections;
         return $this->title;
         return $this->description;
         return $this->slug;
-        return $this->sections;
+        
     }
 
     public function getId(): ?int
@@ -211,17 +222,17 @@ private $sections;
         return $this;
     }
 
-    public function getUsers(): ?Users
-    {
-        return $this->users;
-    }
+    // public function getUsers(): ?Users
+    // {
+    //     return $this->users;
+    // }
 
-    public function setUsers(?Users $users): self
-    {
-        $this->users = $users;
+    // public function setUsers(?Users $users): self
+    // {
+    //     $this->users = $users;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getImages(): ?Images
     {
@@ -245,45 +256,120 @@ private $sections;
         return $this;
     }
 
-    public function getDirectories(): ?Directories
-    {
-        return $this->directories;
-    }
+    // public function getDirectories(): ?Directories
+    // {
+    //     return $this->directories;
+    // }
 
-    public function setDirectories(?Directories $directories): self
-    {
-        $this->directories = $directories;
+    // public function setDirectories(?Directories $directories): self
+    // {
+    //     $this->directories = $directories;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-* @return Collection<int, Sections>
-*/
+ //   /**
+// * @return Collection<int, Sections>
+// */
+// public function getSections(): Collection
+// {
+// return $this->sections;
+// }
+// public function addSection(Sections $section): self
+// {
+// if (!$this->sections->contains($section)) {
+// $this->sections[] = $section;
+// $section->setFormations($this);
+// }
+
+// return $this;
+// }
+
+// public function removeSection(Sections $section): self
+// {
+// if ($this->sections->removeElement($section)) {
+// // set the owning side to null (unless already changed)
+// if ($section->getFormations() === $this) {
+// $section->setFormations(null);
+// }
+// }
+
+// return $this;
+// }
+
+// /**
+//  * @return Collection<int, Directories>
+//  */
+// public function getDirectory(): Collection
+// {
+//     return $this->directory;
+// }
+
+// public function addDirectory(Directories $directory): self
+// {
+//     if (!$this->directory->contains($directory)) {
+//         $this->directory[] = $directory;
+//     }
+
+//     return $this;
+// }
+
+// public function removeDirectory(Directories $directory): self
+// {
+//     $this->directory->removeElement($directory);
+
+//     return $this;
+// }
+
+/**
+ * @return Collection<int, Sections>
+ */
 public function getSections(): Collection
 {
-return $this->sections;
-}
-public function addSection(Sections $section): self
-{
-if (!$this->sections->contains($section)) {
-$this->sections[] = $section;
-$section->setFormations($this);
+    return $this->sections;
 }
 
-return $this;
+public function addSection(Sections $section): self
+{
+    if (!$this->sections->contains($section)) {
+        $this->sections[] = $section;
+    }
+
+    return $this;
 }
 
 public function removeSection(Sections $section): self
 {
-if ($this->sections->removeElement($section)) {
-// set the owning side to null (unless already changed)
-if ($section->getFormations() === $this) {
-$section->setFormations(null);
-}
+    $this->sections->removeElement($section);
+
+    return $this;
 }
 
-return $this;
+/**
+ * @return Collection<int, Users>
+ */
+public function getUsers(): Collection
+{
+    return $this->users;
+}
+
+public function addUser(Users $user): self
+{
+    if (!$this->users->contains($user)) {
+        $this->users[] = $user;
+        $user->addFormation($this);
+    }
+
+    return $this;
+}
+
+public function removeUser(Users $user): self
+{
+    if ($this->users->removeElement($user)) {
+        $user->removeFormation($this);
+    }
+
+    return $this;
 }
 
     

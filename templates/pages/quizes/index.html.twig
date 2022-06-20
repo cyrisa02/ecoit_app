@@ -13,6 +13,8 @@
 				<tr>
 					<th>Numéro</th>
 					<th>Titre</th>
+					<th>Section</th>
+
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -21,6 +23,9 @@
 					<tr>
 						<td>{{ quize.id }}</td>
 						<td>{{ quize.title }}</td>
+						<td>{{ quize.sections }}</td>
+
+
 						<td>
 							<a href="{{ path('app_quizes_show', {'id': quize.id}) }}">Voir</a>
 							<a href="{{ path('app_quizes_edit', {'id': quize.id}) }}">Modifier</a>

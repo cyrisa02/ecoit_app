@@ -18,21 +18,32 @@ class Quizes
     #[ORM\Column(type: 'string', length: 190)]
     private string $title;
 
-    #[ORM\OneToOne(inversedBy: 'quizes', targetEntity: Sections::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $sections;
+    // #[ORM\OneToOne(inversedBy: 'quizes', targetEntity: Sections::class, cascade: ['persist', 'remove'])]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private $sections;
 
-    #[ORM\OneToMany(mappedBy: 'quizes', targetEntity: Questions::class)]
+    #[ORM\ManyToMany(targetEntity: Questions::class, inversedBy: 'quizes')]
     private $questions;
 
-    public function __construct()
+    #[ORM\ManyToMany(targetEntity: Sections::class, mappedBy: 'quizes')]
+    private $sections;
+
+
+    
+     public function __construct()
     {
-        $this->questions = new ArrayCollection();
+         $this->questions = new ArrayCollection();
+         $this->sections = new ArrayCollection();
     }
 
+    
+
+    
     public function __toString()
     {
         return $this->title;
+        return $this->questions;
+        return $this->quizes;
         
     }
     public function getId(): ?int
@@ -52,45 +63,68 @@ class Quizes
         return $this;
     }
 
-    public function getSections(): ?Sections
-    {
-        return $this->sections;
-    }
+    // public function getSections(): ?Sections
+    // {
+    //     return $this->sections;
+    // }
 
-    public function setSections(Sections $sections): self
-    {
-        $this->sections = $sections;
+    // public function setSections(Sections $sections): self
+    // {
+    //     $this->sections = $sections;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * @return Collection<int, Questions>
-     */
-    public function getQuestions(): Collection
-    {
-        return $this->questions;
-    }
+     /**
+      * @return Collection<int, Questions>
+      */
+     public function getQuestions(): Collection
+     {
+         return $this->questions;
+     }
 
-    public function addQuestion(Questions $question): self
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions[] = $question;
-            $question->setQuizes($this);
-        }
+     public function addQuestion(Questions $question): self
+     {
+         if (!$this->questions->contains($question)) {
+             $this->questions[] = $question;
+         }
 
-        return $this;
-    }
+         return $this;
+     }
 
-    public function removeQuestion(Questions $question): self
-    {
-        if ($this->questions->removeElement($question)) {
-            // set the owning side to null (unless already changed)
-            if ($question->getQuizes() === $this) {
-                $question->setQuizes(null);
-            }
-        }
+     public function removeQuestion(Questions $question): self
+     {
+         $this->questions->removeElement($question);
 
-        return $this;
-    }
+         return $this;
+     }
+
+     /**
+      * @return Collection<int, Sections>
+      */
+     public function getSections(): Collection
+     {
+         return $this->sections;
+     }
+
+     public function addSection(Sections $section): self
+     {
+         if (!$this->sections->contains($section)) {
+             $this->sections[] = $section;
+             $section->addQuize($this);
+         }
+
+         return $this;
+     }
+
+     public function removeSection(Sections $section): self
+     {
+         if ($this->sections->removeElement($section)) {
+             $section->removeQuize($this);
+         }
+
+         return $this;
+     }
+
+    
 }

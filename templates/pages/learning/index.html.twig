@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planning
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-4">
+		<h1>Mon planning
+		</h1>
+
+		<h3>Progression</h3>
+
+		{% for formation in formations %}
+			<h2>Titre de la formation:
+				<strong>{{formation.title}}</strong>
+			</h2>
+
+
+			<table class="table">
+				<thead>
+					<tr>
+						{# <th>Chapitre</th> #}
+						<th>Sections</th>
+						<th>Leçons</th>
+						<th>Quiz</th>
+						<th>action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for section in formation.sections %}
+						<tr>
+							{# <td>{{ section.id }}</td> #}
+							<td>
+								<strong>{{ section.title }}</strong>
+							</td>
+							{# <td>{{ section.formations }}</td> #}
+							{# <td>{{ section.quizes }}</td>#}
+
+							<td>
+								{% for lesson in section.lessons %}
+									{{lesson.title}}
+									/
+								{% endfor %}
+							</td>
+							<td>
+								<a href="{{ path('app_course1_show', {'id': section.id}) }}">voir</a>
+								{# <a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a> #}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">Pas de section trouvée</td>
+						</tr>
+					{% endfor %}
+
+
+				</tbody>
+			</table>
+		{% endfor %}
+
+
+	</div>
+
+
+	{# <a href="{{ path('app_sections_new') }}">Create new</a> #}
+{% endblock %}

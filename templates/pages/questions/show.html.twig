@@ -4,40 +4,44 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Questions</h1>
+	<div class="container mt-4">
+		<h1>Questions</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ question.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ question.title }}</td>
-			</tr>
-			<tr>
-				<th>Question</th>
-				<td>{{ question.question }}</td>
-			</tr>
-			<tr>
-				<th>Correction</th>
-				<td>{{ question.correction }}</td>
-			</tr>
-			<tr>
-				<th>Is_answer_ok</th>
-				<td>{{ question.isAnswerOk ? 'Yes' : 'No' }}</td>
-			</tr>
-			<tr>
-				<th>Is_corrected</th>
-				<td>{{ question.isCorrected ? 'Yes' : 'No' }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ question.id }}</td>
+				</tr>
+				<tr>
+					<th>Title</th>
+					<td>{{ question.title }}</td>
+				</tr>
+				<tr>
+					<th>Question</th>
+					<td>{{ question.question }}</td>
+				</tr>
+				<tr>
+					<th>Correction</th>
+					<td>{{ question.correction }}</td>
+				</tr>
+				{# <tr>
+									<th>Is_answer_ok</th>
+									<td>{{ question.isAnswerOk ? 'Yes' : 'No' }}</td>
+								</tr> #}
+				{# <tr>
+									<th>Is_corrected</th>
+									<td>{{ question.isCorrected ? 'Yes' : 'No' }}</td>
+								</tr> #}
+			</tbody>
+		</table>
 
-	<a href="{{ path('app_questions_index') }}">back to list</a>
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_questions_index') }}">Retour au menu</a>
 
-	<a href="{{ path('app_questions_edit', {'id': question.id}) }}">edit</a>
 
-	{{ include('pages/questions/_delete_form.html.twig') }}
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_questions_edit', {'id': question.id}) }}">Modifier</a>
+
+
+		{{ include('pages/questions/_delete_form.html.twig') }}</div>
+
 {% endblock %}

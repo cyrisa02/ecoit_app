@@ -31,7 +31,12 @@
 						<td>{{ lesson.description }}</td>
 						<td>{{ lesson.slug }}</td>
 						<td>{{ lesson.video }}</td>
-						<td>{{ lesson.sections }}</td>
+
+						<td>
+							{% for section in lesson.sections %}
+								{{section.title}}
+							{% endfor %}
+						</td>
 
 						<td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td>
 						<td>{{ lesson.createdAt ? lesson.createdAt|date('d/m/Y') : '' }}</td>
@@ -54,8 +59,8 @@
 		{# <a href="{{ path('app_lessons_new') }}">Create new</a> #}
 
 		{# <div class="navigation d-flex justify-content-center mt-4">
-								{{ knp_pagination_render(lessons) }}
-							</div> #}
+																																{{ knp_pagination_render(lessons) }}
+																															</div> #}
 	</div>
 
 
