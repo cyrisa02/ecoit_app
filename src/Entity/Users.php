@@ -102,7 +102,7 @@ use Symfony\Component\Validator\Constraints as Assert;
                 {
                     $this->created_at = new \DateTimeImmutable();
                     $this->updated_at = new \DateTimeImmutable();
-                   // $this->formations = new ArrayCollection();
+                    $this->formations = new ArrayCollection();
                     $this->endedLessons = new ArrayCollection();
                    
                 }

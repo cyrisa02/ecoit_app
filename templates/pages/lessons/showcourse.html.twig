@@ -11,75 +11,70 @@
 		<h2>Auteur: TODO</h2>
 		<h2>Titre de la Formation: TODO</h2>
 		<h3>Titre de la Section:
-			{{ lesson.sections }}</h3>
+			{# {{ lesson.sections }}</h3> #}
 
 
-		<table class="table">
-			<tbody>
-				{# <tr>
-																	<th>Numéro de la leçon</th>
-																	<td>{{ lesson.id }}</td>
-																</tr> #}
-				{# <tr>
-																					<th>Titre</th>
-																					<td>{{ lesson.title }}</td>
-																				</tr> #}
+			<table class="table">
+				<tbody>
+
 					<tr>
 						<th>
-					Contenu
-					</th>
+							Contenu
+						</th>
 						<td>
-					{{ lesson.description }}
-				</td>
-				</tr>
+							{{ lesson.description }}
+						</td>
+					</tr>
 					<tr>
 						<th>
-					Slug
-					</th>
+							Slug
+						</th>
 						<td>
-					{{ lesson.slug }}
-				</td>
-				</tr>
+							{{ lesson.slug }}
+						</td>
+					</tr>
 					<tr>
 						<th>
-					Video
-					</th>
+							Video
+						</th>
 						<td>
-					{{ lesson.video }}
-				</td>
-				</tr>
+							{{ lesson.video }}
+						</td>
+					</tr>
 					<tr>
 						<th>
-					Terminée
-					</th>
+							Terminée
+						</th>
 						<td>
-					{{ lesson.isEnded ? 'Yes' : 'No' }}
-				</td>
-				</tr>
+							{{ lesson.isEnded ? 'Yes' : 'No' }}
+						</td>
+					</tr>
 					<tr>
 						<th>
-					Créée
-					</th>
+							Créée
+						</th>
 						<td>
-					{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}
-				</td>
-				</tr>
+							{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}
+						</td>
+					</tr>
 					<tr>
 						<th>
-					Dernière modification
-					</th>
+							Dernière modification
+						</th>
 						<td>
-					{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
-				</td>
-			</tr>
-		</tbody>
-		</table>
-			<a class="btn btn-secondary btn-lg" href="{{ path('app_course2') }}"> Retour au menu</a>
+							{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">
+
+				Retour au menu</a>
 
 
-		{# <a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">edit</a> #}
+			{# <a href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">edit</a> #}
 
-		{# {{ include('pages/lessons/_delete_form.html.twig') }} #}
-	</div>
+			{# {{ include('pages/lessons/_delete_form.html.twig') }} #}
+		</div>
 
-{% endblock %}
+	{% endblock %}

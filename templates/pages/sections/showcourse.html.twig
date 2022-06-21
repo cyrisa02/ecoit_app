@@ -5,38 +5,47 @@
 
 {% block body %}
 
-	<div class="container mt-4">
-		<h1>Sections</h1>
+<div class="container mt-4">
+	{% for formation in section.formations %}
 
-		<table class="table">
-			<tbody>
-				<tr>
-					<th>Numéro d'identification</th>
-					<td>{{ section.id }}</td>
-				</tr>
-				<tr>
-					<th>Titre</th>
-					<td>{{ section.title }}</td>
-				</tr>
-				<tr>
-					<th>Formations</th>
-					<td>{{ section.formations}}</td>
-				</tr>
-				<tr>
-					<th>Leçons</th>
-					<td>{{ section.lessons}}</td>
-				</tr>
+		<h1>
+			Formation:
+			{{ formation.title}}
 
 
-			</tbody>
-		</table>
+		</h1>
 
-		<a class="btn btn-secondary btn-lg" href="{{ path('app_course1') }}">Retour à la liste</a>
+	</h2>
 
-	</div>
+	<h2>Sections N°{{ section.id }}
+		:
+
+		<td>{{ section.title }}</td>
+	</h2>
 
 
-	{# <a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a> #}
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Leçons</th>
 
-	{# {{ include('pages/sections/_delete_form.html.twig') }} #}
-{% endblock %}
+				{% for lesson in section.lessons %}
+
+
+					<td></td>
+				</td>
+				<td>
+					<a href="{{ path('app_course2_show', {'id': lesson.id}) }}">{{ lesson.title}}</a>
+
+
+				</td>
+			{% endfor %}
+			{# <td>
+																								<a href="{{ path('app_course2', {'id': section.id}) }}">voir</a>
+																							
+																							</td> #}
+		</tbody>
+	</tr>
+
+
+</tbody></table>{% endfor %}<a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">Retour à la liste</a></div>{# <a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a> #}{# {{ include('pages/sections/_delete_form.html.twig') }} #}{% endblock %}

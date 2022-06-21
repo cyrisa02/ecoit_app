@@ -15,10 +15,9 @@
 					<th>N°</th>
 					<th>Titre</th>
 
-					<th>Nom du formateur</th>
+					{# <th>Nom du formateur</th> #}
 					<th>Description</th>
 					<th>Favoris</th>
-
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -27,8 +26,8 @@
 					<tr>
 						<td>{{ formation.id }}</td>
 						<td>{{ formation.title }}</td>
-						<td>{{ formation.title }}</td>
-						<td>{{ formation.users }}</td>
+
+						{# <td>{{ formation.users }}</td> #}
 						<td>{{ formation.description }}</td>
 						<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
 

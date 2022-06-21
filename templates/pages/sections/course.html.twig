@@ -14,29 +14,29 @@
 				<tr>
 					<th>Chapitre</th>
 					<th>Titre</th>
-					<th>Formation</th>
 
-					<th>Quiz</th>
 
-					<th>Leçons</th>
-
-					<th>action</th>
+					{# <th>Quiz</th>
+					
+										<th>Leçons</th>
+					
+										<th>action</th> #}
 				</tr>
 			</thead>
 			<tbody>
 				{% for section in sections %}
 					<tr>
 						<td>{{ section.id }}</td>
-						<td>{{ section.title }}</td>
-						{# <td>{{ section.formations }}</td>
-												<td>{{ section.quizes }}</td>
-												<td>{{ section.lessons }}</td> #}
-
-
 						<td>
-							<a href="{{ path('app_course1_show', {'id': section.id}) }}">voir</a>
-							{# <a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a> #}
+							<a href="{{ path('app_course1_show', {'id': section.id}) }}">{{ section.title }}</a>
+
 						</td>
+
+						{# <td>{{ section.formations }}</td>
+																														<td>{{ section.quizes }}</td>
+																														<td>{{ section.lessons }}</td> #}
+
+
 					</tr>
 				{% else %}
 					<tr>
