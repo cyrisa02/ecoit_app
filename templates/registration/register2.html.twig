@@ -21,13 +21,18 @@
 				<fieldset class="mb-3">
 					<legend>Mes particularités</legend>
 					{{ form_row(registrationForm.decription) }}
-					{{ form_row(registrationForm.picture) }}
+					{# {{ form_row(registrationForm.picture) }} #}
 					{{ form_row(registrationForm.pseudo) }}
 
 
-					{{ form_row(registrationForm.directories, {
-                        label: 'Choisissez une formation'
-                    }) }}
+					{{ form_row(registrationForm.formations, {
+					                        label: 'Choisissez une formation'
+					                    }) }}
+
+
+					{#  {{ form_row(registrationForm.directories, {
+															                        label: 'Choisissez une formation'
+															                    }) }} #}
 
 
 				</fieldset>

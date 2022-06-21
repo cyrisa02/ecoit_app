@@ -6,11 +6,11 @@
 {% block body %}
 
 	{# {% if app.user %}
-			<h2>Bonjour
-				{{ user.firstname }}
-				{{ user.lastname }}</h2>
-	
-		{% endif %} #}
+																																																					<h2>Bonjour
+																																																						{{ user.firstname }}
+																																																						{{ user.lastname }}</h2>
+																																																			
+																																																				{% endif %} #}
 
 
 	<div class="container mt-4">
@@ -24,33 +24,81 @@
 
 
 			<p class="mt-4">C’est un fait, la crise écologique est devenue une urgence majeure. La sixième extinction
-																																																																																																																																				massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
-																																																																																																																																				des années. Mais qu’en est-il d’internet ?
-																																																																																																																																				En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
-																																																																								ans, le poids d’une page web a été multiplié par 115 (source :
+																																																																																																																																																																																																																																																																																																																																												massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
+																																																																																																																																																																																																																																																																																																																																												des années. Mais qu’en est-il d’internet ?
+																																																																																																																																																																																																																																																																																																																																												En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
+																																																																																																																																																																																																																																																																																ans, le poids d’une page web a été multiplié par 115 (source :
 				<a href="https://www.greenit.fr/">https://www.greenit.fr/</a>
 
 				).
-																																																																								
-																																																																																																																																				Face à ce constat, un organisme de formation a été fondé en 2017 : EcoIT. Son objectif est
-																																																																																																																																				d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en
-																																																																																																																																				éco-conception web de présenter des modules de cours.</p>
+																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																												Face à ce constat, un organisme de formation a été fondé en 2017 : EcoIT. Son objectif est
+																																																																																																																																																																																																																																																																																																																																												d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en
+																																																																																																																																																																																																																																																																																																																																												éco-conception web de présenter des modules de cours.</p>
 			<a class="btn btn-primary btn-lg" href="#" role="button">En savoir plus</a>
 
+
+			{#  #}
 			<div class="container mt-4">
-				<p>Vous souhaitez rejoindre nos équipes, alors inscrivez-vous rapidement!</p>
-				<a class="btn btn-primary btn-lg" href="{{ path('app_register') }}">Inscription Instructeur</a>
+				<div class="row">
+					{% for formation in formations %}
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+							<article class="card border-primary mb-3 " style="max-width: 20rem; height:30rem;">
 
+
+								<div class="card-header bg-secondary">
+
+									<h1>Formation N°:
+										{{ formation.id}}
+									</h1>
+
+									<div class="formation__image my-2 bg-secondary">
+										<img style="max-width: 15rem; border-radius: 10%;" src="{{ vich_uploader_asset(formation, 'imageFile') }}">
+
+									</div>
+
+								</div>
+								<div class="card-body bg-light">
+
+									<h4 class="card-title">{{ formation.title}}
+									</h4>
+									<p class="card-text">{{ formation.description }}</p>
+									{# {{ formation.isEndedFormation ? 'Oui' : 'Non' }}
+																																																																																																																																																																																																																																																																																																																																																																																																												
+																																																																																																																																																																																																																																																																																																																																																																																																																					{{ formation.isFavorite ? 'Oui' : 'Non' }} #}
+								</p>
+
+
+								<div
+									class="d-grid gap-2">
+									{# <button class="btn btn-lg btn-primary" type="button">Sélectionner</button> #}
+									<a class="btn btn-primary btn-lg row my-2" href="{{path('app_register2')}}" role="button">Sélectionner</a>
+
+
+								</div>
+							</article>
+						</div>
+
+					{% endfor %}
+				</div>
 			</div>
+			{# <a class="btn btn-primary btn-lgz row ms-4" href="#" role="button">Validation des données</a> #}
+		</div>
 
-			<div class="container mt-4">
-				<p>Vous voulez suivre une de nos formations, c'est très facile!</p>
 
-				<a class="btn btn-primary btn-lg" href="{{ path('app_register2') }}">Inscription Apprenant</a>
-
-			</div>
-
+		<div class="container mt-4">
+			<p>Vous souhaitez rejoindre nos équipes, alors inscrivez-vous rapidement!</p>
+			<a class="btn btn-primary btn-lg" href="{{ path('app_register') }}">Inscription Instructeur</a>
 
 		</div>
+
+		<div class="container mt-4">
+			<p>Vous voulez suivre une de nos formations, c'est très facile!</p>
+
+			<a class="btn btn-primary btn-lg" href="{{ path('app_register2') }}">Inscription Apprenant</a>
+
+		</div>
+
+
 	</div>
-{% endblock %}
+</div>{% endblock %}

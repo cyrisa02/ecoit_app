@@ -35,12 +35,15 @@ class Directories
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private \DateTimeImmutable $updated_at;
 
-    #[ORM\OneToMany(mappedBy: 'directories', targetEntity: Formations::class, orphanRemoval: true)]
-    private $formations;
+    // #[ORM\OneToMany(mappedBy: 'directories', targetEntity: Formations::class, orphanRemoval: true)]
+    // private $formations;
 
     #[ORM\OneToOne(inversedBy: 'directories', targetEntity: Users::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $users;
+
+    #[ORM\ManyToMany(targetEntity: Formations::class, mappedBy: 'directory')]
+    private $formations;
 
     public function __construct()
     {
@@ -135,6 +138,48 @@ class Directories
         return $this;
     }
 
+    // /**
+    //  * @return Collection<int, Formations>
+    //  */
+    // public function getFormations(): Collection
+    // {
+    //     return $this->formations;
+    // }
+
+    // public function addFormation(Formations $formation): self
+    // {
+    //     if (!$this->formations->contains($formation)) {
+    //         $this->formations[] = $formation;
+    //         $formation->setDirectories($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeFormation(Formations $formation): self
+    // {
+    //     if ($this->formations->removeElement($formation)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($formation->getDirectories() === $this) {
+    //             $formation->setDirectories(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+
+    public function getUsers(): ?Users
+    {
+        return $this->users;
+    }
+
+    public function setUsers(Users $users): self
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Formations>
      */
@@ -147,7 +192,7 @@ class Directories
     {
         if (!$this->formations->contains($formation)) {
             $this->formations[] = $formation;
-            $formation->setDirectories($this);
+            $formation->addDirectory($this);
         }
 
         return $this;
@@ -156,23 +201,8 @@ class Directories
     public function removeFormation(Formations $formation): self
     {
         if ($this->formations->removeElement($formation)) {
-            // set the owning side to null (unless already changed)
-            if ($formation->getDirectories() === $this) {
-                $formation->setDirectories(null);
-            }
+            $formation->removeDirectory($this);
         }
-
-        return $this;
-    }
-
-    public function getUsers(): ?Users
-    {
-        return $this->users;
-    }
-
-    public function setUsers(Users $users): self
-    {
-        $this->users = $users;
 
         return $this;
     }

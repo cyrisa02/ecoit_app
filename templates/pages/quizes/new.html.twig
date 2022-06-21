@@ -5,11 +5,15 @@
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Création d'un quiz</h1>
+		<h1>Création d'un quizz</h1>
 
 		{{ include('pages/quizes/_form.html.twig') }}
 
+
 		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_quizes_index') }}">Retour au menu</a>
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_questions_new') }}">Créer une nouvelle question</a>
+
 	</div>
 
 

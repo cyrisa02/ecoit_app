@@ -34,7 +34,7 @@
   --bs-info: #0dcaf0;
   --bs-warning: #ffc107;
   --bs-danger: #dc3545;
-  --bs-light: #f8f9fa;
+  --bs-light: #d8f3dc;
   --bs-dark: #212529;
   --bs-primary-rgb: 27, 67, 50;
   --bs-secondary-rgb: 64, 145, 108;
@@ -42,7 +42,7 @@
   --bs-info-rgb: 13, 202, 240;
   --bs-warning-rgb: 255, 193, 7;
   --bs-danger-rgb: 220, 53, 69;
-  --bs-light-rgb: 248, 249, 250;
+  --bs-light-rgb: 216, 243, 220;
   --bs-dark-rgb: 33, 37, 41;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
@@ -2189,13 +2189,13 @@ progress {
 
 .table-light {
   --bs-table-color: #000;
-  --bs-table-bg: #f8f9fa;
-  --bs-table-border-color: #dfe0e1;
-  --bs-table-striped-bg: #ecedee;
+  --bs-table-bg: #d8f3dc;
+  --bs-table-border-color: #c2dbc6;
+  --bs-table-striped-bg: #cde7d1;
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #dfe0e1;
+  --bs-table-active-bg: #c2dbc6;
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #e5e6e7;
+  --bs-table-hover-bg: #c8e1cc;
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -3380,19 +3380,19 @@ fieldset:disabled .btn {
 
 .btn-light {
   --bs-btn-color: #000;
-  --bs-btn-bg: #f8f9fa;
-  --bs-btn-border-color: #f8f9fa;
+  --bs-btn-bg: #d8f3dc;
+  --bs-btn-border-color: #d8f3dc;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #f9fafb;
-  --bs-btn-hover-border-color: #f9fafb;
-  --bs-btn-focus-shadow-rgb: 211, 212, 213;
+  --bs-btn-hover-bg: #def5e1;
+  --bs-btn-hover-border-color: #dcf4e0;
+  --bs-btn-focus-shadow-rgb: 184, 207, 187;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: #f9fafb;
-  --bs-btn-active-border-color: #f9fafb;
+  --bs-btn-active-bg: #e0f5e3;
+  --bs-btn-active-border-color: #dcf4e0;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #000;
-  --bs-btn-disabled-bg: #f8f9fa;
-  --bs-btn-disabled-border-color: #f8f9fa;
+  --bs-btn-disabled-bg: #d8f3dc;
+  --bs-btn-disabled-border-color: #d8f3dc;
 }
 
 .btn-dark {
@@ -3509,17 +3509,17 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-light {
-  --bs-btn-color: #f8f9fa;
-  --bs-btn-border-color: #f8f9fa;
+  --bs-btn-color: #d8f3dc;
+  --bs-btn-border-color: #d8f3dc;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #f8f9fa;
-  --bs-btn-hover-border-color: #f8f9fa;
-  --bs-btn-focus-shadow-rgb: 248, 249, 250;
+  --bs-btn-hover-bg: #d8f3dc;
+  --bs-btn-hover-border-color: #d8f3dc;
+  --bs-btn-focus-shadow-rgb: 216, 243, 220;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: #f8f9fa;
-  --bs-btn-active-border-color: #f8f9fa;
+  --bs-btn-active-bg: #d8f3dc;
+  --bs-btn-active-border-color: #d8f3dc;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #f8f9fa;
+  --bs-btn-disabled-color: #d8f3dc;
   --bs-btn-disabled-bg: transparent;
   --bs-gradient: none;
 }
@@ -5439,13 +5439,13 @@ fieldset:disabled .btn {
 }
 
 .alert-light {
-  --bs-alert-color: #636464;
-  --bs-alert-bg: #fefefe;
-  --bs-alert-border-color: #fdfdfe;
+  --bs-alert-color: #566158;
+  --bs-alert-bg: #f7fdf8;
+  --bs-alert-border-color: #f3fbf5;
 }
 
 .alert-light .alert-link {
-  color: #4f5050;
+  color: #454e46;
 }
 
 .alert-dark {
@@ -5913,19 +5913,19 @@ fieldset:disabled .btn {
 }
 
 .list-group-item-light {
-  color: #636464;
-  background-color: #fefefe;
+  color: #566158;
+  background-color: #f7fdf8;
 }
 
 .list-group-item-light.list-group-item-action:hover, .list-group-item-light.list-group-item-action:focus {
-  color: #636464;
-  background-color: #e5e5e5;
+  color: #566158;
+  background-color: #dee4df;
 }
 
 .list-group-item-light.list-group-item-action.active {
   color: #fff;
-  background-color: #636464;
-  border-color: #636464;
+  background-color: #566158;
+  border-color: #566158;
 }
 
 .list-group-item-dark {
@@ -7764,7 +7764,7 @@ fieldset:disabled .btn {
 
 .text-bg-light {
   color: #000 !important;
-  background-color: RGBA(248, 249, 250, var(--bs-bg-opacity, 1)) !important;
+  background-color: RGBA(216, 243, 220, var(--bs-bg-opacity, 1)) !important;
 }
 
 .text-bg-dark {
@@ -7821,11 +7821,11 @@ fieldset:disabled .btn {
 }
 
 .link-light {
-  color: #f8f9fa !important;
+  color: #d8f3dc !important;
 }
 
 .link-light:hover, .link-light:focus {
-  color: #f9fafb !important;
+  color: #e0f5e3 !important;
 }
 
 .link-dark {

@@ -12,7 +12,7 @@
 				<tr>
 					<th>Numéro</th>
 					<th>Titre</th>
-					<th>Section</th>
+					<th>Sections</th>
 					<th>Contenu</th>
 					<th>Ateur</th>
 					<th>Video</th>
@@ -27,7 +27,14 @@
 					<tr>
 						<td>{{ lesson.id }}</td>
 						<td>{{ lesson.title }}</td>
-						<td>{{ lesson.sections }}</td>
+						<td>
+
+							{% for section in lesson.sections %}
+								-
+								{{section.title}}
+							{% endfor %}
+						</td>
+
 
 						<td>{{ lesson.description }}</td>
 						<td>{{ lesson.slug }}</td>

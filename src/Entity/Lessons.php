@@ -54,9 +54,12 @@ class Lessons
     #[ORM\OneToMany(mappedBy: 'lessons', targetEntity: EndedLessons::class)]
     private $endedLessons;
 
-    #[ORM\OneToOne(inversedBy:'lessons', targetEntity: Sections::class, cascade: ['persist', 'remove'])]
-    //#[Assert\NotNull()]
+    #[ORM\ManyToMany(targetEntity: Sections::class, inversedBy: 'lessons')]
     private $sections;
+
+    // #[ORM\OneToOne(inversedBy:'lessons', targetEntity: Sections::class, cascade: ['persist', 'remove'])]
+    // //#[Assert\NotNull()]
+    // private $sections;
 
     public function __construct()
     {
@@ -65,6 +68,7 @@ class Lessons
         $this->ressources = new ArrayCollection();
        
         $this->endedLessons = new ArrayCollection();
+        $this->sections = new ArrayCollection();
         
     }
 
@@ -74,6 +78,7 @@ return $this->title;
 return $this->description;
 return $this->slug;
 return $this->video;
+return $this->sections;
 
 }
 
@@ -230,14 +235,38 @@ return $this->video;
         return $this;
     }
 
-    public function getSections(): ?Sections
+    // public function getSections(): ?Sections
+    // {
+    //     return $this->sections;
+    // }
+
+    // public function setSections(?Sections $sections): self
+    // {
+    //     $this->sections = $sections;
+
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection<int, Sections>
+     */
+    public function getSections(): Collection
     {
         return $this->sections;
     }
 
-    public function setSections(?Sections $sections): self
+    public function addSection(Sections $section): self
     {
-        $this->sections = $sections;
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Sections $section): self
+    {
+        $this->sections->removeElement($section);
 
         return $this;
     }

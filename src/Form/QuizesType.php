@@ -23,15 +23,21 @@ class QuizesType extends AbstractType
 
             ])
             ->add('sections')
+<<<<<<< HEAD
             
             ->add('questions', EntityType::class, [
                 'class' => Questions::class,
+=======
+             ->add('questions', EntityType::class, [
+                 'class' => Questions::class,
+>>>>>>> quiz
                 // 'query_builder' => function (QuestionsRepository $r) {
                 //     return $r->createQueryBuilder('i')
                 //         ->where('i.user = :user')
                 //         ->orderBy('i.name', 'ASC')
                 //         ->setParameter('user', $this->token->getToken()->getUser());
                 // },
+<<<<<<< HEAD
                 'label' => 'Les questions',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
@@ -40,6 +46,16 @@ class QuizesType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
+=======
+             'label' => 'Sélectionner les questions pour le quiz',
+               'label_attr' => [
+                    'class' => 'form-label mt-4'
+                 ],
+                 'choice_label' => 'question',
+                 'multiple' => true,
+                 'expanded' => true,
+             ])
+>>>>>>> quiz
         ;
     }
 

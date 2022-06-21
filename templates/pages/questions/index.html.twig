@@ -1,43 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Questions index{% endblock %}
+{% block title %}Questions index
+{% endblock %}
 
 {% block body %}
-    <h1>Questions index</h1>
+	<div class="container mt-4">
+		<h1>Questions index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Question</th>
-                <th>Correction</th>
-                <th>Is_answer_ok</th>
-                <th>Is_corrected</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr>
-                <td>{{ question.id }}</td>
-                <td>{{ question.title }}</td>
-                <td>{{ question.question }}</td>
-                <td>{{ question.correction }}</td>
-                <td>{{ question.isAnswerOk ? 'Yes' : 'No' }}</td>
-                <td>{{ question.isCorrected ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_questions_show', {'id': question.id}) }}">show</a>
-                    <a href="{{ path('app_questions_edit', {'id': question.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>Titre</th>
+					<th>Question</th>
+					<th>Correction</th>
+					{# <th>Is_answer_ok</th>
+										<th>Is_corrected</th> #}
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for question in questions %}
+					<tr>
+						<td>{{ question.id }}</td>
+						<td>{{ question.title }}</td>
+						<td>{{ question.question }}</td>
+						<td>{{ question.correction }}</td>
+						{# <td>{{ question.isAnswerOk ? 'Yes' : 'No' }}</td>
+												<td>{{ question.isCorrected ? 'Yes' : 'No' }}</td> #}
+						<td>
+							<a href="{{ path('app_questions_show', {'id': question.id}) }}">Voir</a>
+							<a href="{{ path('app_questions_edit', {'id': question.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">Aucune question trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-    <a href="{{ path('app_questions_new') }}">Create new</a>
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_questions_new') }}">Créer une nouvelle question</a>
+	</div>
+
+
 {% endblock %}

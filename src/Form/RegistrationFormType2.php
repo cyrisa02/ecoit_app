@@ -71,12 +71,12 @@ class RegistrationFormType2 extends AbstractType
                 ],
                 'label' => 'Présentez-vous en quelques mots'   
             ])
-            ->add('picture', TextType::class, [
-                 'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Photo'    
-            ])
+            // ->add('picture', TextType::class, [
+            //      'attr' => [
+            //         'class' => 'form-control'
+            //     ],
+            //     'label' => 'Photo'    
+            // ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Votre photo',
                 'label_attr' => [
@@ -92,7 +92,8 @@ class RegistrationFormType2 extends AbstractType
             ])
             
             ->add('reset_token')
-            ->add('directories')
+            //->add('directories')
+            ->add('formations')
             // ->add('RGPDConsent', CheckboxType::class, [
             //     'mapped' => false,
             //      'label' => 'Etes-vous d\'accord avec notre RGPD',

@@ -18,14 +18,17 @@
 
 				</li>
 				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path ('app_users_show',{'id':app.user.id})}}">Mon Profil</a>
-					</li>
+					{# <li class="nav-item">
+																										<a class="nav-link" href="{{ path ('app_users_show',{'id':app.user.id})}}">Mon Profil</a>
+																									</li> #}
 
 
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Formation-Apprenant</a>
 						<div class="dropdown-menu">
+							<a class="dropdown-item" href="{{ path ('learningsection')}}">Mon planning</a>
+
+
 							<a class="dropdown-item" href="{{ path ('app_course')}}">Liste des formations</a>
 
 
@@ -37,10 +40,10 @@
 							<div class="dropdown-divider"></div>
 
 
-							<a class="dropdown-item" href="{{ path ('app_quizes_index')}}">Quiz</a>
+							<a class="dropdown-item" href="{{ path ('app_quizes_index')}}">Quiz http://127.0.0.1:8000/quizstuden/1/edition</a>
 
 
-							<a class="dropdown-item" href="{{ path ('app_questions_index')}}">Questions du quiz</a>
+							{# <a class="dropdown-item" href="{{ path ('app_questions_index')}}">Questions du quiz</a> #}
 
 
 						</div>
@@ -71,26 +74,22 @@
 
 
 					{# <li class="nav-item">
-																																																																																																																																																<a class="nav-link" href="{{ path('app_lessons_index')}}">Leçons</a>
-																																																																																																																																															</li> #}
+																																																																																																																																																																																								<a class="nav-link" href="{{ path('app_lessons_index')}}">Leçons</a>
+																																																																																																																																																																																							</li> #}
 
 
 				{% endif %}
 
 				{# <li class="nav-item">
-																																																																																																													<a class="nav-link" href="{{ path ('app_formations_index')}}">Formations</a>
-																																																																																																								
-																																																																																																												</li> #}
+																																																																																																																																													<a class="nav-link" href="{{ path ('app_formations_index')}}">Formations</a>
+																																																																																																																																								
+																																																																																																																																												</li> #}
 				{# <li class="nav-item">
-																																																																																																					<a class="nav-link" href="{{ path ('app_sections_index')}}">Section
-																																																																																																					</a>
-																																																																																																				
-																																																																																																				</li> #}
+																																																																																																																																					<a class="nav-link" href="{{ path ('app_sections_index')}}">Section
+																																																																																																																																					</a>
+																																																																																																																																				
+																																																																																																																																				</li> #}
 
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path ('app_directories_index')}}">Catalogue</a>
-
-				</li>
 
 			</li>
 			<li class="nav-item">
@@ -108,13 +107,14 @@
 
 		</ul>
 		{# <form class="d-flex">
-																																																																																																																																													<input class="form-control me-sm-2" type="text" placeholder="Search">
-																																																																																																																																													<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-																																																																																																																																												</form> #}
+																																																																																																																																																													<input class="form-control me-sm-2" type="text" placeholder="Search">
+																																																																																																																																																													<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+																																																																																																																																																												</form> #}
 		<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 			{% if app.user %}
 				<li class="nav-item">
-					<a class="nav-link" href="#">Mon compte</a>
+					<a class="nav-link" href="{{ path ('app_users_show',{'id':app.user.id})}}">Mon compte</a>
+
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
