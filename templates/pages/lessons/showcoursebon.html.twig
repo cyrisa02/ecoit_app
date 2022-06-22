@@ -9,6 +9,20 @@
 
 			{{ lesson.title }}</h1>
 
+		{% set isEnded=false %}
+		{% for terminee in lesson.getEndedLessons  %}
+
+			{% if terminee.users == app.user %}
+
+				{% set isEnded=true %}
+
+			{% endif %}
+
+		{% endfor %}
+
+
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'Leçon en cours' : 'Leçon terminée'}}</a>
+
 
 		{% for section in lesson.sections %}
 
@@ -44,7 +58,7 @@
 						</tr>
 						<tr>
 							<th>
-								Terminée<a class="btn btn-secondary btn-lg" href="{{ path('app_ended_lessons_new', {'id': lesson.id}) }}">Terminée à faire!!!</a>
+								{# Terminée<a class="btn btn-secondary btn-lg" href="{{ path('app_ended_lessons_new', {'id': lesson.id}) }}">Terminée à faire!!!</a> #}
 
 
 							</th>

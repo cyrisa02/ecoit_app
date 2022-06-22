@@ -148,7 +148,7 @@ class LessonsController extends AbstractController
             $entityManager->flush();
         }
         
-        return $this->render('pages/lessons/show.html.twig', [
+        return $this->render('pages/lessons/showcoursebon.html.twig', [
             'lesson' => $lesson,
         ]);
     }

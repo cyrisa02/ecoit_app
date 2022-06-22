@@ -5,16 +5,16 @@
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Leçon n°: eclipse
+		<h1>Leçon n°:
 			{{ lesson.id }}</h1>
-
+		<h1>A effacer?</h1>
 
 		<table class="table">
 			<tbody>
 				{# <tr>
-																																																																	<th>Id</th>
-																																																																	<td></td>
-																																																																</tr> #}
+																																																																																	<th>Id</th>
+																																																																																	<td></td>
+																																																																																</tr> #}
 				<tr>
 					<th>Titre</th>
 					<td>{{ lesson.title }}</td>
