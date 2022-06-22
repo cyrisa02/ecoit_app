@@ -5,8 +5,17 @@
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Votre progression</h1>
-		{{progression}}%
+		<h1>Votre progression:
+			{{progression}}%
+
+		</h1>
+
+		<div class="progress mb-4">
+
+			<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{progression}}%;"></div>
+
+		</div>
+
 
 		<a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">
 

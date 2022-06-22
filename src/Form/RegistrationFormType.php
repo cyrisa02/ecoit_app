@@ -50,12 +50,12 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Merci de donner vos spécialités et de présenter vos motivations'   
             ])
-            ->add('picture', TextType::class, [
-                 'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Photo'    
-            ])
+            // ->add('picture', TextType::class, [
+            //      'attr' => [
+            //         'class' => 'form-control'
+            //     ],
+            //     'label' => 'Photo'    
+            // ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Votre photo',
                 'label_attr' => [
@@ -78,7 +78,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Avez-vous bien télécharger votre photo?'
             ])
             ->add('reset_token')
-            ->add('directories')
+            //->add('directories')
             ->add('is_verified', CheckboxType::class, [
                 'mapped' => false,
                  'label' => 'Etes-vous d\'accord avec notre RGPD',

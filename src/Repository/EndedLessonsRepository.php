@@ -48,7 +48,7 @@ class EndedLessonsRepository extends ServiceEntityRepository
             ->andWhere('e.users = :val')
             ->setParameter('val', $user)
             ->orderBy('e.id', 'ASC')
-           // ->setMaxResults(10) s'arrêt à 10 résultats trouvés!
+           // ->setMaxResults(10) s'arrête à 10 résultats trouvés!
             ->getQuery()
             ->getResult()
         ;
