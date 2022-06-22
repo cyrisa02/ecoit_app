@@ -46,7 +46,7 @@ class CoursesectionController extends AbstractController
 //         ]);
 //     }
 
-    #[Route('parcours_sections/{id}', name: 'app_course1_show', methods: ['GET'])]
+    #[Route('/parcours_sections/{id}', name: 'app_course1_show', methods: ['GET'])]
     public function show(Sections $section): Response
     {
         return $this->render('pages/sections/showcourse.html.twig', [

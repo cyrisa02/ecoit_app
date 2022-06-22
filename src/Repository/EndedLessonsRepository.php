@@ -39,20 +39,40 @@ class EndedLessonsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return EndedLessons[] Returns an array of EndedLessons objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return EndedLessons[] Returns an array of EndedLessons objects
+    */
+    public function findLessonTermineeByUser($user): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.users = :val')
+            ->setParameter('val', $user)
+            ->orderBy('e.id', 'ASC')
+           // ->setMaxResults(10) s'arrêt à 10 résultats trouvés!
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
+
+    /**
+     * @return EndedLessons[] Returns an array of EndedLessons objects
+    */
+    public function findLessonTermineeForThisUser($user, $lesson): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.users = :val1')
+            ->andWhere('e.lessons = :val2')
+            ->setParameter('val1', $user)
+            ->setParameter('val2', $lesson)
+            ->orderBy('e.id', 'ASC')
+           // ->setMaxResults(10) s'arrêt à 10 résultats trouvés!
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 
 //    public function findOneBySomeField($value): ?EndedLessons
 //    {

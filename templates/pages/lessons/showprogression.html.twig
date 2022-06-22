@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Votre progression</h1>
+		{{progression}}%
+
+		<a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">
+
+			Retour au menu</a>
+
+
+	</div>
+
+{% endblock %}

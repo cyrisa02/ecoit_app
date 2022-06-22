@@ -17,7 +17,12 @@
 		</thead>
 		<tbody>
 			{% for ended_lesson in ended_lessons %}
+
+				<h3>
+					{# {{ended_lesson.title}} #}
+				</h3>
 				<tr>
+
 					<td>{{ ended_lesson.id }}</td>
 					<td>{{ ended_lesson.createdAt ? ended_lesson.createdAt|date('d/m/Y') : '' }}</td>
 
