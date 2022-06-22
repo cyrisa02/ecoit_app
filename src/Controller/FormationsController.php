@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Formations;
-
+use App\Entity\Users;
 use App\Form\FormationsType;
+use App\Repository\UsersRepository;
 use App\Repository\FormationsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

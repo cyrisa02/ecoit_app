@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lessons index
+{% block title %}Liste des leçons
 {% endblock %}
 
 {% block body %}
@@ -14,9 +14,9 @@
 					<th>Titre</th>
 					<th>Sections</th>
 					<th>Contenu</th>
-					<th>Ateur</th>
+					<th>Auteur</th>
 					<th>Video</th>
-					<th>Terminée</th>
+					{# <th>Terminée</th> #}
 					<th>Création</th>
 					<th>Modification</th>
 					<th>actions</th>
@@ -39,7 +39,7 @@
 						<td>{{ lesson.description }}</td>
 						<td>{{ lesson.slug }}</td>
 						<td>{{ lesson.video }}</td>
-						<td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td>
+						{# <td>{{ lesson.isEnded ? 'Yes' : 'No' }}</td> #}
 						<td>{{ lesson.createdAt ? lesson.createdAt|date('d/m/Y') : '' }}</td>
 
 						<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d/m/Y') : '' }}</td>

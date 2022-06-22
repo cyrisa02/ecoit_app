@@ -13,12 +13,11 @@
 				<tr>
 					<th>N°</th>
 					<th>Titre</th>
-					{# <th>Sections</th> #}
-					<th>Catalogue</th>
+
 					<th>Description</th>
 					<th>Auteur</th>
-					<th>Terminée</th>
-					<th>Favoris</th>
+					{# <th>Terminée</th>
+										<th>Favoris</th> #}
 					<th>Création</th>
 					<th>Modification</th>
 					<th>Actions</th>
@@ -35,8 +34,8 @@
 
 						<td>{{ formation.description }}</td>
 						<td>{{ formation.slug }}</td>
-						<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
-						<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
+						{# <td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
+												<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td> #}
 						<td>{{ formation.createdAt ? formation.createdAt|date('d/m/Y') : '' }}</td>
 
 						<td>{{ formation.updatedAt ? formation.updatedAt|date('d/m/Y') : '' }}</td>

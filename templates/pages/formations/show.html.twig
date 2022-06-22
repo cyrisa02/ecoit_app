@@ -30,41 +30,35 @@
 					<th>Description</th>
 					<td>{{ formation.description }}</td>
 				</tr>
-				<tr>
-					<th>Catalogue</th>
-					{# <td>{{ formation.directories }}</td> #}
-				</tr>
+
 
 				<tr>
 					<th>Auteur</th>
 					<td>{{ formation.slug }}</td>
 				</tr>
-				<tr>
-					<th>Terminée</th>
-					<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
-				</tr>
-				<tr>
-					<th>Favoris</th>
-					<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
-				</tr>
-				<tr>
-					<th>Création</th>
-					<td>{{ formation.createdAt ? formation.createdAt|date('d/m/Y') : '' }}</td>
-
-				</tr>
-				<tr>
-					<th>Modification</th>
-					<td>{{ formation.updatedAt ? formation.updatedAt|date('d/m/Y') : '' }}</td>
-
-				</tr>
+				{# <tr>
+									<th>Terminée</th>
+									<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
+								</tr>
+								<tr>
+									<th>Favoris</th>
+									<td>{{ formation.isFavorite ? 'Oui' : 'Non' }}</td>
+								</tr>
+								<tr> #}
+				<th>Création</th>
+				<td>{{ formation.createdAt ? formation.createdAt|date('d/m/Y') : '' }}</td>
 			</tbody>
-		</table>
+		</tr>
+		<tr>
+			<th>Modification</th>
+			<td>{{ formation.updatedAt ? formation.updatedAt|date('d/m/Y') : '' }}</td>
 
-		<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_index') }}">Retour à la liste</a>
+		</tr>
+	</tbody>
+</table>
 
-		<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_edit', {'id': formation.id}) }}">Modifier</a>
+<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_index') }}">Retour à la liste</a>
 
-		{{ include('pages/formations/_delete_form.html.twig') }}</div>
+<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_edit', {'id': formation.id}) }}">Modifier</a>
 
-
-{% endblock %}
+{{ include('pages/formations/_delete_form.html.twig') }}</div>{% endblock %}

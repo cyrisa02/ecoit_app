@@ -13,8 +13,8 @@
 				<tr>
 					<th>Id</th>
 					<th>Titre</th>
-					<th>Formations</th>
-					<th>Leçons</th>
+					{# <th>Formations</th>
+															<th>Leçons</th> #}
 					<th>actions</th>
 
 				</tr>
@@ -25,10 +25,10 @@
 						<td>{{ section.id }}</td>
 						<td>{{ section.title }}</td>
 						{# <td>{{ section.formations }}</td>
-												<td>{{ section.lessons }}</td> #}
+																								<td>{{ section.lessons }}</td> #}
 
 						<td>
-							<a href="{{ path('app_sections_show', {'id': section.id}) }}">Voir</a>
+							{# <a href="{{ path('app_sections_show', {'id': section.id}) }}">Voir</a> #}
 							<a href="{{ path('app_sections_edit', {'id': section.id}) }}">Modifier</a>
 						</td>
 					</tr>

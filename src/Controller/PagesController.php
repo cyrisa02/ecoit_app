@@ -9,11 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * This controller displays the CVG
  */
-class CVGController extends AbstractController
+class PagesController extends AbstractController
 {
     #[Route('cvg', name: 'cvg')]
-    public function index(): Response
+    public function indexcvg(): Response
     {
         return $this->render('pages/cvg.html.twig');
     }
+
+#[Route('/rgpd', name: 'rgpd', methods: ['GET'])]
+    public function indexrgpd(): Response
+    {
+        return $this->render('pages/rgpd.html.twig');
+    }
+
 }

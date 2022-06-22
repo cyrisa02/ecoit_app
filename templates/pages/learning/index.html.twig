@@ -6,10 +6,9 @@
 {% block body %}
 
 	<div class="container mt-4">
-		<h1>Mon planning
+		<h1>Mon planning-Formation
 		</h1>
 
-		<h3>Progression</h3>
 
 		{% for formation in formations %}
 			<h2>Titre de la formation:
@@ -20,7 +19,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						{# <th>Chapitre</th> #}
+
 						<th>Sections</th>
 						<th>Leçons</th>
 						<th>Quiz</th>
@@ -30,13 +29,10 @@
 				<tbody>
 					{% for section in formation.sections %}
 						<tr>
-							{# <td>{{ section.id }}</td> #}
+
 							<td>
 								<strong>{{ section.title }}</strong>
 							</td>
-							{# <td>{{ section.formations }}</td> #}
-							{# <td>{{ section.quizes }}</td>#}
-
 							<td>
 								{% for lesson in section.lessons %}
 									{{lesson.title}}
@@ -46,8 +42,8 @@
 
 							<td>TODO</td>
 							<td>
-								<a href="{{ path('app_course1_show', {'id': section.id}) }}">voir la section</a>
-								{# <a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a> #}
+								<a href="{{ path('app_course1_show', {'id': section.id}) }}">voir cette section</a>
+
 							</td>
 						</tr>
 					{% else %}

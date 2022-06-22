@@ -18,8 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CourseController extends AbstractController
 {
-    
-
     #[Route('/parcours', name: 'app_course', methods: ['GET'])]
     // // #[IsGranted('ROLE_USER')]
     public function course(FormationsRepository $formationsRepository, UsersRepository $usersRepository, ): Response 
@@ -31,6 +29,8 @@ class CourseController extends AbstractController
             
         ]);
      }
+
+    
 
 
      // #[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
