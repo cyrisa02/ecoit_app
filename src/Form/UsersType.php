@@ -67,7 +67,7 @@ class UsersType extends AbstractType
             ])
             //->add('reset_token')
             //->add('plainPassword')
-            ->add('directories')
+           // ->add('directories')
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image de la formation',
                 'label_attr' => [

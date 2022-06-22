@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Formations;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -93,7 +95,17 @@ class RegistrationFormType2 extends AbstractType
             
             ->add('reset_token')
             //->add('directories')
-            ->add('formations')
+            ->add('formations', EntityType::class, [
+                'class' => Formations::class,
+                'label'=> "Choisissez les formations",
+                'label_attr' => [
+                    'class' => 'form-check-label mt-4'
+                 ],
+                 'choice_label' => 'title',
+                 'multiple' => true,
+                 'expanded' => true,
+            ])
+            
             // ->add('RGPDConsent', CheckboxType::class, [
             //     'mapped' => false,
             //      'label' => 'Etes-vous d\'accord avec notre RGPD',

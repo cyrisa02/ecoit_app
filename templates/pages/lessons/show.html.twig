@@ -12,9 +12,9 @@
 		<table class="table">
 			<tbody>
 				{# <tr>
-																													<th>Id</th>
-																													<td></td>
-																												</tr> #}
+																																																													<th>Id</th>
+																																																													<td></td>
+																																																												</tr> #}
 				<tr>
 					<th>Titre</th>
 					<td>{{ lesson.title }}</td>
@@ -44,6 +44,7 @@
 					<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y') : '' }}</td>
 
 				</tr>
+
 			</tbody>
 		</table>
 
@@ -51,6 +52,20 @@
 
 
 		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">Modifier</a>
+
+		{% set isEnded=false %}
+		{% for terminee in lesson.getEndedLessons  %}
+
+			{% if terminee.users == app.user %}
+
+				{% set isEnded=true %}
+
+			{% endif %}
+
+		{% endfor %}
+
+
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'Leçon en cours' : 'Leçon terminée'}}</a>
 
 
 		{{ include('pages/lessons/_delete_form.html.twig') }}</div>

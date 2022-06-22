@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
 use App\Entity\Lessons;
 use App\Form\LessonsType;
+use App\Entity\EndedLessons;
+use Doctrine\ORM\EntityManager;
 use App\Repository\LessonsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\EndedLessonsRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
-#[Route('/leçons')]
+#[Route('/lessons')]
 class LessonsController extends AbstractController
 {
     #[Route('/', name: 'app_lessons_index', methods: ['GET'])]
@@ -92,4 +96,62 @@ class LessonsController extends AbstractController
 
         return $this->redirectToRoute('app_lessons_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/parcours_lessons/{id}', name: 'show_progression')]
+    public function showProgression(EndedLessonsRepository $endedLessonsRepository ): Response
+    {
+        /** @var Users $user */        
+        $user= $this->getUser();
+        $formations=$user->getFormations();
+        $nombredelessons= 0;
+        foreach ($formations as $formation) {
+            $sections = $formation->getSections();
+            foreach ($sections as $section) {
+                $nombredelessons += count ($section->getLessons());
+            }
+        }
+        $lessonterminee = count($endedLessonsRepository-> findLessonTermineeByUser($user));
+
+        if ($nombredelessons==0) {
+            $progression=0;
+        }
+        else {$progression = ($lessonterminee * 100) / $nombredelessons;}
+        
+        return $this->render('pages/lessons/showprogression.html.twig', [
+            'progression'=>$progression,
+            
+        ]);
+    }
+
+
+    
+
+    #[Route('/lesson_terminee/{id}', name: 'app_lessons_end')]
+    public function endLesson(Lessons $lesson, EndedLessonsRepository $endedLessonsRepository, EntityManagerInterface $entityManager): Response
+    {
+        /** @var Users $user */        
+        $user= $this->getUser();
+        
+
+        $isEnded = $endedLessonsRepository-> findLessonTermineeForThisUser($user, $lesson);
+
+
+        if ($isEnded) {
+            $endedLessonsRepository->remove($isEnded[0], true);
+        }
+        else {
+            /** @var EndedLessons $endedLesson */
+            $endedLesson= new EndedLessons();
+            $endedLesson->setLessons($lesson);
+            $endedLesson->setUsers($user);
+            $entityManager->persist($endedLesson);
+            $entityManager->flush();
+        }
+        
+        return $this->render('pages/lessons/show.html.twig', [
+            'lesson' => $lesson,
+        ]);
+    }
+
+    
 }

@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\EndedLessons;
 use App\Entity\Lessons;
 use App\Repository\LessonsRepository;
-
+use App\Repository\EndedLessonsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,11 +25,12 @@ class CourselessonController extends AbstractController
         ]);
     } 
 
-    #[Route('parcours_leçons/{id}', name: 'app_course2_show', methods: ['GET'])]
-    public function show(Lessons $lesson): Response
+    #[Route('/parcours_leçons/{id}', name: 'app_course2_show', methods: ['GET'])]
+    public function show(Lessons $lesson, EndedLessons $endedLessons): Response
     {
         return $this->render('pages/lessons/showcourse.html.twig', [
             'lesson' => $lesson,
+            'endedlesson'=>$endedLessons,
         ]);
     }
 }
