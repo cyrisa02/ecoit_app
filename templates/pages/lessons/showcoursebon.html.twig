@@ -23,68 +23,75 @@
 
 		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'Leçon en cours' : 'Leçon terminée'}}</a>
 
-
-		{% for section in lesson.sections %}
-
-
-			<h3>Titre de la Section:
-				{{ section.title}}
-
-				<table class="table">
-					<tbody>
-						<tr>
-							<th>
-								Contenu
-							</th>
-							<td>
-								{{ lesson.description }}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								Instructeur
-							</th>
-							<td>
-								{{ lesson.slug }}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								Video
-							</th>
-							<td>
-								{{ lesson.video }}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								{# Terminée<a class="btn btn-secondary btn-lg" href="{{ path('app_ended_lessons_new', {'id': lesson.id}) }}">Terminée à faire!!!</a> #}
+		{% for formation in formations %}
+			<h2>Titre de la formation:
+				<strong>{{formation.title}}</strong>
+			</h2>
 
 
-							</th>
-							<td>
-								{{ lesson.isEnded ? 'Yes' : 'No' }}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								Créée
-							</th>
-							<td>
-								{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								Dernière modification
-							</th>
-							<td>
-								{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
-							</td>
-						</tr>
-					</tbody>
-				</table>
+			{% for section in lesson.sections %}
+
+
+				<h3>Titre de la Section:
+					{{ section.title}}
+
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>
+									Contenu
+								</th>
+								<td>
+									{{ lesson.description }}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Instructeur
+								</th>
+								<td>
+									{{ lesson.slug }}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Video
+								</th>
+								<td>
+									{{ lesson.video }}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									{# Terminée<a class="btn btn-secondary btn-lg" href="{{ path('app_ended_lessons_new', {'id': lesson.id}) }}">Terminée à faire!!!</a> #}
+
+
+								</th>
+								<td>
+									{{ lesson.isEnded ? 'Yes' : 'No' }}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Créée
+								</th>
+								<td>
+									{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Dernière modification
+								</th>
+								<td>
+									{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				{% endfor %}
 			{% endfor %}
+
 
 			<a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">
 

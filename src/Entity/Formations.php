@@ -2,25 +2,32 @@
 
 namespace App\Entity;
 
-use App\Repository\FormationsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FormationsRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FormationsRepository::class)]
 #[Vich\Uploadable]
 #[ORM\HasLifecycleCallbacks]
+#[ApiResource(
+    normalizationContext: ['groups'=> ['read:collection']]
+)]
 class Formations
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['read:collection'])]
     private ?int $id;
 
     #[ORM\Column(type: 'string', length: 190)]
+    #[Groups(['read:collection'])]
     private string $title;
 
     #[Vich\UploadableField(mapping: 'formation_images', fileNameProperty: 'imageName')]
@@ -31,6 +38,7 @@ class Formations
 
 
     #[ORM\Column(type: 'text')]
+    #[Groups(['read:collection'])]
     private string $description;
 
     #[ORM\Column(type: 'string', length: 190)]

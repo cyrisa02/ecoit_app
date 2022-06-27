@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validation du candidat
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-4">
+
+		<h1>Validation du candidat par l'administrateur</h1>
+		<div class="mt-4">{{ include('pages/users/_formvalid.html.twig', {'button_label': 'Modifer les données du candidat'}) }}</div>
+
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path ('admin')}}">Valider la candidature</a>
+
+		<h1 class="mt-4">ZONE DANGER</h1>
+
+		{{ include('pages/users/_delete_form.html.twig') }}</div>
+
+
+{% endblock %}

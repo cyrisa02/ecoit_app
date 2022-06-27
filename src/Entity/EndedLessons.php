@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\EndedLessonsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EndedLessonsRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: EndedLessonsRepository::class)]
+#[ApiResource()]
 class EndedLessons
 {
     #[ORM\Id]

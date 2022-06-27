@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\RessourcesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RessourcesRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: RessourcesRepository::class)]
+#[ApiResource()]
 class Ressources
 {
     #[ORM\Id]

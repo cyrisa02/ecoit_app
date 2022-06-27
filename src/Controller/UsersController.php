@@ -79,4 +79,23 @@ class UsersController extends AbstractController
 
         return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/{id}/validation', name: 'app_users_valid', methods: ['GET', 'POST'])]
+    public function validation(Request $request, Users $user, UsersRepository $usersRepository): Response
+    {
+        $form = $this->createForm(UsersType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $usersRepository->add($user, true);
+
+            return $this->redirectToRoute('home.index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('pages/users/valid.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
 }

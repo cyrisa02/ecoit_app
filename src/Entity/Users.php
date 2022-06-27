@@ -3,16 +3,17 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UsersRepository;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 
 /**
@@ -21,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
  #[Vich\Uploadable]
             #[ORM\Entity(repositoryClass: UsersRepository::class)]
+            #[ApiResource()]
             class Users implements UserInterface, PasswordAuthenticatedUserInterface
             {
                 #[ORM\Id]
@@ -66,11 +68,11 @@ use Symfony\Component\Validator\Constraints as Assert;
                 #[ORM\Column(type: 'datetime_immutable', nullable: true)]
                 private \DateTimeImmutable $updated_at;
             
-                #[ORM\Column(type: 'boolean', nullable: true)]
-                private bool $is_verified ; //, problème avec admin
+               // #[ORM\Column(type: 'boolean', nullable: true)]
+              //  private bool $is_verified ; //, problème avec admin, original
             
-                //#[ORM\Column(type: 'boolean', options: ['default' =>'0'])]
-               // private bool $is_verified = false; //, problème avec admin
+                #[ORM\Column(type: 'boolean', options: ['default' =>'0'])]
+                private bool $is_verified = false; //, problème avec admin
             
                 #[ORM\Column(type: 'boolean')]
                 private $is_validInstructor;
@@ -312,17 +314,17 @@ use Symfony\Component\Validator\Constraints as Assert;
                     return $this;
                 }
             
-                public function isIsVerified(): ?bool
-                {
-                    return $this->is_verified;
-                }
+                 public function isIsVerified(): ?bool
+                 {
+                     return $this->is_verified;
+                 }
             
-                public function setIsVerified(bool $is_verified): self
-                {
-                    $this->is_verified = $is_verified;
+                 public function setIsVerified(bool $is_verified): self
+                 {
+                     $this->is_verified = $is_verified;
             
-                    return $this;
-                }
+                     return $this;
+                 }
             
                 public function isIsValidInstructor(): ?bool
                 {

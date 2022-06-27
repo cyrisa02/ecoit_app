@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\QuizesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\QuizesRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: QuizesRepository::class)]
+#[ApiResource()]
 class Quizes
 {
     #[ORM\Id]

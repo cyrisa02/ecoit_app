@@ -8,6 +8,7 @@ use App\Form\LessonsType;
 use App\Entity\EndedLessons;
 use Doctrine\ORM\EntityManager;
 use App\Repository\LessonsRepository;
+use App\Repository\FormationsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EndedLessonsRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -127,11 +128,11 @@ class LessonsController extends AbstractController
     
 
     #[Route('/lesson_terminee/{id}', name: 'app_lessons_end')]
-    public function endLesson(Lessons $lesson, EndedLessonsRepository $endedLessonsRepository, EntityManagerInterface $entityManager): Response
+    public function endLesson(Lessons $lesson, EndedLessonsRepository $endedLessonsRepository, EntityManagerInterface $entityManager,FormationsRepository $formationsRepository): Response
     {
         /** @var Users $user */        
         $user= $this->getUser();
-        
+         $formations = $user->getFormations();
 
         $isEnded = $endedLessonsRepository-> findLessonTermineeForThisUser($user, $lesson);
 
@@ -150,6 +151,7 @@ class LessonsController extends AbstractController
         
         return $this->render('pages/lessons/showcoursebon.html.twig', [
             'lesson' => $lesson,
+            'formations' => $formations,
         ]);
     }
 
