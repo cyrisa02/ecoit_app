@@ -9,7 +9,8 @@ use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Serializer\Annotation\Ignore;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -20,9 +21,11 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 
- #[Vich\Uploadable]
+           
+            
             #[ORM\Entity(repositoryClass: UsersRepository::class)]
             #[ApiResource()]
+
             class Users implements UserInterface, PasswordAuthenticatedUserInterface
             {
                 #[ORM\Id]
@@ -48,26 +51,16 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
                  #[ORM\Column(type: 'string', length: 190)]     
                  private ?string $decription;
             
-                // #[ORM\Column(type: 'string', length: 190)]
-                // private ?string $picture;
+                
             
                 #[ORM\Column(type: 'string', length: 190)]
                 private ?string $pseudo;
-            
-                 #[Vich\UploadableField(mapping: 'formation_images', fileNameProperty: 'imageName')]
-                private ?File $imageFile = null;
-            
-                 
-                #[ORM\Column(type: 'string', nullable: true)]
-                private ?string $imageName = null;
-            
+ 
             
                 #[ORM\Column(type: 'datetime_immutable', options: ['default' =>'CURRENT_TIMESTAMP'])]
                 private \DateTimeImmutable $created_at;
             
-                #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-                private \DateTimeImmutable $updated_at;
-            
+                
                // #[ORM\Column(type: 'boolean', nullable: true)]
               //  private bool $is_verified ; //, problème avec admin, original
             
@@ -76,21 +69,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
             
                 #[ORM\Column(type: 'boolean')]
                 private $is_validInstructor;
+                
             
-                #[ORM\Column(type: 'string', length: 190)]
-                private string $reset_token;
-            
-                // #[ORM\Column(type: 'string', length: 190)]
-                // private $plainPassword;
-            
-                // #[Assert\NotNull()]
-                // #[ORM\OneToMany(mappedBy: 'users', targetEntity: Formations::class, cascade: ['persist', 'remove'])]
-                // private $formations;
-            
-                //#[Assert\NotNull()]
-                // #[ORM\OneToOne(mappedBy: 'users', targetEntity: Directories::class, cascade: ['persist', 'remove'])]
-                // #[ORM\OneToOne(mappedBy: 'users', targetEntity: Directories::class)]
-                // private $directories;
+                
             
                 #[ORM\OneToMany(mappedBy: 'users', targetEntity: EndedLessons::class)]
                 private $endedLessons;
@@ -102,8 +83,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
             
                 public function __construct()
                 {
-                    $this->created_at = new \DateTimeImmutable();
-                    $this->updated_at = new \DateTimeImmutable();
+                    $this->created_at = new \DateTimeImmutable();                    
                     $this->formations = new ArrayCollection();
                     $this->endedLessons = new ArrayCollection();
                    
@@ -230,17 +210,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
                      return $this;
                  }
             
-                // public function getPicture(): ?string
-                // {
-                //     return $this->picture;
-                // }
-            
-                // public function setPicture(string $picture): self
-                // {
-                //     $this->picture = $picture;
-            
-                //     return $this;
-                // }
+                
             
                 public function getPseudo(): ?string
                 {
@@ -254,40 +224,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
                     return $this;
                 }
             
-            /**
-                 * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-                 * of 'UploadedFile' is injected into this setter to trigger the update. If this
-                 * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-                 * must be able to accept an instance of 'File' as the bundle will inject one here
-                 * during Doctrine hydration.
-                 *
-                 * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
-                 */
-                public function setImageFile(?File $imageFile = null): void
-                {
-                    $this->imageFile = $imageFile;
             
-                    if (null !== $imageFile) {
-                        // It is required that at least one field changes if you are using doctrine
-                        // otherwise the event listeners won't be called and the file is lost
-                        $this->updatedAt = new \DateTimeImmutable();
-                    }
-                }
-            
-                public function getImageFile(): ?File
-                {
-                    return $this->imageFile;
-                }
-            
-                public function setImageName(?string $imageName): void
-                {
-                    $this->imageName = $imageName;
-                }
-            
-                public function getImageName(): ?string
-                {
-                    return $this->imageName;
-                }
             
             
                 public function getCreatedAt(): ?\DateTimeImmutable
@@ -302,17 +239,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
                     return $this;
                 }
             
-                public function getUpdatedAt(): ?\DateTimeImmutable
-                {
-                    return $this->updated_at;
-                }
-            
-                public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
-                {
-                    $this->updated_at = $updated_at;
-            
-                    return $this;
-                }
+               
             
                  public function isIsVerified(): ?bool
                  {
@@ -338,77 +265,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
                     return $this;
                 }
             
-                public function getResetToken(): ?string
-                {
-                    return $this->reset_token;
-                }
+                
             
-                public function setResetToken(string $reset_token): self
-                {
-                    $this->reset_token = $reset_token;
-            
-                    return $this;
-                }
-            
-                // public function getPlainPassword(): ?string
-                // {
-                //     return $this->plainPassword;
-                // }
-            
-                // public function setPlainPassword(string $plainPassword): self
-                // {
-                //     $this->plainPassword = $plainPassword;
-            
-                //     return $this;
-                // }
-            
-                // /**
-                //  * @return Collection<int, Formations>
-                //  */
-                // public function getFormations(): Collection
-                // {
-                //     return $this->formations;
-                // }
-            
-                // public function addFormation(Formations $formation): self
-                // {
-                //     if (!$this->formations->contains($formation)) {
-                //         $this->formations[] = $formation;
-                //         $formation->setUsers($this);
-                //     }
-            
-                //     return $this;
-                // }
-            
-                // public function removeFormation(Formations $formation): self
-                // {
-                //     if ($this->formations->removeElement($formation)) {
-                //         // set the owning side to null (unless already changed)
-                //         if ($formation->getUsers() === $this) {
-                //             $formation->setUsers(null);
-                //         }
-                //     }
-            
-                //     return $this;
-                // }
-            
-                // public function getDirectories(): ?Directories
-                // {
-                //     return $this->directories;
-                // }
-            
-                // public function setDirectories(Directories $directories): self
-                // {
-                //     // set the owning side of the relation if necessary
-                //     if ($directories->getUsers() !== $this) {
-                //         $directories->setUsers($this);
-                //     }
-            
-                //     $this->directories = $directories;
-            
-                //     return $this;
-                // }
-            
+                
                 /**
                  * @return Collection<int, EndedLessons>
                  */

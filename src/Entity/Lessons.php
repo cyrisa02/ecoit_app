@@ -31,9 +31,7 @@ class Lessons
     #[ORM\Column(type: 'string', length: 190)]
     private string $slug;
 
-    #[ORM\Column(type: 'string', length: 190)]
-    private string $video;
-
+    
     #[ORM\Column(type: 'boolean')]
     private bool $is_ended;
 
@@ -41,15 +39,9 @@ class Lessons
     #[ORM\Column(type: 'datetime_immutable', options: ['default' =>'CURRENT_TIMESTAMP'])]
     private \DateTimeImmutable $created_at;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private \DateTimeImmutable $updated_at;
+        
 
     
-
-    
-
-    #[ORM\OneToMany(mappedBy: 'lessons', targetEntity: Ressources::class)]
-    private $ressources;
 
     
 
@@ -66,8 +58,7 @@ class Lessons
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
-        $this->updated_at = new \DateTimeImmutable();
-        $this->ressources = new ArrayCollection();
+        
        
         $this->endedLessons = new ArrayCollection();
         $this->sections = new ArrayCollection();
@@ -79,7 +70,6 @@ class Lessons
 return $this->title;
 return $this->description;
 return $this->slug;
-return $this->video;
 return $this->sections;
 
 }
@@ -125,18 +115,7 @@ return $this->sections;
         return $this;
     }
 
-    public function getVideo(): ?string
-    {
-        return $this->video;
-    }
-
-    public function setVideo(string $video): self
-    {
-        $this->video = $video;
-
-        return $this;
-    }
-
+    
     public function isIsEnded(): ?bool
     {
         return $this->is_ended;
@@ -161,51 +140,11 @@ return $this->sections;
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updated_at;
-    }
-
-    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
-
+    
     
     
 
-    /**
-     * @return Collection<int, Ressources>
-     */
-    public function getRessources(): Collection
-    {
-        return $this->ressources;
-    }
-
-    public function addRessource(Ressources $ressource): self
-    {
-        if (!$this->ressources->contains($ressource)) {
-            $this->ressources[] = $ressource;
-            $ressource->setLessons($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRessource(Ressources $ressource): self
-    {
-        if ($this->ressources->removeElement($ressource)) {
-            // set the owning side to null (unless already changed)
-            if ($ressource->getLessons() === $this) {
-                $ressource->setLessons(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
    
     /**
      * @return Collection<int, EndedLessons>
