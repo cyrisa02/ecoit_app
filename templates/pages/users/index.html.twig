@@ -17,14 +17,12 @@
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Description</th>
-					{# <th>Picture</th> #}
+
 					<th>Pseudo</th>
 					<th>Crée</th>
-					<th>Modifié</th>
-					<th>Validation</th>
-					{# <th>Instructeur</th> #}
 
-					{# <th>PlainPassword</th> #}
+					<th>Validation</th>
+
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -42,7 +40,6 @@
 						<td>{{ user.pseudo }}</td>
 						<td>{{ user.createdAt ? user.createdAt|date('d/m/Y') : '' }}</td>
 
-						<td>{{ user.updatedAt ? user.updatedAt|date('d/m/Y') : '' }}</td>
 
 						<td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
 						{# <td>{{ user.isValidInstructor ? 'Oui' : 'Non' }}</td> #}
@@ -51,7 +48,7 @@
 							<a href="{{ path('admin', {'id': user.id}) }}">Valider</a>
 
 							{# <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
-																											</td> #}
+																																		</td> #}
 						</td>
 					</tr>
 				{% else %}

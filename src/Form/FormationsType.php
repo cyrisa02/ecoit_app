@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Sections;
 use App\Entity\Formations;
+use App\Repository\SectionsRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -50,17 +51,21 @@ class FormationsType extends AbstractType
             ])
             //->add('created_at')
             //->add('updated_at')
-            ->add('sections', EntityType::class, [
-                'class' => Sections::class,
+
+             ->add('sections', EntityType::class, [
+                 'class' => Sections::class,
                 'label'=> "Choisissez les sections",
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
+                 'label_attr' => [
+                     'class' => 'form-label mt-4'
                  ],
-                 'choice_label' => 'title',
+                  'choice_label' => 'title',
                  'multiple' => true,
-                 'expanded' => true,
-            ])
+                  'expanded' => true,
+             ])
             
+
+
+
 
             //->add('directories')
 
@@ -71,13 +76,13 @@ class FormationsType extends AbstractType
             //     'label' => 'Catalogue de formation'
 
             // ] )
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Image de la formation',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'required' => false
-            ])
+            // ->add('imageFile', VichImageType::class, [
+            //     'label' => 'Image de la formation',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ],
+            //     'required' => false
+            // ])
         ;
     }
 

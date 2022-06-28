@@ -24,23 +24,23 @@
 					<th>Auteur</th>
 					<td>{{ lesson.slug }}</td>
 				</tr>
-				<tr>
-					<th>Video</th>
-					<td>{{ lesson.video }}</td>
-				</tr>
 				{# <tr>
-									<th>Terminée</th>
-									<td>{{ lesson.isEnded ? 'Oui' : 'Non' }}</td>
-								</tr> #}
+													<th>Video</th>
+													<td>{{ lesson.video }}</td>
+												</tr> #}
+				{# <tr>
+																	<th>Terminée</th>
+																	<td>{{ lesson.isEnded ? 'Oui' : 'Non' }}</td>
+																</tr> #}
 				<tr>
 					<th>Création</th>
 					<td>{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}</td>
 				</tr>
-				<tr>
-					<th>Modification</th>
-					<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y') : '' }}</td>
-
-				</tr>
+				{# <tr>
+									<th>Modification</th>
+									<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y') : '' }}</td>
+				
+								</tr> #}
 
 			</tbody>
 		</table>
@@ -51,18 +51,18 @@
 		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">Modifier</a>
 
 		{# {% set isEnded=false %}
-				{% for terminee in lesson.getEndedLessons  %}
-		
-					{% if terminee.users == app.user %}
-		
-						{% set isEnded=true %}
-		
-					{% endif %}
-		
-				{% endfor %}
-		
-		
-				<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'Leçon en cours' : 'Leçon terminée'}}</a> #}
+								{% for terminee in lesson.getEndedLessons  %}
+						
+									{% if terminee.users == app.user %}
+						
+										{% set isEnded=true %}
+						
+									{% endif %}
+						
+								{% endfor %}
+						
+						
+								<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'Leçon en cours' : 'Leçon terminée'}}</a> #}
 
 
 		{{ include('pages/lessons/_delete_form.html.twig') }}</div>

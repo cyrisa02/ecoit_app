@@ -53,14 +53,14 @@
 									{{ lesson.slug }}
 								</td>
 							</tr>
-							<tr>
-								<th>
-									Video
-								</th>
-								<td>
-									{{ lesson.video }}
-								</td>
-							</tr>
+							{# <tr>
+																						<th>
+																							Video
+																						</th>
+																						<td>
+																							{{ lesson.video }}
+																						</td>
+																					</tr> #}
 							<tr>
 								<th>
 									{# Terminée<a class="btn btn-secondary btn-lg" href="{{ path('app_ended_lessons_new', {'id': lesson.id}) }}">Terminée à faire!!!</a> #}
@@ -79,14 +79,14 @@
 									{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}
 								</td>
 							</tr>
-							<tr>
-								<th>
-									Dernière modification
-								</th>
-								<td>
-									{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
-								</td>
-							</tr>
+							{# <tr>
+															<th>
+																Dernière modification
+															</th>
+															<td>
+																{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
+															</td>
+														</tr> #}
 						</tbody>
 					</table>
 				{% endfor %}

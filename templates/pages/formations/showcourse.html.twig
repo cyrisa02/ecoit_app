@@ -18,10 +18,10 @@
 					<td>{{ formation.title }}</td>
 				</tr>
 
-				<div class="formation__image">
-					<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(formation, 'imageFile') }}">
-
-				</div>
+				{# <div class="formation__image">
+									<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(formation, 'imageFile') }}">
+				
+								</div> #}
 
 
 				<tr>
@@ -29,9 +29,9 @@
 					<td>{{ formation.description }}</td>
 				</tr>
 				{# <tr>
-									<th>Slug</th>
-									<td>{{ formation.slug }}</td>
-								</tr> #}
+													<th>Slug</th>
+													<td>{{ formation.slug }}</td>
+												</tr> #}
 				<tr>
 					<th>Terminée</th>
 					<td>{{ formation.isEndedFormation ? 'Oui' : 'Non' }}</td>
@@ -46,8 +46,8 @@
 
 				</tr>
 				<tr>
-					<th>Modification</th>
-					<td>{{ formation.updatedAt ? formation.updatedAt|date('d/m/Y') : '' }}</td>
+					{# <th>Modification</th>
+										<td>{{ formation.updatedAt ? formation.updatedAt|date('d/m/Y') : '' }}</td> #}
 
 				</tr>
 			</tbody>
