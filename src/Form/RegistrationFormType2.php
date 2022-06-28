@@ -79,13 +79,13 @@ class RegistrationFormType2 extends AbstractType
             //     ],
             //     'label' => 'Photo'    
             // ])
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Votre photo',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'required' => false
-            ])
+            // ->add('imageFile', VichImageType::class, [
+            //     'label' => 'Votre photo',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ],
+            //     'required' => false
+            // ])
             ->add('pseudo', TextType::class, [
                  'attr' => [
                     'class' => 'form-control'
@@ -93,7 +93,7 @@ class RegistrationFormType2 extends AbstractType
                 'label' => 'Votre pseudo'
             ])
             
-            ->add('reset_token')
+            //->add('reset_token')
             //->add('directories')
             ->add('formations', EntityType::class, [
                 'class' => Formations::class,

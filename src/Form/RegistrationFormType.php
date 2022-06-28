@@ -56,13 +56,13 @@ class RegistrationFormType extends AbstractType
             //     ],
             //     'label' => 'Photo'    
             // ])
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Votre photo',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'required' => false
-            ])
+            // ->add('imageFile', VichImageType::class, [
+            //     'label' => 'Votre photo',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ],
+            //     'required' => false
+            // ])
             ->add('pseudo', TextType::class, [
                  'attr' => [
                     'class' => 'form-control'
@@ -77,7 +77,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => true,
                 'label' => 'Avez-vous bien télécharger votre photo?'
             ])
-            ->add('reset_token')
+            //->add('reset_token')
             //->add('directories')
             ->add('is_verified', CheckboxType::class, [
                 'mapped' => false,

@@ -8,7 +8,7 @@ use App\Repository\QuizesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuizesController extends AbstractController
 {
     #[Route('/', name: 'app_quizes_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
+   #[Security("is_granted('ROLE_INSTRUCTOR')")]
     public function index(QuizesRepository $quizesRepository): Response
     {
         return $this->render('pages/quizes/index.html.twig', [
@@ -25,7 +25,7 @@ class QuizesController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_quizes_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_USER')]
+    #[Security("is_granted('ROLE_INSTRUCTOR')")]
     public function new(Request $request, QuizesRepository $quizesRepository): Response
     {
         $quize = new Quizes();
@@ -45,13 +45,14 @@ class QuizesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_quizes_show', methods: ['GET'])]
+    #[Security("is_granted('ROLE_INSTRUCTOR')")]
     public function show(Quizes $quize): Response
     {
         return $this->render('pages/quizes/show.html.twig', [
             'quize' => $quize,
         ]);
     }
-    //#[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
+    #[Security("is_granted('ROLE_INSTRUCTOR')")]
     #[Route('/{id}/edition', name: 'app_quizes_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Quizes $quize, QuizesRepository $quizesRepository): Response
     {

@@ -27,7 +27,7 @@ class FormationsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_formations_new', methods: ['GET', 'POST'])]
-   //#[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
+   #[Security("is_granted('ROLE_INSTRUCTOR')")]
     public function new(Request $request, FormationsRepository $formationsRepository): Response
     {
         $formation = new Formations();
@@ -46,7 +46,7 @@ class FormationsController extends AbstractController
         ]);
     }
 
-  // #[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
+  #[Security("is_granted('ROLE_INSTRUCTOR') and user === formation.getUsers()")]
     #[Route('/{id}', name: 'app_formations_show', methods: ['GET'])]
     public function show(Formations $formation): Response
     {
@@ -56,7 +56,7 @@ class FormationsController extends AbstractController
         ]);
     }
 
-      //#[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
+    #[Security("is_granted('ROLE_INSTRUCTOR')")]
     #[Route('/{id}/edition', name: 'app_formations_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Formations $formation, FormationsRepository $formationsRepository): Response
     {
@@ -65,6 +65,11 @@ class FormationsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formationsRepository->add($formation, true);
+            $this->addFlash(
+                'success',
+                'Votre recette a été modifié avec succès !'
+            );
+
 
             return $this->redirectToRoute('app_formations_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -19,6 +19,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 
@@ -45,7 +46,7 @@ class LessonsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_lessons_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_USER')]
+     #[Security("is_granted('ROLE_INSTRUCTOR')")]
     public function new(Request $request, LessonsRepository $lessonsRepository,SluggerInterface $slugger): Response
     {
         $lesson = new Lessons();
@@ -66,7 +67,7 @@ class LessonsController extends AbstractController
             'form' => $form,
         ]);
     }
-
+     //#[Security("is_granted('ROLE_INSTRUCTOR')")]
     #[Route('/{id}', name: 'app_lessons_show', methods: ['GET'])]
     public function show(Lessons $lesson): Response
     {
@@ -74,7 +75,7 @@ class LessonsController extends AbstractController
             'lesson' => $lesson,
         ]);
     }
-
+     #[Security("is_granted('ROLE_INSTRUCTOR')")]
     #[Route('/{id}/edition', name: 'app_lessons_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Lessons $lesson, LessonsRepository $lessonsRepository): Response
     {
@@ -131,7 +132,18 @@ class LessonsController extends AbstractController
 
 
     
+#[Route('/student/{id}', name: 'app_lessons_show_student', methods: ['GET'])]
+    public function showLessonStudent(Lessons $lesson): Response
+    {
+        /** @var Users $user */        
+        $user= $this->getUser();
+         $formations = $user->getFormations();
 
+        return $this->render('pages/lessons/showcoursebon.html.twig', [
+            'lesson' => $lesson,
+            'formations' => $formations
+        ]);
+    }
     #[Route('/lesson_terminee/{id}', name: 'app_lessons_end')]
     public function endLesson(Lessons $lesson, EndedLessonsRepository $endedLessonsRepository, EntityManagerInterface $entityManager,FormationsRepository $formationsRepository): Response
     {
@@ -154,10 +166,11 @@ class LessonsController extends AbstractController
             $entityManager->flush();
         }
         
-        return $this->render('pages/lessons/showcoursebon.html.twig', [
-            'lesson' => $lesson,
-            'formations' => $formations,
-        ]);
+        return $this->redirectToRoute('app_lessons_show_student', ['id' => $lesson->getId(),
+           'formations' => $formations
+        ],
+            Response::HTTP_SEE_OTHER);
+        
     }
 
     

@@ -8,7 +8,7 @@ use App\Repository\QuizesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -51,7 +51,7 @@ class QuizstudenController extends AbstractController
     //         'quize' => $quize,
     //     ]);
     // }
-    //#[Security("is_granted('ROLE_USER') and user === formation.getUsers()")]
+   #[Security("is_granted('ROLE_INSTRUCTOR')")]
     #[Route('/{id}/edition', name: 'app_quizstuden_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Quizes $quize, QuizesRepository $quizesRepository): Response
     {
