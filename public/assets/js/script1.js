@@ -25,9 +25,11 @@ searchInput.addEventListener("input", e => {
         const card = formationCardTemplate.content.cloneNode(true).children[0]
          const header = card.querySelector("[data-header]")
          const body = card.querySelector("[data-body]")
+         const image = card.querySelector("[data-image]")
          header.textContent= formation.title 
          body.textContent= formation.description 
+         image.textContent=formation.image
          formationCardContainer.append(card)
-         return { title: formation.title, description: formation.description, element: card}
+         return { title: formation.title, description: formation.description, image:formation.image, element: card}
          })
  })

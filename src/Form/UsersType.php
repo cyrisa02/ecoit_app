@@ -56,7 +56,7 @@ class UsersType extends AbstractType
             ])
             ->add('formations', EntityType::class, [
                   'class' => Formations::class,
-                 'label'=> "Choisissez les sections ou créer d'abord une section pour votre formation.",
+                 'label'=> "Choisissez une ou plusieurs formations.",
                   'label_attr' => [
                       'class' => 'form-label mt-4'
                   ],

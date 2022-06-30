@@ -71,6 +71,7 @@ class Formations
    private $users;
 
    #[ORM\Column(type: 'string', length: 190)]
+   #[Groups(['read:collection'])]
    private $image;
 
    
