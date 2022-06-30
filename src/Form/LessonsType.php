@@ -70,16 +70,18 @@ class LessonsType extends AbstractType
             ])
             //->add('created_at')
             //->add('updated_at')
-            ->add('sections', EntityType::class, [
-                'class' => Sections::class,
-                'label'=> "Choisissez les sections",
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                 ],
-                 'choice_label' => 'title',
-                 'multiple' => true,
-                 'expanded' => true,
-            ])
+            ->add('sections')
+            // , EntityType::class, [
+            //     'class' => Sections::class,
+            //     'label'=> "Choisissez les sections",
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //      ],
+            //      'choice_label' => 'title',
+            //      'multiple' => true,
+            //      'expanded' => true,
+            // ])
+            ->add('ressource1')
         ;
     }
 

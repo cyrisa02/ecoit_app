@@ -27,7 +27,7 @@ class FormationsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_formations_new', methods: ['GET', 'POST'])]
-   #[Security("is_granted('ROLE_INSTRUCTOR')")]
+  #[Security("is_granted('ROLE_INSTRUCTOR') and user === formation.getUsers()")]
     public function new(Request $request, FormationsRepository $formationsRepository): Response
     {
         $formation = new Formations();
@@ -46,7 +46,7 @@ class FormationsController extends AbstractController
         ]);
     }
 
-  #[Security("is_granted('ROLE_INSTRUCTOR') and user === formation.getUsers()")]
+  #[Security("is_granted('ROLE_INSTRUCTOR') ")]
     #[Route('/{id}', name: 'app_formations_show', methods: ['GET'])]
     public function show(Formations $formation): Response
     {

@@ -103,7 +103,10 @@ class LessonsController extends AbstractController
 
         return $this->redirectToRoute('app_lessons_index', [], Response::HTTP_SEE_OTHER);
     }
-
+    /**
+    * This method displays the progression of the lessons in the profile of the student
+    */
+    #[Security("is_granted('ROLE_STUDENT')")]
     #[Route('/parcours_lessons/{id}', name: 'show_progression')]
     public function showProgression(EndedLessonsRepository $endedLessonsRepository ): Response
     {
@@ -130,8 +133,10 @@ class LessonsController extends AbstractController
         ]);
     }
 
-
-    
+/**
+ * This method allows to stay on the same page for the toggle-button "finished Lesson"
+ */
+     #[Security("is_granted('ROLE_STUDENT')")]
 #[Route('/student/{id}', name: 'app_lessons_show_student', methods: ['GET'])]
     public function showLessonStudent(Lessons $lesson): Response
     {
@@ -144,6 +149,11 @@ class LessonsController extends AbstractController
             'formations' => $formations
         ]);
     }
+
+    /**
+     * This method displays the toggle-button "finished Lesson"
+     */
+     #[Security("is_granted('ROLE_STUDENT')")]
     #[Route('/lesson_terminee/{id}', name: 'app_lessons_end')]
     public function endLesson(Lessons $lesson, EndedLessonsRepository $endedLessonsRepository, EntityManagerInterface $entityManager,FormationsRepository $formationsRepository): Response
     {

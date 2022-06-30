@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Users;
+use App\Entity\Formations;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -52,9 +54,19 @@ class UsersType extends AbstractType
                 'label' => 'Description'
 
             ])
-            //->add('picture')
+            ->add('formations', EntityType::class, [
+                  'class' => Formations::class,
+                 'label'=> "Choisissez les sections ou créer d'abord une section pour votre formation.",
+                  'label_attr' => [
+                      'class' => 'form-label mt-4'
+                  ],
+                   'choice_label' => 'title',
+                  'multiple' => true,
+                   'expanded' => true,
+              ])
             
             ->add('pseudo')
+            ->add('image')
             //->add('created_at')
             //->add('updated_at')
             ->add('is_verified',CheckboxType::class, [

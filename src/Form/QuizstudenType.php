@@ -21,10 +21,10 @@ class QuizstudenType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Titre'
+                'label' => 'Titre...'
 
             ])
-            ->add('sections')
+            //->add('sections')
              ->add('questions', EntityType::class, [
                  'class' => Questions::class,
                 // 'query_builder' => function (QuestionsRepository $r) {
@@ -41,6 +41,8 @@ class QuizstudenType extends AbstractType
                  'multiple' => true,
                  'expanded' => true,
              ])
+             
+             
         ;
     }
 

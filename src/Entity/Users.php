@@ -78,6 +78,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
          
                 #[ORM\ManyToMany(targetEntity: Formations::class, inversedBy: 'users')]
                 private $formations;
+
+                #[ORM\Column(type: 'string', length: 190, nullable: true)]
+                private $image;
             
                 
             
@@ -318,6 +321,18 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
                 public function removeFormation(Formations $formation): self
                 {
                     $this->formations->removeElement($formation);
+
+                    return $this;
+                }
+
+                public function getImage(): ?string
+                {
+                    return $this->image;
+                }
+
+                public function setImage(?string $image): self
+                {
+                    $this->image = $image;
 
                     return $this;
                 }

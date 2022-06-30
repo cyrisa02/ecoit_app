@@ -6,12 +6,12 @@
 {% block body %}
 
 	<div class="container mt-4">
-		<h1>Mon planning-Formation
+		<h1>Mon Planning-Formation
 		</h1>
 
 
 		{% for formation in formations %}
-			<h2>Titre de la formation:
+			<h2>Titre de votre formation:
 				<strong>{{formation.title}}</strong>
 			</h2>
 
@@ -21,8 +21,8 @@
 					<tr>
 
 						<th>Sections</th>
-						<th>Leçons</th>
-						<th>Quiz</th>
+						<th>Vos Leçons</th>
+
 						<th>action</th>
 					</tr>
 				</thead>
@@ -40,9 +40,9 @@
 								{% endfor %}
 							</td>
 
-							<td>TODO</td>
+
 							<td>
-								<a href="{{ path('app_course1_show', {'id': section.id}) }}">voir cette section</a>
+								<a href="{{ path('app_course1_show', {'id': section.id}) }}">Aller à cette section</a>
 
 							</td>
 						</tr>

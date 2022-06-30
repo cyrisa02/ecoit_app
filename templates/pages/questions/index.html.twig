@@ -11,11 +11,11 @@
 			<thead>
 				<tr>
 					<th>N°</th>
-					<th>Titre</th>
+					<th>Titre de la section</th>
 					<th>Question</th>
 					<th>Correction</th>
 					{# <th>Is_answer_ok</th>
-										<th>Is_corrected</th> #}
+															<th>Is_corrected</th> #}
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -27,7 +27,7 @@
 						<td>{{ question.question }}</td>
 						<td>{{ question.correction }}</td>
 						{# <td>{{ question.isAnswerOk ? 'Yes' : 'No' }}</td>
-												<td>{{ question.isCorrected ? 'Yes' : 'No' }}</td> #}
+																		<td>{{ question.isCorrected ? 'Yes' : 'No' }}</td> #}
 						<td>
 							<a href="{{ path('app_questions_show', {'id': question.id}) }}">Voir</a>
 							<a href="{{ path('app_questions_edit', {'id': question.id}) }}">Modifier</a>

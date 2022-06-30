@@ -40,10 +40,13 @@
 					<th>Description</th>
 					<td>{{ user.decription }}</td>
 				</tr>
+				{# <img id="computer" src="{{ asset('assets/images/charly.jpg')}}" style="max-width: 35rem;" class="mx-auto d-block" alt="photo de l'apprenant"> #}
+				<iframe width="550" height="500" src="{{ user.image }} " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 				{# <div class="formation__image">
-													<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(user, 'imageFile') }}">
-												</div> #}
+																																																					<img style="max-width: 500px; border-radius: 10%;" src="{{ vich_uploader_asset(user, 'imageFile') }}">
+																																																				</div> #}
 
 
 				<tr>
@@ -62,17 +65,17 @@
 			<td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
 		</tr>
 		{# <tr>
-																																																																																																				<th>Is_validInstructor</th>
-																																																																																																				<td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
-																																																																																																			</tr> #}
+																																																																																																																								<th>Is_validInstructor</th>
+																																																																																																																								<td>{{ user.isValidInstructor ? 'Yes' : 'No' }}</td>
+																																																																																																																							</tr> #}
 	{# <tr>
-																																																																		<th>Reset_token</th>
-																																																																		<td>{{ user.resetToken }}</td>
-																																																																	</tr> #}
+																																																																												<th>Reset_token</th>
+																																																																												<td>{{ user.resetToken }}</td>
+																																																																											</tr> #}
 		{# <tr>
-																																																																																																																															<th>PlainPassword</th>
-																																																																																																																															<td>{{ user.plainPassword }}</td>
-																																																																																																																														</tr> #}
+																																																																																																																																																			<th>PlainPassword</th>
+																																																																																																																																																			<td>{{ user.plainPassword }}</td>
+																																																																																																																																																		</tr> #}
 	</tbody>
 </table>
 <a class="btn btn-primary btn-lg" href="{{ path('app_users_edit', {'id': user.id}) }}">Modifier mon profil</a></div></div>{# <a href="{{ path('app_users_index') }}">back to list</a> #}{# {{ include('pages/users/_delete_form.html.twig') }} #}{% endblock %}

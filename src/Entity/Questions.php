@@ -35,6 +35,18 @@ class Questions
     #[ORM\ManyToMany(targetEntity: Quizes::class, mappedBy: 'questions')]
     private $quizes;
 
+    #[ORM\Column(type: 'string', length: 190)]
+    private $propsition1;
+
+    #[ORM\Column(type: 'string', length: 190)]
+    private $proposition2;
+
+    #[ORM\Column(type: 'string', length: 190)]
+    private $proposition3;
+
+    #[ORM\Column(type: 'string', length: 190)]
+    private $goodanswer;
+
     public function __construct()
     {
         $this->quizes = new ArrayCollection();
@@ -138,6 +150,54 @@ class Questions
         if ($this->quizes->removeElement($quize)) {
             $quize->removeQuestion($this);
         }
+
+        return $this;
+    }
+
+    public function getPropsition1(): ?string
+    {
+        return $this->propsition1;
+    }
+
+    public function setPropsition1(string $propsition1): self
+    {
+        $this->propsition1 = $propsition1;
+
+        return $this;
+    }
+
+    public function getProposition2(): ?string
+    {
+        return $this->proposition2;
+    }
+
+    public function setProposition2(string $proposition2): self
+    {
+        $this->proposition2 = $proposition2;
+
+        return $this;
+    }
+
+    public function getProposition3(): ?string
+    {
+        return $this->proposition3;
+    }
+
+    public function setProposition3(string $proposition3): self
+    {
+        $this->proposition3 = $proposition3;
+
+        return $this;
+    }
+
+    public function getGoodanswer(): ?string
+    {
+        return $this->goodanswer;
+    }
+
+    public function setGoodanswer(string $goodanswer): self
+    {
+        $this->goodanswer = $goodanswer;
 
         return $this;
     }

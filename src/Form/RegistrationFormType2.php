@@ -131,7 +131,7 @@ class RegistrationFormType2 extends AbstractType
             // ])
             ->add('is_validInstructor',CheckboxType::class, [
                 'mapped' => true,
-                'label' => 'Avez-vous bien télécharger votre photo?'
+                'label' => 'Je certifie les données exactes'
             ])
             
         ;

@@ -19,7 +19,7 @@ class QuestionsType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Titre'
+                'label' => 'Titre de la section'
 
             ])
             ->add('question', TextType::class, [
@@ -47,6 +47,34 @@ class QuestionsType extends AbstractType
                  'choice_label' => 'title',
                  'multiple' => true,
                  'expanded' => true,
+            ])
+            ->add('propsition1', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Donnez une proposition fausse'
+
+            ])
+            ->add('proposition2', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Donnez une proposition fausse'
+
+            ])
+            ->add('proposition3', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Donnez une proposition fausse'
+
+            ])
+            ->add('goodanswer', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Donnez la bonne réponse'
+
             ])
         ;
     }

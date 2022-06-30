@@ -24,16 +24,16 @@ class SectionsType extends AbstractType
                 'label' => 'Titre'
 
             ])
-            ->add('formations', EntityType::class, [
-                'class' => Formations::class,
-                'label'=> "Choisissez les formations",
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                 ],
-                 'choice_label' => 'title',
-                 'multiple' => true,
-                 'expanded' => true,
-            ])
+            // ->add('formations', EntityType::class, [
+            //     'class' => Formations::class,
+            //     'label'=> "Choisissez les formations",
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //      ],
+            //      'choice_label' => 'title',
+            //      'multiple' => true,
+            //      'expanded' => true,
+            // ])
             ->add('quizes', EntityType::class, [
                 'class' => Quizes::class,
                 'label'=> "Choisissez le quiz",
@@ -44,16 +44,16 @@ class SectionsType extends AbstractType
                  'multiple' => true,
                  'expanded' => true,
             ])
-            ->add('lessons', EntityType::class, [
-                'class' => Lessons::class,
-                'label'=> "Choisissez les leçons",
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                 ],
-                 'choice_label' => 'title',
-                 'multiple' => true,
-                 'expanded' => true,
-            ])
+            // ->add('lessons', EntityType::class, [
+            //     'class' => Lessons::class,
+            //     'label'=> "Choisissez les leçons",
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //      ],
+            //      'choice_label' => 'title',
+            //      'multiple' => true,
+            //      'expanded' => true,
+            // ])
         ;
     }
 

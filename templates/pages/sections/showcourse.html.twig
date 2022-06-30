@@ -8,7 +8,8 @@
 <div class="container mt-4">
 	{% for formation in section.formations %}
 
-		<h1>
+		<h1 class=" mt-4">
+
 			Formation:
 			{{ formation.title}}
 
@@ -20,32 +21,35 @@
 	<h2>Sections N°{{ section.id }}
 		:
 
-		<td>{{ section.title }}</td>
-	</h2>
+		<td>{{ section.title }}
+			{# <a class="btn btn-secondary btn mb-1  ms-4" href="{{ path('quizsection', {'id': section.id}) }}" style="max-width: 35rem;">Réaliser le Quiz de la section</a> #}
 
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Leçons</th>
+		</td>
 
-				{% for lesson in section.lessons %}
+	</td>
+</h2>
 
 
-					<td></td>
-				</td>
-				<td>
-					<a href="{{ path('app_lessons_show_student', {'id': lesson.id}) }}">{{ lesson.title}}</a>
+<table class="table">
+	<tbody>
+		<tr>
+			<th>Vos Leçons</th>
+
+			{% for lesson in section.lessons %}
 
 
-				</td>
-			{% endfor %}
-			{# <td>
-																																																									<a href="{{ path('app_course2', {'id': section.id}) }}">voir</a>
-																																																								
-																																																								</td> #}
-		</tbody>
-	</tr>
+				<td></td>
+			</td>
+			<td>
+				<a class="btn btn-secondary btn mb-4" href="{{ path('app_lessons_show_student', {'id': lesson.id}) }}">{{ lesson.title}}</a>
 
 
-</table>{% endfor %}<a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">Retour à la liste</a></div>{# <a href="{{ path('app_sections_edit', {'id': section.id}) }}">edit</a> #}{# {{ include('pages/sections/_delete_form.html.twig') }} #}{% endblock %}
+			</td>
+		{% endfor %}
+
+
+	</tbody>
+
+
+</tr></table><a class="btn btn-secondary btn mb-1  ms-4" href="{{ path('quizsection', {'id': section.id}) }}" style="max-width: 35rem;">Réaliser le Quiz de la section</a>{% endfor %}<div class="container mt-4"><a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">Retour à la liste</a></div></div>{% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Quizes;
+use App\Entity\Sections;
 use App\Entity\Questions;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,6 +24,16 @@ class QuizesType extends AbstractType
 
             ])
             ->add('sections')
+            // , EntityType::class, [
+            //     'class' => Sections::class,
+            //     'label'=> "Choisissez votre section",
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //      ],
+            //      'choice_label' => 'title',
+            //      'multiple' => true,
+            //      'expanded' => true,
+            // ])
 
              ->add('questions', EntityType::class, [
                  'class' => Questions::class,
@@ -42,6 +53,7 @@ class QuizesType extends AbstractType
                  'multiple' => true,
                  'expanded' => true,
              ])
+             
 
         ;
     }

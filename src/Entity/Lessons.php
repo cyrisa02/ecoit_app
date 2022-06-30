@@ -51,6 +51,9 @@ class Lessons
     #[ORM\ManyToMany(targetEntity: Sections::class, inversedBy: 'lessons')]
     private $sections;
 
+    #[ORM\Column(type: 'string', length: 190, nullable: true)]
+    private $ressource1;
+
     // #[ORM\OneToOne(inversedBy:'lessons', targetEntity: Sections::class, cascade: ['persist', 'remove'])]
     // //#[Assert\NotNull()]
     // private $sections;
@@ -208,6 +211,18 @@ return $this->sections;
     public function removeSection(Sections $section): self
     {
         $this->sections->removeElement($section);
+
+        return $this;
+    }
+
+    public function getRessource1(): ?string
+    {
+        return $this->ressource1;
+    }
+
+    public function setRessource1(?string $ressource1): self
+    {
+        $this->ressource1 = $ressource1;
 
         return $this;
     }

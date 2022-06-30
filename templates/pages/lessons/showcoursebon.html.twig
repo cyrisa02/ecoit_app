@@ -21,7 +21,8 @@
 		{% endfor %}
 
 
-		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'Leçon en cours' : 'Leçon terminée'}}</a>
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'La leçon est terminée' : 'La leçon est en cours'}}</a>
+
 
 		{% for formation in formations %}
 			<h2>Titre de la formation:
@@ -39,54 +40,51 @@
 						<tbody>
 							<tr>
 								<th>
-									Contenu
+
+									<iframe width="560" height="315" src="https://www.youtube.com/embed/R5SD0JtvBDo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 								</th>
-								<td>
+								<td></td>
+							</tr>
+
+
+							<tr>
+								<th style="font-weight:normal;">
 									{{ lesson.description }}
-								</td>
+
+								</th>
+								<td></td>
 							</tr>
 							<tr>
 								<th>
-									Instructeur
+									<p>Ressource:</p>
+									<iframe width="500" height="500" src="{{ lesson.ressource1 }} " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 								</th>
-								<td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<th>
+									Créée par:
+
 									{{ lesson.slug }}
-								</td>
-							</tr>
-							{# <tr>
-																						<th>
-																							Video
-																						</th>
-																						<td>
-																							{{ lesson.video }}
-																						</td>
-																					</tr> #}
-							<tr>
-								<th>
-									{# Terminée<a class="btn btn-secondary btn-lg" href="{{ path('app_ended_lessons_new', {'id': lesson.id}) }}">Terminée à faire!!!</a> #}
-
 
 								</th>
-								<td>
-									{{ lesson.isEnded ? 'Yes' : 'No' }}
-								</td>
+								<td></td>
 							</tr>
+
+
 							<tr>
 								<th>
-									Créée
-								</th>
-								<td>
+									le
 									{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}
-								</td>
+
+								</th>
+								<td></td>
 							</tr>
-							{# <tr>
-															<th>
-																Dernière modification
-															</th>
-															<td>
-																{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y ') : '' }}
-															</td>
-														</tr> #}
+
 						</tbody>
 					</table>
 				{% endfor %}

@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FormationsRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\HttpFoundation\File\File;
+use App\Entity\File as EntityFile;
+// use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -68,6 +69,13 @@ class Formations
 
    #[ORM\ManyToMany(targetEntity: Users::class, mappedBy: 'formations')]
    private $users;
+
+   #[ORM\Column(type: 'string', length: 190)]
+   private $image;
+
+   
+
+   
 
     public function __construct()
     {
@@ -223,6 +231,20 @@ public function removeUser(Users $user): self
 
     return $this;
 }
+
+public function getImage(): ?string
+{
+    return $this->image;
+}
+
+public function setImage(string $image): self
+{
+    $this->image = $image;
+
+    return $this;
+}
+
+
 
     
 

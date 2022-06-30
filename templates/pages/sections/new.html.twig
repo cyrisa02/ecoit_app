@@ -6,11 +6,15 @@
 {% block body %}
 	<div class="container mt-4">
 		<h1>Création d'une nouvelle section</h1>
+		<p>Vous pourrez relier cette section dans la rubrique Liste des Formations, de même pour la leçon dans Leçons.</p>
+
 
 		{{ include('pages/sections/_form.html.twig') }}
 
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_quizes_index') }}">Créer un Quiz</a>
 		<a class="btn btn-secondary btn-lg" href="{{ path('app_sections_index') }}">Retour au menu</a>
+
 	</div>
 
 
-{% endblock %}
+</div>{% endblock %}
