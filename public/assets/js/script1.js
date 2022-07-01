@@ -2,6 +2,8 @@ const formationCardTemplate = document.querySelector("[data-formation-template]"
 const formationCardContainer = document.querySelector("[data-formation-cards-container]")
 const searchInput = document.querySelector("[data-search]")
 
+
+
 let formations = []
 
 searchInput.addEventListener("input", e => {
@@ -10,7 +12,7 @@ searchInput.addEventListener("input", e => {
     formations.forEach(formation => {
          
         const isVisible = formation.title.toLowerCase().includes(value) || formation.description.toLowerCase().includes(value)
-        console.log(formation.element.classList)
+        //console.log(formation.element.classList)
         formation.element.classList.toggle("d-none", !isVisible )
     })
     
@@ -25,11 +27,11 @@ searchInput.addEventListener("input", e => {
         const card = formationCardTemplate.content.cloneNode(true).children[0]
          const header = card.querySelector("[data-header]")
          const body = card.querySelector("[data-body]")
-         const image = card.querySelector("[data-image]")
+         
          header.textContent= formation.title 
          body.textContent= formation.description 
-         image.textContent=formation.image
+         
          formationCardContainer.append(card)
-         return { title: formation.title, description: formation.description, image:formation.image, element: card}
+         return { title: formation.title, description: formation.description, element: card}
          })
  })

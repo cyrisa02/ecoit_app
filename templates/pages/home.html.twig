@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil Changement
+{% block title %}Accueil
 {% endblock %}
 
 
@@ -18,13 +18,13 @@
 
 
 			<p class="mt-4">C’est un fait, la crise écologique est devenue une urgence majeure. La sixième extinction
-																																																																																																																																																																																																																																													massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
-																																																																																																																																																																																																																																													des années. Mais qu’en est-il d’internet ?
-																																																																																																																																																																																																																																													En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
-																																																																																																																																																																																																																																													ans, le poids d’une page web a été multiplié par 115 (source :<a href="https://www.greenit.fr/">https://www.greenit.fr/</a>
+																																																																																																																																																																																																																																																																																																																	massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
+																																																																																																																																																																																																																																																																																																																	des années. Mais qu’en est-il d’internet ?
+																																																																																																																																																																																																																																																																																																																	En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
+																																																																																																																																																																																																																																																																																																																	ans, le poids d’une page web a été multiplié par 115 (source :<a href="https://www.greenit.fr/">https://www.greenit.fr/</a>
 				). Face à ce constat, un organisme de formation a été fondé en 2017 : EcoIT. Son objectif est
-																																																																																																																																																																																																																																													d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception web de présenter des modules de cours.</p>
-			<a class="btn btn-primary btn-lg" href="#" role="button">Recherchez votre formation grâce à la barre de recherche ci-dessous</a>
+																																																																																																																																																																																																																																																																																																																	d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception web de présenter des modules de cours.</p>
+			<a class="btn btn-primary btn-lg" href="#" role="button">Recherchez votre formation grâce à la barre de recherche ci-dessous!!!!</a>
 
 
 			<div class="container mt-4">
@@ -33,19 +33,20 @@
 					<input type="search" id="search" data-search>
 				</div>
 				<div class="formation-cards mt-4" data-formation-cards-container style="display: flex;
-																																																																																																																																																																																																																																																																																																						flex-direction: row;
-																																																																																																																																																																																																																																																																																																						flex-wrap: wrap;
-																																																																																																																																																																																																																																																																																																						justify-content: space-between;
-																																																																																																																																																																																																																																																																																																						align-items: stretch;
-																																																																																																																																																																																																																																																																																																						align-content: space-around;"></div>
+																																																																																																																																																																																																																																																																																																																																																																																											flex-direction: row;
+																																																																																																																																																																																																																																																																																																																																																																																											flex-wrap: wrap;
+																																																																																																																																																																																																																																																																																																																																																																																											justify-content: space-between;
+																																																																																																																																																																																																																																																																																																																																																																																											align-items: stretch;
+																																																																																																																																																																																																																																																																																																																																																																																											align-content: space-around;"></div>
 
 				<template data-formation-template>
 					<div class="card border-primary mb-3" style="width:300px;">
 
 
 						<div class="card-header bg-secondary" data-header></div>
-						{# <img id="computer" src="data-image" alt="computer and nature" style="max-width: 15rem;" class="mx-auto d-block"> #}
-						{# <iframe width="250" height="100" src="data-image " title="Image formation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> #}
+
+
+						{# <iframe width="250" height="100" title="Image formation" frameborder="0" allowfullscreen></iframe> #}
 
 
 						<div class="card-body bg-light" data-body></div>
@@ -73,7 +74,7 @@
 									</h1>
 
 
-									<iframe width="250" height="100" src="{{ formation.image }} " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									<iframe width="250" height="100" src="{{ formation.image }} " title="formation" frameborder="0" allowfullscreen></iframe>
 
 
 								</div>

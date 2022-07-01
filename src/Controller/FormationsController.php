@@ -27,7 +27,7 @@ class FormationsController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_formations_new', methods: ['GET', 'POST'])]
-  #[Security("is_granted('ROLE_INSTRUCTOR') and user === formation.getUsers()")]
+ // #[Security("is_granted('ROLE_INSTRUCTOR') and user === formation.getUsers()")]
     public function new(Request $request, FormationsRepository $formationsRepository): Response
     {
         $formation = new Formations();
@@ -36,6 +36,13 @@ class FormationsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formationsRepository->add($formation, true);
+
+            $this->addFlash(
+                'success',
+                'Votre formation a été créée avec succès !'
+            );
+
+
 
             return $this->redirectToRoute('app_formations_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -67,7 +74,7 @@ class FormationsController extends AbstractController
             $formationsRepository->add($formation, true);
             $this->addFlash(
                 'success',
-                'Votre recette a été modifié avec succès !'
+                'Votre formation a été modifiée avec succès !'
             );
 
 
