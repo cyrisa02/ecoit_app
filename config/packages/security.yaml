@@ -32,16 +32,17 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
     - { path: ^/admin, roles: ROLE_ADMIN }
-    - { path: ^/utilisateurs/, roles: ROLE_ADMIN }
+    #- { path: ^/utilisateurs/, roles: ROLE_ADMIN }
     - { path: ^/formations/, roles: ROLE_INSTRUCTOR }
     - { path: ^/sections/, roles: ROLE_INSTRUCTOR }
-    - { path: ^/lessons/, roles: ROLE_INSTRUCTOR }
+    # - { path: ^/lessons/, roles: ROLE_INSTRUCTOR }
     - { path: ^/quizes/, roles: ROLE_INSTRUCTOR }
     - { path: ^/questions/, roles: ROLE_INSTRUCTOR }
     - { path: ^/apprenant_sections, roles: ROLE_STUDENT }
     - { path: ^/parcours, roles: ROLE_STUDENT }
     - { path: ^/parcours_sections, roles: ROLE_STUDENT }
-
+    - { path: ^/lessons/student, roles: ROLE_STUDENT }
+    #- { path: ^/lessons/, roles: ROLE_STUDENT }
 when@test:
   security:
     password_hashers:

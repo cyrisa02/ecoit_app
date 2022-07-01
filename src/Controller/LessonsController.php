@@ -136,7 +136,7 @@ class LessonsController extends AbstractController
 /**
  * This method allows to stay on the same page for the toggle-button "finished Lesson"
  */
-     #[Security("is_granted('ROLE_STUDENT')")]
+     //#[Security("is_granted('ROLE_STUDENT')")]
 #[Route('/student/{id}', name: 'app_lessons_show_student', methods: ['GET'])]
     public function showLessonStudent(Lessons $lesson): Response
     {
