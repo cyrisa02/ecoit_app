@@ -28,12 +28,12 @@ class UsersFixtures extends Fixture
         );
         $admin->setLastname('Gourdon');
         $admin->setFirstname('Cyril');
-        $admin->setPicture('image.png');
+       
         $admin->setPseudo('Flash');
          $admin->setIsVerified('1');
         $admin->setIsValidInstructor('1');
-        $admin->setResetToken('1fdgdf');
-        $admin->setPlainPassword('1fdgdf');
+        
+       
         $admin->setDecription('JE suis l\'administrateur');
         
         $manager->persist($admin);
@@ -43,18 +43,18 @@ class UsersFixtures extends Fixture
         for($usr = 1; $usr <= 5; $usr++){
             $user = new Users();
                 $user->setEmail($faker->email);
-                $user->setRoles(['APPRENANT']);
+                $user->setRoles(['STUDENT']);
                 $user->setPassword(
             $this->passwordEncoder->hashPassword($user, 'secret')
         );
             $user->setLastname($faker->lastName);
             $user->setFirstname($faker->firstName);
-            $user->setPicture('image.png');                
+                         
                 $user->setPseudo($faker->firstName);
                 $user->setIsVerified(mt_rand(0, 1) == 1 ? true : false);
                 $user->setIsValidInstructor(mt_rand(0, 1) == 1 ? true : false);
-                $user->setResetToken('1fdgdf');
-                $user->setPlainPassword('1fdgdf');
+               
+                
                 
                 $user->setDecription($faker->text(15));
 

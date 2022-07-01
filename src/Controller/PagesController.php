@@ -17,10 +17,16 @@ class PagesController extends AbstractController
         return $this->render('pages/cvg.html.twig');
     }
 
-#[Route('/rgpd', name: 'rgpd', methods: ['GET'])]
+    #[Route('/rgpd', name: 'rgpd', methods: ['GET'])]
     public function indexrgpd(): Response
     {
         return $this->render('pages/rgpd.html.twig');
+    }
+
+    #[Route('/readme', name: 'readme', methods: ['GET'])]
+    public function readme(): Response
+    {
+        return $this->render('pages/readme.html.twig');
     }
 
 }

@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Users;
-use App\Entity\Lessons;
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
@@ -23,12 +23,7 @@ class UsersCrudController extends AbstractCrudController
 
     }
 
-    public static function getEntityFqcn2(): string
-    {
-        return Lessons::class;
-
-    }
-
+   
 
 
     public function configureCrud(Crud $crud): Crud

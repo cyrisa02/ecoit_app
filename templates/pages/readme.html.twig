@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	ReadMe
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container mt-4">
+
+		<h1 class="text-center">MODE D'EMPLOI DU SITE</h1>
+		<h2>1/ Visiter la page d'accueil</h2>
+		<p>utiliser la barre de recherche "Rechercher votre formation"</p>
+		<p>Utilisation de l'API Platform, du format JSON et d'un script Javascript</p>
+
+		<h2>2/ Cliquer sur sélectionner d'une formation ou sur Inscription de la barre de navigation pour s'inscrire en tant que apprenant</h2>
+
+
+		<p>
+			http://cyrisa02-ecoit.herokuapp.com/inscription_apprenant
+
+		</p>
+
+		<h2>3/ Aller sur votre compte</h2>
+
+		<p>http://cyrisa02-ecoit.herokuapp.com/utilisateurs/131</p>
+
+
+		<h2>4/ Voir la progression de la formation</h2>
+
+		<p>http://cyrisa02-ecoit.herokuapp.com/lessons/parcours_lessons/131</p>
+
+
+		<h2>5/ Suivre la formation</h2>
+
+		<p>Formation-Apprenant/ Mon planning
+																																																											http://127.0.0.1:8000/apprenant_sections</p>
+
+		<h2>6/ Choisir la section</h2>
+
+
+		<h2>
+			7/ Sélectionner la leçon</h2>
+
+		<p>Cliquer sur le bouton la leçon est en cours pour qu'elle soit terminée</p>
+
+
+		<h1>1/ S'inscire en tant que instructeur</h1>
+
+		<p>Votre candidature devra être validée par l'admin, vous n'aurez pas d'accès, comme dans l'exemple suivant:</p>
+
+		<h2>vous pouvez vous connecter en tant que:</h2>
+
+		<p>instructeurnonvalid@gmail.com</p>
+		<p>code: azerty</p>
+
+		<h2>si vous souhaitez accéder au menu d'un instructeur, utilisez:</h2>
+		<p>instructeur@gmail.com</p>
+		<p>code: azerty</p>
+		<p>Vous pouvez accéder au CRUD des formations, des sections,des leçons et des quizes</p>
+		<p>http://cyrisa02-ecoit.herokuapp.com/formations/</p>
+
+		<p>http://cyrisa02-ecoit.herokuapp.com/sections/</p>
+
+
+		<p>http://cyrisa02-ecoit.herokuapp.com/lessons/</p>
+		<p>http://cyrisa02-ecoit.herokuapp.com/quizes/</p>
+		<p>http://cyrisa02-ecoit.herokuapp.com/questions/</p>
+
+
+		<h1>1/  Se connecter en tant que admin</h1>
+		<p>Pour des raisons de sécurité, l'accès est bloqué.</p>
+
+		<h3>2/ L'admin peut accéder à  validation pour rechercher les dernières candidatures</h3>
+
+		<img src="{{ asset('assets/images/1listeadherants.png')}}" alt="validation" style="max-width: 55rem;" class="mx-auto d-block">
+
+		<p>De cette page, l'admin peut cliquer pour aller directement sur le tableau de bord du back-office.</p>
+
+		<img src="{{ asset('assets/images/2admin.png')}}" alt="dashboard" style="max-width: 55rem;" class="mx-auto d-block">
+
+		<p>L'admin clique sur Utilisateurs.</p>
+
+		<img src="{{ asset('assets/images/3listeinstructeur.png')}}" alt="menu utilisateur" style="max-width: 55rem;" class="mx-auto d-block">
+
+		<p>L'admin peut voir la liste des utilisateurs, et en dernier voir les ROLE_USER pour filtrer les instructeurs, sélectionner l'instructeur à valider.</p>
+
+		<img src="{{ asset('assets/images/4modif.png')}}" alt="menu utilisateur" style="max-width: 55rem;" class="mx-auto d-block">
+		<p>L'admin ajoute le rôle d'instructeur et doit aussi cliquer sur isVerified pour confirmer la candidature de l'instructeur et ouvrir les accès.</p>
+
+		<a class="btn btn-primary btn-lg mt-4" href="{{ path('home.index')}}">Retour Accueil</a>
+
+
+	</div>
+{% endblock %}
