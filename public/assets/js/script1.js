@@ -19,7 +19,7 @@ searchInput.addEventListener("input", e => {
 })
 
 
- fetch("http://cyrisa02-ecoit.herokuapp.com/api/formations/1")
+ fetch("https://cyrisa02-ecoit.herokuapp.com/api/formations?page=1")
 .then(res => res.json())
 .then(data => { return data['hydra:member']})
 .then(data1=> {
