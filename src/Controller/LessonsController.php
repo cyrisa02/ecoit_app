@@ -125,7 +125,7 @@ class LessonsController extends AbstractController
         if ($nombredelessons==0) {
             $progression=0;
         }
-        else {$progression = ($lessonterminee * 100) / $nombredelessons;}
+        else {$progression = floor(($lessonterminee * 100) / $nombredelessons);}
         
         return $this->render('pages/lessons/showprogression.html.twig', [
             'progression'=>$progression,
