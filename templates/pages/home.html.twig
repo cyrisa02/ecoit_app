@@ -9,187 +9,218 @@
 
 	<div class="container mt-4">
 		<div class="jumbotron">
-			<h1 class="display-4">Bienvenue sur ECOIT</h1>
-			{# {% if app.user %}
-																												{% if is_granted('ROLE_STUDENT') %}
-																								
-																													<div class="jumbotron">
-																								
-																														<div class="container">
-																															{{ form_start(form) }}
-																															<div class="form-row mt-4">
-																																<div class="col mt-4">
-																																	{{ form_row(form.listlesson)}}
-																																</div>
-																																<div class="col mt-4">
-																																	{{ form_row(form.finishlesson) }}</div>
-																																<div class="col mt-4">
-																																	<button class="btn btn-primary">Rechercher</button>
-																																</div>
-																															</div>
-																								
-																															{{ form_end(form) }}
-																														</div>
-																													</div>
-																												{% endif %}
-																								
-																											{% endif %} #}
+			<h1 class="display-4">Bienvenue
+				{{ app.user.firstname }}
+				{{ app.user.lastname }}
+				sur ECOIT</h1>
+
+
 			{% if app.user %}
 				{% if is_granted('ROLE_STUDENT') %}
 
+					<div class="jumbotron">
 
-					<h1>Voici l'ensemble de vos leçons
-					</h1>
+						<div class="container">
+							{{ form_start(form) }}
+							<div class="form-row mt-4">
+								<div class="col mt-4">
+									{{ form_row(form.listlesson)}}
+								</div>
+								<div class="col mt-4">
+									{{ form_row(form.finishlesson) }}</div>
+								<div class="col mt-4">
+									<div class="col mt-4">
+										{{ form_row(form.notfinishlesson) }}</div>
+									<div class="col mt-4">
+
+										<button class="btn btn-primary">Rechercher</button>
+									</div>
+								</div>
+
+								{{ form_end(form) }}
+							</div>
+						</div>
+					{% endif %}
+
+				{% endif %}
 
 
-					{% for formation in formations %}
-						{# <h2>Titre de votre formation:
-																																	<strong>{{formation.title}}</strong>
-																																</h2> #}
+				{% if app.user %}
+					{% if is_granted('ROLE_STUDENT') %}
 
 
-						<table class="table">
-							<thead>
-								<tr>{# <th>Sections</th> #}
-									{# <th>Vos Leçons</th> #}
+						<fieldset class="form-group">
+							<legend class="mt-4">Filtre Leçons</legend>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Voici l'ensemble de vos leçons
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+									Option two can be something else and selecting it will deselect option one
+								</label>
+							</div>
+							<div class="form-check disabled">
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
+									Option three is disabled
+								</label>
+							</div>
+						</fieldset>
 
-									{# <th>action</th> #}
-								</tr>
-							</thead>
-							<tbody>
+						<h1></h1>
+						{% for formation in formations %}
+							{% for section in formation.sections %}
+								{% for lesson in section.lessons %}
+									{{lesson.title}}
+									{{lesson.id}}
+									/
+								{% endfor %}
+							{% endfor %}
+						{% endfor %}
+
+						<div class="container mt-4">
+							<h1>Ensemble des leçons terminées pour l'utilisateur connecté</h1>
+							{% for ended_lesson in ended_lessons %}
+
+								{% if app.user == ended_lesson.users %}
+									<ul>
+										<li>{{ ended_lesson.id }}</li>
+										<li>{{ ended_lesson.lessons }}</li>
+										<li>{{ ended_lesson.users }}
+										</li>
+									</ul>
+								{% endif %}
+							{% endfor %}
+						</div>
+						<div class="container mt-4">
+							<h1>Ensemble des leçons en cours pour l'utilisateur connecté</h1>
+
+
+							{% for formation in formations %}
 								{% for section in formation.sections %}
-									<tr>
-
-										{# <td>
-																																																													<strong>{{ section.title }}</strong>
-																																																												</td> #}
-										<td>
-											{% for lesson in section.lessons %}
+									{% for lesson in section.lessons %}
+										{% for ended_lesson in ended_lessons %}
+											{% if ended_lesson is empty  %}
 												{{lesson.title}}
 												{{lesson.id}}
 												/
-											{% endfor %}
-										</td>
+											{% endif %}
 
-
-										{# <td>
-																																																													<a href="{{ path('app_course1_show', {'id': section.id}) }}">Aller à cette section</a>
-																																																				
-																																																												</td> #}
-									</tr>
-									{# {% else %}
-																																							<tr>
-																																								<td colspan="3">Pas de section trouvée</td>
-																																							</tr> #}
+										{% endfor %}
+									{% endfor %}
 								{% endfor %}
 
-
-							</tbody>
-						</table>
-					{% endfor %}
-				{% endif %}
-			{% endif %}
-
-
-			<p class="lead mt-4">Devenir la référence française pour les développeurs soucieux de leur impact digital. Voilà notre défi!</p>
-			<hr class="my-4">
-
-			<img id="computer" src="{{ asset('assets/images/computer.jpg')}}" alt="computer and nature" style="max-width: 35rem;" class="mx-auto d-block">
-
-
-			<p class="mt-4">C’est un fait, la crise écologique est devenue une urgence majeure. La sixième extinction
-																																																																																																																																																																																																																																																																																																																																																																																																	massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
-																																																																																																																																																																																																																																																																																																																																																																																																	des années. Mais qu’en est-il d’internet ?
-																																																																																																																																																																																																																																																																																																																																																																																																	En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
-																																																																																																																																																																																																																																																																																																																																																																																																	ans, le poids d’une page web a été multiplié par 115 (source :<a href="https://www.greenit.fr/">https://www.greenit.fr/</a>
-				). Face à ce constat, un organisme de formation a été fondé en 2017 : EcoIT. Son objectif est
-																																																																																																																																																																																																																																																																																																																																																																																																	d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception web de présenter des modules de cours.</p>
-			<a class="btn btn-primary btn-lg" href="#" role="button">Recherchez votre formation grâce à la barre de recherche ci-dessous</a>
-
-
-			<div class="container mt-4">
-				<div class="search-wrapper">
-					<label for="search">Recherchez votre formation</label>
-					<input type="search" id="search" data-search>
-				</div>
-				<div class="formation-cards mt-4" data-formation-cards-container style="display: flex;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															flex-direction: row;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															flex-wrap: wrap;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															justify-content: space-between;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															align-items: stretch;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															align-content: space-around;"></div>
-
-				<template data-formation-template>
-					<div class="card border-primary mb-3" style="width:300px;">
-
-
-						<div class="card-header bg-secondary" data-header></div>
-
-
-						{# <iframe width="250" height="100" title="Image formation" frameborder="0" allowfullscreen></iframe> #}
-
-
-						<div class="card-body bg-light" data-body></div>
-
-
-						<a class="btn btn-primary btn-sm row my-2 ms-2  " href="{{path('app_register2')}}" role="button" style="width:100px;">Sélectionner</a>
-
-
-					</div>
-				</template>
-
-
-			</div>
-			<div class="container mt-4">
-				<div class="row">
-					{% for formation in formations %}
-						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-							<article class="card border-primary mb-3 " style="max-width: 20rem; ">
-
-
-								<div class="card-header bg-secondary">
-
-									<h1>Formation N°:
-										{{ formation.id}}
-									</h1>
-
-
-									<iframe width="250" height="100" src="{{ formation.image }} " title="formation" frameborder="0" allowfullscreen></iframe>
-
-
-								</div>
-								<div class="card-body bg-light">
-
-									<h4 class="card-title">{{ formation.title}}
-									</h4>
-									<p class="card-text">{{ formation.description }}</p>
-
-									<a class="btn btn-primary btn-lg row my-2" href="{{path('app_register2')}}" role="button">Sélectionner</a>
-
-
-								</div>
-							</article>
+							{% endfor %}
 						</div>
 
-					{% endfor %}
+
+					{% endif %}
+				{% endif %}
+
+
+				<p class="lead mt-4">Devenir la référence française pour les développeurs soucieux de leur impact digital. Voilà notre défi!</p>
+				<hr class="my-4">
+
+				<img id="computer" src="{{ asset('assets/images/computer.jpg')}}" alt="computer and nature" style="max-width: 35rem;" class="mx-auto d-block">
+
+
+				<p class="mt-4">C’est un fait, la crise écologique est devenue une urgence majeure. La sixième extinction
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										des années. Mais qu’en est-il d’internet ?
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										ans, le poids d’une page web a été multiplié par 115 (source :<a href="https://www.greenit.fr/">https://www.greenit.fr/</a>
+					). Face à ce constat, un organisme de formation a été fondé en 2017 : EcoIT. Son objectif est
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception web de présenter des modules de cours.</p>
+				<a class="btn btn-primary btn-lg" href="#" role="button">Recherchez votre formation grâce à la barre de recherche ci-dessous</a>
+
+
+				<div class="container mt-4">
+					<div class="search-wrapper">
+						<label for="search">Recherchez votre formation</label>
+						<input type="search" id="search" data-search>
+					</div>
+					<div class="formation-cards mt-4" data-formation-cards-container style="display: flex;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		flex-direction: row;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		flex-wrap: wrap;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		justify-content: space-between;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		align-items: stretch;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		align-content: space-around;"></div>
+
+					<template data-formation-template>
+						<div class="card border-primary mb-3" style="width:300px;">
+
+
+							<div class="card-header bg-secondary" data-header></div>
+
+
+							{# <iframe width="250" height="100" title="Image formation" frameborder="0" allowfullscreen></iframe> #}
+
+
+							<div class="card-body bg-light" data-body></div>
+
+
+							<a class="btn btn-primary btn-sm row my-2 ms-2  " href="{{path('app_register2')}}" role="button" style="width:100px;">Sélectionner</a>
+
+
+						</div>
+					</template>
+
+
 				</div>
+				<div class="container mt-4">
+					<div class="row">
+						{% for formation in formations %}
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+								<article class="card border-primary mb-3 " style="max-width: 20rem; ">
+
+
+									<div class="card-header bg-secondary">
+
+										<h1>Formation N°:
+											{{ formation.id}}
+										</h1>
+
+
+										<iframe width="250" height="100" src="{{ formation.image }} " title="formation" frameborder="0" allowfullscreen></iframe>
+
+
+									</div>
+									<div class="card-body bg-light">
+
+										<h4 class="card-title">{{ formation.title}}
+										</h4>
+										<p class="card-text">{{ formation.description }}</p>
+
+										<a class="btn btn-primary btn-lg row my-2" href="{{path('app_register2')}}" role="button">Sélectionner</a>
+
+
+									</div>
+								</article>
+							</div>
+
+						{% endfor %}
+					</div>
+				</div>
+
 			</div>
 
+			<div class="container mt-4">
+				<p>Vous souhaitez rejoindre nos équipes, alors inscrivez-vous rapidement!</p>
+				<a class="btn btn-primary btn-lg" href="{{ path('app_register') }}">Inscription Instructeur</a>
+
+			</div>
+
+			<div class="container mt-4">
+				<p>Vous voulez suivre une de nos formations, c'est très facile!</p>
+
+				<a class="btn btn-primary btn-lg" href="{{ path('app_register2') }}">Inscription Apprenant</a>
+
+			</div>
 		</div>
 
-		<div class="container mt-4">
-			<p>Vous souhaitez rejoindre nos équipes, alors inscrivez-vous rapidement!</p>
-			<a class="btn btn-primary btn-lg" href="{{ path('app_register') }}">Inscription Instructeur</a>
 
-		</div>
-
-		<div class="container mt-4">
-			<p>Vous voulez suivre une de nos formations, c'est très facile!</p>
-
-			<a class="btn btn-primary btn-lg" href="{{ path('app_register2') }}">Inscription Apprenant</a>
-
-		</div>
-	</div>
-
-
-{% endblock %}
+	{% endblock %}

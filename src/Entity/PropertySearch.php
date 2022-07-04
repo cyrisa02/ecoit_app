@@ -17,6 +17,13 @@ class PropertySearch {
      */
     private $finishlesson;
 
+    /**
+     * Undocumented variable
+     *
+     * @var [string]
+     */
+    private $notfinishlesson;
+
 
     /**
      * Get undocumented variable
@@ -62,6 +69,30 @@ class PropertySearch {
     public function setFinishlesson(string $finishlesson): PropertySearch
     {
         $this->finishlesson = $finishlesson;
+
+        return $this;
+    }
+
+    /**
+     * Get undocumented variable
+     *
+     * @return  [string]
+     */ 
+    public function getNotfinishlesson()
+    {
+        return $this->notfinishlesson;
+    }
+
+    /**
+     * Set undocumented variable
+     *
+     * @param  [string]  $notfinishlesson  Undocumented variable
+     *
+     * @return  self
+     */ 
+    public function setNotfinishlesson(string $notfinishlesson)
+    {
+        $this->notfinishlesson = $notfinishlesson;
 
         return $this;
     }

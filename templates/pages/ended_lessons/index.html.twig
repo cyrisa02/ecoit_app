@@ -16,6 +16,10 @@
 			</tr>
 		</thead>
 		<tbody>
+
+			{{ app.user.lastname }}
+			{{ app.user.firstname }}
+
 			{% for ended_lesson in ended_lessons %}
 
 				<h3>
@@ -24,6 +28,10 @@
 				<tr>
 
 					<td>{{ ended_lesson.id }}</td>
+					<td>{{ ended_lesson.lessons }}</td>
+					<td>{{ ended_lesson.users }}</td>
+
+
 					<td>{{ ended_lesson.createdAt ? ended_lesson.createdAt|date('d/m/Y') : '' }}</td>
 
 					<td>{{ ended_lesson.updatedAt ? ended_lesson.updatedAt|date('d/m/Y') : '' }}</td>

@@ -2,17 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Users;
-use App\Repository\UsersRepository;
 use App\Entity\Formations;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
-use App\Repository\FormationsRepository;
+use App\Repository\UsersRepository;
 use App\Repository\LessonsRepository;
+use App\Repository\FormationsRepository;
+use App\Repository\EndedLessonsRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * This controller displays the homepage
@@ -21,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home.index', methods: ['GET'])]
-    public function index(FormationsRepository $formationsRepository, UsersRepository $usersRepository, LessonsRepository $lessonsRepository, Request $request): Response
+    public function index(FormationsRepository $formationsRepository, UsersRepository $usersRepository, LessonsRepository $lessonsRepository,EndedLessonsRepository $endedLessonsRepository, Request $request): Response
     {
         $search = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class, $search);
@@ -32,6 +33,7 @@ class HomeController extends AbstractController
             'users' =>
             $usersRepository->findAll(),
             'lessons' => $lessonsRepository->findAll(),
+            'ended_lessons' => $endedLessonsRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }
