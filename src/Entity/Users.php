@@ -49,7 +49,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
                 private string $firstname;
             
                  #[ORM\Column(type: 'string', length: 190)]     
-                 private ?string $decription;
+                 private string $decription;
             
                 
             

@@ -8,7 +8,7 @@
 	<section class="container my-3">
 		<div class="row">
 			<div class="col">
-				<form method="post">
+				<form method="post" name="login">
 					{% if error %}
 						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 					{% endif %}
@@ -31,15 +31,15 @@
 					type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 					{#
-																					        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																					        See https://symfony.com/doc/current/security/remember_me.html
-																					
-																					        <div class="checkbox mb-3">
-																					            <label>
-																					                <input type="checkbox" name="_remember_me"> Remember me
-																					            </label>
-																					        </div>
-																					    #}
+																										        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																										        See https://symfony.com/doc/current/security/remember_me.html
+																										
+																										        <div class="checkbox mb-3">
+																										            <label>
+																										                <input type="checkbox" name="_remember_me"> Remember me
+																										            </label>
+																										        </div>
+																										    #}
 
 					<button class="btn btn-lg btn-primary mt-4" type="submit">
 						Valider

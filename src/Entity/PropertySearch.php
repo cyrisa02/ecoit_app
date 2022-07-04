@@ -8,21 +8,21 @@ class PropertySearch {
      *
      * @var [string]
      */
-    private $listlesson;
+    private string $listlesson;
 
     /**
      * Undocumented variable
      *
      * @var [string]
      */
-    private $finishlesson;
+    private string $finishlesson;
 
     /**
      * Undocumented variable
      *
      * @var [string]
      */
-    private $notfinishlesson;
+    private string $notfinishlesson;
 
 
     /**
@@ -30,7 +30,7 @@ class PropertySearch {
      *
      * @return  [string]
      */ 
-    public function getListlesson()
+    public function getListlesson():?string
     {
         return $this->listlesson;
     }
@@ -54,7 +54,7 @@ class PropertySearch {
      *
      * @return  [string]
      */ 
-    public function getFinishlesson()
+    public function getFinishlesson():?string
     {
         return $this->finishlesson;
     }
@@ -78,7 +78,7 @@ class PropertySearch {
      *
      * @return  [string]
      */ 
-    public function getNotfinishlesson()
+    public function getNotfinishlesson(): ?string
     {
         return $this->notfinishlesson;
     }
@@ -96,4 +96,12 @@ class PropertySearch {
 
         return $this;
     }
+
+    /**
+ * {@inheritdoc}
+ */
+public function getBlockPrefix():string
+{
+	return 'App_avis';
+}
 }
