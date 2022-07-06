@@ -16,23 +16,26 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: FormationsRepository::class)]
 
 #[ORM\HasLifecycleCallbacks]
-#[ApiResource(
-    normalizationContext: ['groups'=> ['read:collection']]
+#[ApiResource( 
+    collectionOperations: ['get'],
+    itemOperations: ['get'],    
+    normalizationContext: ['groups' => ['read'], "enable_max_depth"=>true],
 )]
+
 class Formations
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['read:collection'])]
+    #[Groups(['read'])]
     private ?int $id;
 
     #[ORM\Column(type: 'string', length: 190)]
-    #[Groups(['read:collection'])]
+    #[Groups(['read'])]
     private string $title;
 
     #[ORM\Column(type: 'text')]
-    #[Groups(['read:collection'])]
+    #[Groups(['read'])]
     private string $description;
 
     #[ORM\Column(type: 'string', length: 190)]
