@@ -19,19 +19,7 @@ searchInput.addEventListener("input", e => {
 })
 
 
- fetch('https://cyrisa02-ecoit.herokuapp.com/api/formations?page=1',
- {
-                    method: 'GET',
-                    body: requestBody,
-                    headers: {
-                        'Content-Type': 'application/json; charset=UTF-8',
-                        'Host': 'https://*.airtableblocks.com',
-                        'Accept': 'application/json'
-                    },
-                }
- 
- 
- )
+ fetch('https://cyrisa02-ecoit.herokuapp.com/api/formations?page=1')
 .then(res => res.json())
 .then(data => { return data['hydra:member']})
 .then(data1=> {
