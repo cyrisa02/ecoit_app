@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PagesController extends AbstractController
 {
-    #[Route('cvg', name: 'cvg')]
+    #[Route('/cvg', name: 'cvg')]
     public function indexcvg(): Response
     {
         return $this->render('pages/cvg.html.twig');

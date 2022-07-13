@@ -82,50 +82,29 @@
 						{% endfor %}
 
 						<div class="container mt-4">
+							<h1>Ensemble des leçons non-terminées pour l'utilisateur connecté</h1>
+							{% for ended_lesson in ended_lessons %}
+								{% if app.user != ended_lesson.users %}
+									<ul>
+										<li>{{ ended_lesson.id }}
+											{{ ended_lesson.lessons }}
+											{{ ended_lesson.users }}</li>
+									</ul>
+								{% endif %}
+							{% endfor %}
+
 							<h1>Ensemble des leçons terminées pour l'utilisateur connecté</h1>
 							{% for ended_lesson in ended_lessons %}
 								{% if app.user == ended_lesson.users %}
 									<ul>
-										<li>{{ ended_lesson.id }}</li>
-										<li>{{ ended_lesson.lessons }}</li>
-										<li>{{ ended_lesson.users }}
-										</li>
+										<li>{{ ended_lesson.id }}
+											{{ ended_lesson.lessons }}
+											{{ ended_lesson.users }}</li>
 									</ul>
-									{# {% else %}
-																		<p>Message</p>
-																		{% for formation in formations %}
-																			{% for section in formation.sections %}
-																				{% for lesson in section.lessons %}
-									
-																					{{lesson.title}}
-																					{{lesson.id}}
-																				{% endfor %}
-																			{% endfor %}
-																		{% endfor %} #}
-
 								{% endif %}
 							{% endfor %}
-						</div>
-						<div class="container mt-4">
-							<h1>Ensemble des leçons en cours pour l'utilisateur connecté</h1>
 
 
-							{% for formation in formations %}
-								{% for section in formation.sections %}
-									{% for lesson in section.lessons %}
-										{% for ended_lesson in ended_lessons %}
-											{% if  app.user == ended_lesson.users %}
-
-												{{lesson.title}}
-												{{lesson.id}}
-												/
-											{% endif %}
-
-										{% endfor %}
-									{% endfor %}
-								{% endfor %}
-
-							{% endfor %}
 						</div>
 
 
@@ -140,12 +119,12 @@
 
 
 					<p class="mt-4">C’est un fait, la crise écologique est devenue une urgence majeure. La sixième extinction
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							des années. Mais qu’en est-il d’internet ?
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							ans, le poids d’une page web a été multiplié par 115 (source :<a href="https://www.greenit.fr/">https://www.greenit.fr/</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	massive a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	des années. Mais qu’en est-il d’internet ?
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 20
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	ans, le poids d’une page web a été multiplié par 115 (source :<a href="https://www.greenit.fr/">https://www.greenit.fr/</a>
 						). Face à ce constat, un organisme de formation a été fondé en 2017 : EcoIT. Son objectif est
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception web de présenter des modules de cours.</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	d’être une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception web de présenter des modules de cours.</p>
 					<a class="btn btn-primary btn-lg" href="#" role="button">Recherchez votre formation grâce à la barre de recherche ci-dessous</a>
 				</div>
 
@@ -156,11 +135,11 @@
 						<input type="search" id="search" data-search>
 					</div>
 					<div class="formation-cards mt-4" data-formation-cards-container style="display: flex;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																flex-direction: row;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																flex-wrap: wrap;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																justify-content: space-between;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																align-items: stretch;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																align-content: space-around;"></div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										flex-direction: row;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										flex-wrap: wrap;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										justify-content: space-between;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										align-items: stretch;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										align-content: space-around;"></div>
 
 					<template data-formation-template>
 						<div class="card border-primary mb-3" style="width:300px;">
