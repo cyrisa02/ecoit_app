@@ -12,7 +12,6 @@ use Faker;
 class UsersFixtures extends Fixture
 {
     //private $counter = 1;
-
     public function __construct(
         private UserPasswordHasherInterface $passwordEncoder,
         private SluggerInterface $slugger
@@ -27,19 +26,13 @@ class UsersFixtures extends Fixture
             $this->passwordEncoder->hashPassword($admin, 'admin')
         );
         $admin->setLastname('Gourdon');
-        $admin->setFirstname('Cyril');
-       
+        $admin->setFirstname('Cyril');       
         $admin->setPseudo('Flash');
          $admin->setIsVerified('1');
-        $admin->setIsValidInstructor('1');
-        
-       
-        $admin->setDecription('JE suis l\'administrateur');
-        
+        $admin->setIsValidInstructor('1');      
+        $admin->setDecription('JE suis l\'administrateur');        
         $manager->persist($admin);
-
         $faker = Faker\Factory::create('fr_FR');
-
         for($usr = 1; $usr <= 5; $usr++){
             $user = new Users();
                 $user->setEmail($faker->email);
